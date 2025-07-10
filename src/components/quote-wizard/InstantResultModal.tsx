@@ -32,7 +32,7 @@ export function InstantResultModal({
       label: material,
       value: pricing.lowPrice
     })
-  }, [])
+  }, [material, pricing.lowPrice])
 
   const handleCallClick = () => {
     event({

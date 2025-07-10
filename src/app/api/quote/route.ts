@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
       hasComplexFiles: files.some(f => ['dxf', 'dwg', 'step', 'stp'].includes(f.name.split('.').pop()?.toLowerCase() || ''))
     })
 
-    const quoteId = `Q-${Date.now()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`
+    const quoteId = `Q-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
     
     const quoteRecord = {
       id: quoteId,
