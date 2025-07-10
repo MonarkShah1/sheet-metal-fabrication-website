@@ -147,7 +147,7 @@ export function EquipmentGallery({
 
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
-  }, [selectedEquipment, filteredEquipment])
+  }, [selectedEquipment, filteredEquipment, navigateEquipment])
 
   return (
     <>

@@ -100,7 +100,7 @@ export function TestimonialCarousel({
     }
 
     return () => stopAutoplay()
-  }, [isPlaying, autoplayInterval, testimonials.length])
+  }, [isPlaying, autoplayInterval, testimonials.length, startAutoplay])
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)

@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data = JSON.parse(dataString)
-    const { material, quantity, rush, notes, customer } = data
+    const { material, quantity, rush, customer } = data
 
     if (!material || !quantity || !customer.name || !customer.email || !customer.company) {
       return NextResponse.json(
