@@ -194,16 +194,20 @@ export function ContactConfirmStep({
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-start space-x-3">
+        <div className="flex items-start space-x-3 p-4 border border-industrial-200 rounded-lg bg-industrial-50">
           <input
             type="checkbox"
             id="terms"
             checked={acceptedTerms}
             onChange={(e) => setAcceptedTerms(e.target.checked)}
-            className="w-4 h-4 text-primary-600 border-industrial-300 rounded focus:ring-primary-500 mt-1"
+            className="w-5 h-5 text-primary-600 bg-white border-2 border-industrial-400 rounded focus:ring-2 focus:ring-primary-500 focus:border-primary-500 mt-0.5 cursor-pointer"
+            style={{
+              accentColor: '#003B73'
+            }}
           />
-          <label htmlFor="terms" className="text-sm text-industrial-700">
-            I agree to receive quote information and follow-up communications from Canadian Metal Fabricators. 
+          <label htmlFor="terms" className="text-sm text-industrial-700 cursor-pointer select-none">
+            <span className="font-medium">I agree to receive quote information and follow-up communications from Canadian Metal Fabricators.</span>
+            <br />
             I understand that my information will be used to process my quote request and may be stored 
             for future project discussions.
           </label>
@@ -214,13 +218,16 @@ export function ContactConfirmStep({
           </p>
         )}
 
-        <div className="flex items-start space-x-3">
+        <div className="flex items-start space-x-3 p-3 border border-industrial-200 rounded-lg bg-white">
           <input
             type="checkbox"
             id="newsletter"
-            className="w-4 h-4 text-primary-600 border-industrial-300 rounded focus:ring-primary-500 mt-1"
+            className="w-5 h-5 text-primary-600 bg-white border-2 border-industrial-400 rounded focus:ring-2 focus:ring-primary-500 focus:border-primary-500 mt-0.5 cursor-pointer"
+            style={{
+              accentColor: '#003B73'
+            }}
           />
-          <label htmlFor="newsletter" className="text-sm text-industrial-700">
+          <label htmlFor="newsletter" className="text-sm text-industrial-700 cursor-pointer select-none">
             I'd like to receive occasional updates about new capabilities and industry insights 
             (optional - you can unsubscribe anytime).
           </label>

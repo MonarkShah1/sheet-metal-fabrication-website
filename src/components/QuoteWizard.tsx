@@ -47,12 +47,21 @@ export function QuoteWizard() {
   })
 
   useEffect(() => {
+    // Track quote wizard start
+    event({
+      action: 'quote_start',
+      category: 'Quote Wizard',
+      label: 'Wizard Started',
+      value: 1
+    })
+
     const saved = localStorage.getItem(STORAGE_KEY)
     if (saved) {
       try {
         const parsed = JSON.parse(saved)
         setQuoteData(prev => ({ ...prev, ...parsed }))
         setCurrentStep(parsed.currentStep || 1)
+        console.log('Restored quote progress:', parsed)
       } catch (e) {
         console.error('Failed to parse saved progress:', e)
       }
@@ -90,6 +99,13 @@ export function QuoteWizard() {
   }
 
   const submitQuote = async () => {
+    console.log('Starting quote submission...', {
+      material: quoteData.material,
+      quantity: quoteData.quantity,
+      customer: quoteData.customer,
+      fileCount: quoteData.files.length
+    })
+    
     setIsSubmitting(true)
     
     try {
@@ -97,26 +113,35 @@ export function QuoteWizard() {
       
       quoteData.files.forEach((file, index) => {
         formData.append(`file${index}`, file)
+        console.log(`Added file ${index}:`, file.name, file.size)
       })
       
-      formData.append('data', JSON.stringify({
+      const requestData = {
         material: quoteData.material,
         quantity: quoteData.quantity,
         rush: quoteData.rush,
         notes: quoteData.notes,
         customer: quoteData.customer
-      }))
+      }
+      
+      console.log('Request data:', requestData)
+      formData.append('data', JSON.stringify(requestData))
 
       const response = await fetch('/api/quote', {
         method: 'POST',
         body: formData
       })
 
+      console.log('Response status:', response.status)
+
       if (!response.ok) {
-        throw new Error('Failed to submit quote')
+        const errorData = await response.json()
+        console.error('Quote API error:', errorData)
+        throw new Error(errorData.error || 'Failed to submit quote')
       }
 
       const result = await response.json()
+      console.log('Quote submission successful:', result)
       
       setQuoteData(prev => ({
         ...prev,
@@ -135,7 +160,7 @@ export function QuoteWizard() {
       
     } catch (error) {
       console.error('Quote submission failed:', error)
-      alert('Failed to submit quote. Please try again.')
+      alert(`Failed to submit quote: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`)
     } finally {
       setIsSubmitting(false)
     }
