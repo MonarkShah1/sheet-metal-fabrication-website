@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Navigation } from '@/components/Navigation'
+import { SkipLink } from '@/components/SkipLink'
 import { Analytics, MatomoAnalytics } from '@/components/Analytics'
 import './globals.css'
 
@@ -77,8 +78,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Analytics />
         <MatomoAnalytics />
+        <SkipLink />
         <Navigation />
-        <main className="pt-16">
+        <main id="main-content" className="pt-16" tabIndex={-1}>
           {children}
         </main>
       </body>

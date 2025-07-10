@@ -10,15 +10,54 @@
   body {
     @apply bg-white text-industrial-900 antialiased;
   }
+  
+  /* Dark mode styles */
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply bg-industrial-900 text-industrial-50;
+    }
+    
+    .hero-text {
+      @apply text-primary-100;
+    }
+    
+    .section-title {
+      @apply text-primary-200;
+    }
+    
+    .card {
+      @apply bg-industrial-800 border border-industrial-700;
+    }
+    
+    .bg-white {
+      @apply dark:bg-industrial-800;
+    }
+    
+    .text-industrial-900 {
+      @apply dark:text-industrial-100;
+    }
+    
+    .text-industrial-700 {
+      @apply dark:text-industrial-300;
+    }
+    
+    .text-industrial-600 {
+      @apply dark:text-industrial-400;
+    }
+    
+    .bg-industrial-50 {
+      @apply dark:bg-industrial-800;
+    }
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200;
+    @apply bg-primary hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-3 focus:ring-primary-300 focus:ring-offset-2;
   }
   
   .btn-secondary {
-    @apply bg-accent hover:bg-accent-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200;
+    @apply bg-accent hover:bg-accent-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-3 focus:ring-accent-300 focus:ring-offset-2;
   }
   
   .section-container {
@@ -35,5 +74,75 @@
   
   .card {
     @apply bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-200;
+  }
+  
+  /* Enhanced Focus Indicators */
+  .focus-visible {
+    @apply outline-none ring-3 ring-primary-500 ring-offset-2;
+  }
+  
+  /* Skip Link */
+  .skip-link {
+    @apply absolute top-0 left-0 bg-primary text-white px-4 py-2 rounded-br-lg transform -translate-y-full transition-transform duration-200 z-50;
+  }
+  
+  .skip-link:focus {
+    @apply translate-y-0;
+  }
+  
+  /* High Contrast Text */
+  .high-contrast {
+    color: #000000;
+    background-color: #ffffff;
+  }
+  
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Enhanced line height for readability */
+  p, li, td {
+    line-height: 1.6;
+  }
+  
+  /* Ensure proper character limits for readability */
+  .readable-text {
+    max-width: 65ch;
+  }
+  
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-down {
+    animation: slide-down 0.2s ease-out;
+  }
+  
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }
