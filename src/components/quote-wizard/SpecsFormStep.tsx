@@ -57,7 +57,7 @@ export function SpecsFormStep({
     }
   }
 
-  const handleQuantityTierSelect = (min: number, max: number) => {
+  const handleQuantityTierSelect = (min: number) => {
     setShowCustomQuantity(false)
     onDataChange({ quantity: min })
     if (errors.quantity) {
@@ -178,7 +178,7 @@ export function SpecsFormStep({
                 <button
                   key={`${tier.min}-${tier.max}`}
                   type="button"
-                  onClick={() => handleQuantityTierSelect(tier.min, tier.max)}
+                  onClick={() => handleQuantityTierSelect(tier.min)}
                   className={`p-3 text-center border rounded-lg transition-colors ${
                     selectedTier === tier && !isCustomQuantity
                       ? 'border-primary-500 bg-primary-50 text-primary-700'

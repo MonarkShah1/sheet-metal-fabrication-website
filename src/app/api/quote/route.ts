@@ -43,38 +43,36 @@ export async function POST(request: NextRequest) {
     }
 
     const files: { name: string; size: number; type: string }[] = []
-    const fileEntries = Array.from(formData.entries()).filter(([key]) => key.startsWith('file'))
+    const fileEntries = Array.from(formData.values()).filter((value) => value instanceof File) as File[]
     
-    for (const [key, file] of fileEntries) {
-      if (file instanceof File) {
-        if (file.size > MAX_FILE_SIZE) {
-          return NextResponse.json(
-            { error: `File ${file.name} exceeds maximum size of 50MB` },
-            { status: 400 }
-          )
-        }
-
-        const extension = file.name.split('.').pop()?.toLowerCase()
-        if (!extension || !ACCEPTED_TYPES.includes(extension)) {
-          return NextResponse.json(
-            { error: `File ${file.name} has unsupported format` },
-            { status: 400 }
-          )
-        }
-
-        files.push({
-          name: file.name,
-          size: file.size,
-          type: file.type
-        })
-      }
-    }
-
-    if (files.length > MAX_FILES) {
+    if (fileEntries.length > MAX_FILES) {
       return NextResponse.json(
         { error: `Maximum ${MAX_FILES} files allowed` },
         { status: 400 }
       )
+    }
+
+    for (const file of fileEntries) {
+      if (file.size > MAX_FILE_SIZE) {
+        return NextResponse.json(
+          { error: `File ${file.name} exceeds maximum size of 50MB` },
+          { status: 400 }
+        )
+      }
+
+      const extension = file.name.split('.').pop()?.toLowerCase()
+      if (!extension || !ACCEPTED_TYPES.includes(extension)) {
+        return NextResponse.json(
+          { error: `File ${file.name} has unsupported format` },
+          { status: 400 }
+        )
+      }
+
+      files.push({
+        name: file.name,
+        size: file.size,
+        type: file.type
+      })
     }
 
     const pricing = calculatePricing({
@@ -86,21 +84,6 @@ export async function POST(request: NextRequest) {
     })
 
     const quoteId = `Q-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
-    
-    const quoteRecord = {
-      id: quoteId,
-      createdAt: new Date().toISOString(),
-      material,
-      quantity,
-      rush,
-      notes,
-      customer,
-      files: files.map(f => ({ name: f.name, size: f.size, type: f.type })),
-      pricing,
-      status: 'open',
-      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
-      userAgent: request.headers.get('user-agent') || 'unknown'
-    }
 
     console.log('Quote request received:', {
       quoteId,
