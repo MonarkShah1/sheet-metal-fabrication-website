@@ -105,6 +105,22 @@ export function QuoteWizard() {
       customer: quoteData.customer,
       fileCount: quoteData.files.length
     })
+
+    // Basic validation before API call
+    if (!quoteData.material) {
+      alert('Please select a material before submitting.')
+      return
+    }
+
+    if (!quoteData.quantity || quoteData.quantity < 1) {
+      alert('Please enter a valid quantity before submitting.')
+      return
+    }
+
+    if (!quoteData.customer.name || !quoteData.customer.email || !quoteData.customer.company) {
+      alert('Please fill in all required customer information.')
+      return
+    }
     
     setIsSubmitting(true)
     
