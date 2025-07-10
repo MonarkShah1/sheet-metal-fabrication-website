@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Disabled due to Vercel build issue
   },
   images: {
     formats: ['image/avif', 'image/webp'],

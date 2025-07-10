@@ -80,7 +80,7 @@ export function ContactForm() {
         setSubmitStatus('error')
         trackFormSubmission('Contact Form', false)
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error')
       trackFormSubmission('Contact Form', false)
     } finally {

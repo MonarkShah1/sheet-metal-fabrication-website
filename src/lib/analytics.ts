@@ -2,7 +2,7 @@ export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || ''
 
 declare global {
   interface Window {
-    gtag: (command: string, trackingId: string, config?: any) => void;
+    gtag: (command: string, trackingId: string, config?: Record<string, unknown>) => void;
   }
 }
 
@@ -70,6 +70,42 @@ export const trackEmailClick = () => {
     action: 'email_click',
     category: 'Contact',
     label: 'Header Email',
+    value: 1,
+  })
+}
+
+export const trackQuoteStart = () => {
+  event({
+    action: 'quote_start',
+    category: 'Quote Wizard',
+    label: 'Wizard Started',
+    value: 1,
+  })
+}
+
+export const trackFileUpload = (fileCount: number, fileTypes: string[]) => {
+  event({
+    action: 'file_upload',
+    category: 'Quote Wizard',
+    label: `${fileCount} files - ${fileTypes.join(', ')}`,
+    value: fileCount,
+  })
+}
+
+export const trackQuoteComplete = (material: string, quantity: number, priceRange: string) => {
+  event({
+    action: 'quote_complete',
+    category: 'Quote Wizard',
+    label: `${material} - ${quantity} pieces - ${priceRange}`,
+    value: quantity,
+  })
+}
+
+export const trackCtaClickCall = (location: string) => {
+  event({
+    action: 'cta_click_call',
+    category: 'CTA',
+    label: location,
     value: 1,
   })
 }

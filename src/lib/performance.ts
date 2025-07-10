@@ -4,7 +4,7 @@ export const performanceConfig = {
   totalBudget: 1024 * 1024, // 1MB total
 }
 
-export function reportWebVitals(metric: any) {
+export function reportWebVitals(metric: { name: string; id: string; value: number }) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', metric.name, {
       event_category: 'Web Vitals',

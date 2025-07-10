@@ -4,9 +4,9 @@ import { BreadcrumbList } from '@/components/ui/BreadcrumbList'
 import Link from 'next/link'
 
 interface CapabilityPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 const capabilities = {
@@ -93,7 +93,8 @@ const capabilities = {
 }
 
 export async function generateMetadata({ params }: CapabilityPageProps): Promise<Metadata> {
-  const capability = capabilities[params.slug as keyof typeof capabilities]
+  const { slug } = await params
+  const capability = capabilities[slug as keyof typeof capabilities]
   
   if (!capability) {
     return {
@@ -120,8 +121,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function CapabilityPage({ params }: CapabilityPageProps) {
-  const capability = capabilities[params.slug as keyof typeof capabilities]
+export default async function CapabilityPage({ params }: CapabilityPageProps) {
+  const { slug } = await params
+  const capability = capabilities[slug as keyof typeof capabilities]
   
   if (!capability) {
     notFound()
@@ -130,7 +132,7 @@ export default function CapabilityPage({ params }: CapabilityPageProps) {
   const breadcrumbs = [
     { name: 'Home', href: '/' },
     { name: 'Capabilities', href: '/capabilities' },
-    { name: capability.content.equipment, href: `/capabilities/${params.slug}` }
+    { name: capability.content.equipment, href: `/capabilities/${slug}` }
   ]
 
   const jsonLd = {
