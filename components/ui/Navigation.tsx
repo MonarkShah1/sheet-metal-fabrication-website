@@ -59,7 +59,7 @@ export default function Navigation() {
               {navigation.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  href={item.href as any}
                   className="text-secondary-700 hover:text-primary-600 font-medium py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
