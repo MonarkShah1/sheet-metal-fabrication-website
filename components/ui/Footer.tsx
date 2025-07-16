@@ -48,8 +48,8 @@ export default function Footer() {
             © 2024 PrecisionMetal Works. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-secondary-400 hover:text-white text-sm transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-secondary-400 hover:text-white text-sm transition-colors">Terms of Service</Link>
+            <Link href={"/privacy" as any} className="text-secondary-400 hover:text-white text-sm transition-colors">Privacy Policy</Link>
+            <Link href={"/terms" as any} className="text-secondary-400 hover:text-white text-sm transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
