@@ -243,10 +243,10 @@ export default function QuotePage() {
                     <div>
                       <h3 className="text-lg font-semibold text-primary-900 mb-2">What happens next?</h3>
                       <ul className="text-sm text-primary-800 space-y-1">
-                        <li>• We'll review your requirements within 24 hours</li>
+                        <li>• We&apos;ll review your requirements within 24 hours</li>
                         <li>• Our engineering team will analyze your files</li>
-                        <li>• You'll receive a detailed quote with pricing and timeline</li>
-                        <li>• We'll schedule a call to discuss your project</li>
+                        <li>• You&apos;ll receive a detailed quote with pricing and timeline</li>
+                        <li>• We&apos;ll schedule a call to discuss your project</li>
                       </ul>
                     </div>
                   </div>

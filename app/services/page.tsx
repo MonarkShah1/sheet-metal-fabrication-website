@@ -44,15 +44,15 @@ export default function ServicesPage() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    Thickness: Up to 1" depending on material
+                    Thickness: Up to 1&quot; depending on material
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    Tolerance: ±0.005" standard, tighter available
+                    Tolerance: ±0.005&quot; standard, tighter available
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    Maximum size: 60" x 120"
+                    Maximum size: 60&quot; x 120&quot;
                   </li>
                 </ul>
               </div>
