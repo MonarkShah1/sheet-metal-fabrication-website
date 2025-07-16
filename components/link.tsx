@@ -8,7 +8,7 @@ export const Link = forwardRef(function Link(
 ) {
   return (
     <Headless.DataInteractive>
-      <NextLink {...props} ref={ref} />
+      <NextLink {...props} ref={ref} href={props.href as any} />
     </Headless.DataInteractive>
   )
 })
