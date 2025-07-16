@@ -116,7 +116,7 @@ export default function BlogPage() {
                     </div>
                     
                     <h2 className="text-xl font-semibold mb-3 text-secondary-900 hover:text-primary-600 transition-colors">
-                      <Link href={`/blog/${post.slug}`}>
+                      <Link href={`/blog/${post.slug}` as any}>
                         {post.title}
                       </Link>
                     </h2>
@@ -128,7 +128,7 @@ export default function BlogPage() {
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-secondary-500">{post.date}</span>
                       <Link 
-                        href={`/blog/${post.slug}`}
+                        href={`/blog/${post.slug}` as any}
                         className="text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors"
                       >
                         Read More →
@@ -174,7 +174,7 @@ export default function BlogPage() {
                 <p className="text-secondary-600 text-sm mb-4">
                   Guides on choosing the right materials for your specific application and environment.
                 </p>
-                <Link href="/blog/category/materials" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                <Link href={"/blog/category/materials" as any} className="text-primary-600 hover:text-primary-700 font-medium text-sm">
                   Explore Articles →
                 </Link>
               </div>
@@ -184,7 +184,7 @@ export default function BlogPage() {
                 <p className="text-secondary-600 text-sm mb-4">
                   Best practices for designing sheet metal parts that are manufacturable and cost-effective.
                 </p>
-                <Link href="/blog/category/design" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                <Link href={"/blog/category/design" as any} className="text-primary-600 hover:text-primary-700 font-medium text-sm">
                   Explore Articles →
                 </Link>
               </div>
@@ -194,7 +194,7 @@ export default function BlogPage() {
                 <p className="text-secondary-600 text-sm mb-4">
                   Deep dives into manufacturing processes, capabilities, and when to use each method.
                 </p>
-                <Link href="/blog/category/technology" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                <Link href={"/blog/category/technology" as any} className="text-primary-600 hover:text-primary-700 font-medium text-sm">
                   Explore Articles →
                 </Link>
               </div>
@@ -204,7 +204,7 @@ export default function BlogPage() {
                 <p className="text-secondary-600 text-sm mb-4">
                   Understanding quality standards, testing methods, and certification requirements.
                 </p>
-                <Link href="/blog/category/quality" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                <Link href={"/blog/category/quality" as any} className="text-primary-600 hover:text-primary-700 font-medium text-sm">
                   Explore Articles →
                 </Link>
               </div>
@@ -219,7 +219,7 @@ export default function BlogPage() {
                 Have a Question?
               </h2>
               <p className="text-xl mb-8 text-primary-100">
-                Can't find what you're looking for? Our experts are here to help answer your questions.
+                Can&apos;t find what you&apos;re looking for? Our experts are here to help answer your questions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button href="/contact" color="white" className="px-8 py-4">

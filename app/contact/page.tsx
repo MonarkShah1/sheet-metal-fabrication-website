@@ -24,7 +24,7 @@ export default function ContactPage() {
                 Get in Touch
               </h1>
               <p className="text-xl text-secondary-700 mb-8">
-                Ready to discuss your sheet metal fabrication project? We're here to help with quotes, 
+                Ready to discuss your sheet metal fabrication project? We&apos;re here to help with quotes, 
                 questions, and technical support.
               </p>
             </div>

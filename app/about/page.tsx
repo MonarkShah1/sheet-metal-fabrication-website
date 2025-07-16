@@ -21,7 +21,7 @@ export default function AboutPage() {
                 About PrecisionMetal Works
               </h1>
               <p className="text-xl text-secondary-700 mb-8">
-                For over 20 years, we've been the trusted partner for engineers, OEMs, and businesses 
+                For over 20 years, we&apos;ve been the trusted partner for engineers, OEMs, and businesses 
                 seeking precision sheet metal fabrication with transparent pricing and exceptional quality.
               </p>
             </div>
@@ -35,11 +35,11 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold text-secondary-900 mb-6">Our Mission</h2>
                 <p className="text-lg text-secondary-700 mb-6">
                   To revolutionize the sheet metal fabrication industry by providing transparent pricing, 
-                  fast turnaround times, and exceptional quality that exceeds our customers' expectations.
+                  fast turnaround times, and exceptional quality that exceeds our customers&apos; expectations.
                 </p>
                 <p className="text-secondary-600 mb-6">
                   We understand the frustrations of traditional fabrication shops: hidden costs, long lead times, 
-                  and unpredictable quality. That's why we've built our business around solving these problems 
+                  and unpredictable quality. That&apos;s why we&apos;ve built our business around solving these problems 
                   with modern technology, streamlined processes, and a customer-first approach.
                 </p>
                 <div className="flex items-center space-x-4">
@@ -110,7 +110,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Transparency</h3>
                 <p className="text-secondary-600">
-                  No hidden fees, no surprises. You know exactly what you're paying for and when you'll receive it.
+                  No hidden fees, no surprises. You know exactly what you&apos;re paying for and when you&apos;ll receive it.
                 </p>
               </div>
 
@@ -122,7 +122,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Speed</h3>
                 <p className="text-secondary-600">
-                  Fast quotes, rapid production, and on-time delivery are not just promises—they're guarantees.
+                  Fast quotes, rapid production, and on-time delivery are not just promises—they&apos;re guarantees.
                 </p>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function AboutPage() {
               <div className="bg-white p-6 rounded-lg shadow-lg border border-secondary-100">
                 <h3 className="text-xl font-semibold mb-4">Equipment</h3>
                 <ul className="space-y-2 text-secondary-600">
-                  <li>• Fiber laser cutting systems (up to 1" thick)</li>
+                  <li>• Fiber laser cutting systems (up to 1&quot; thick)</li>
                   <li>• CNC press brakes (up to 200 tons)</li>
                   <li>• TIG, MIG, and spot welding stations</li>
                   <li>• Powder coating booth</li>
