@@ -220,3 +220,72 @@ DEPLOYMENT 4
 [16:38:52.044] Error: Command "npm run build" exited with 1
 [16:38:52.260] 
 [16:38:55.770] Exiting build container
+
+"""
+
+DEPLOYMENT 5
+
+[16:43:31.422] Running build in Washington, D.C., USA (East) – iad1
+[16:43:31.423] Build machine configuration: 2 cores, 8 GB
+[16:43:31.458] Cloning github.com/MonarkShah1/sheet-metal-fabrication-website (Branch: main, Commit: ef53611)
+[16:43:31.588] Previous build caches not available
+[16:43:31.831] Cloning completed: 372.000ms
+[16:43:32.184] Running "vercel build"
+[16:43:33.578] Vercel CLI 44.3.0
+[16:43:34.356] Installing dependencies...
+[16:43:37.559] npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+[16:43:38.039] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[16:43:39.069] npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+[16:43:39.108] npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+[16:43:39.232] npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+[16:43:40.806] npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[16:43:45.768] 
+[16:43:45.769] added 407 packages in 11s
+[16:43:45.769] 
+[16:43:45.770] 154 packages are looking for funding
+[16:43:45.770]   run `npm fund` for details
+[16:43:45.833] Detected Next.js version: 14.2.30
+[16:43:45.837] Running "npm run build"
+[16:43:45.953] 
+[16:43:45.954] > sheet-metal-fabrication-website@0.1.0 build
+[16:43:45.954] > next build
+[16:43:45.954] 
+[16:43:46.549] Attention: Next.js now collects completely anonymous telemetry regarding usage.
+[16:43:46.550] This information is used to shape Next.js' roadmap and prioritize features.
+[16:43:46.550] You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[16:43:46.551] https://nextjs.org/telemetry
+[16:43:46.551] 
+[16:43:46.613]   ▲ Next.js 14.2.30
+[16:43:46.614]   - Experiments (use with caution):
+[16:43:46.614]     · typedRoutes
+[16:43:46.614] 
+[16:43:46.683]    Creating an optimized production build ...
+[16:44:05.261]  ✓ Compiled successfully
+[16:44:05.262]    Linting and checking validity of types ...
+[16:44:13.656] 
+[16:44:13.668] ./components/avatar.tsx
+[16:44:13.668] 48:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+[16:44:13.669] 
+[16:44:13.669] ./components/catalyst-ui-kit/javascript/avatar.jsx
+[16:44:13.669] 33:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+[16:44:13.670] 
+[16:44:13.670] ./components/catalyst-ui-kit/typescript/avatar.tsx
+[16:44:13.673] 48:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+[16:44:13.673] 
+[16:44:13.674] info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+[16:44:17.130] Failed to compile.
+[16:44:17.130] 
+[16:44:17.130] ./components/ui/Navigation.tsx:31:17
+[16:44:17.130] Type error: Type 'string' is not assignable to type 'UrlObject | RouteImpl<string>'.
+[16:44:17.130] 
+[16:44:17.130] [0m [90m 29 |[39m               [33m<[39m[33mLink[39m[0m
+[16:44:17.130] [0m [90m 30 |[39m                 key[33m=[39m{item[33m.[39mname}[0m
+[16:44:17.130] [0m[31m[1m>[22m[39m[90m 31 |[39m                 href[33m=[39m{item[33m.[39mhref}[0m
+[16:44:17.130] [0m [90m    |[39m                 [31m[1m^[22m[39m[0m
+[16:44:17.130] [0m [90m 32 |[39m                 className[33m=[39m[32m"text-secondary-700 hover:text-primary-600 font-medium transition-colors"[39m[0m
+[16:44:17.130] [0m [90m 33 |[39m               [33m>[39m[0m
+[16:44:17.130] [0m [90m 34 |[39m                 {item[33m.[39mname}[0m
+[16:44:17.155] Next.js build worker exited with code: 1 and signal: null
+[16:44:17.172] Error: Command "npm run build" exited with 1
+[16:44:17.391] 
+[16:44:20.329] Exiting build container
