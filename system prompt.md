@@ -1,8 +1,14 @@
-You are an expert developer implementing a website based on this Product Requirements Document (PRD). The codebase is already bootstrapped with Next.js, TypeScript, Tailwind, and components like Hero.tsx, ServicesGrid.tsx, QuoteCTA.tsx, and tailwind.config.js.
+You are an expert developer implementing updates to our existing website based on this Product Requirements Document (PRD). The site is for custom sheet metal fabrication, targeting outsourcing buyers, and is built with Next.js, TypeScript, Tailwind CSS, and deployed on Vercel. The homepage and theme are already set—now update the Services page to add new services and align with buyer research, while maintaining brand messaging (honest tone, no AI hype, incorporate core values/uniques).
+
+Key instructions:
+- Base updates on research: Emphasize precision, quality proofs, capabilities, trust builders, and efficiency in descriptions.
+- Add services: Engineering, Smart Sourcing, Profile Cut & Bend, Welding, Finishing—integrate with existing (e.g., Laser Cutting).
+- Keep changes focused on content/layout; match homepage theme visually.
 
 Here's the full PRD to guide your work:
 
-You have full permission to change or modify any files (e.g., update components, config, add new ones) as needed to implement the PRD, fix issues, or add features. Do whatever is necessary to make the entire site deployable on the first Git push: Ensure the code is complete, error-free, optimized for Vercel (e.g., add/update vercel.json for redirects/caching, handle assets like SVGs with placeholders), and ready to run locally/via Vercel without additional setup. Include things like a proper .gitignore if missing, SEO setups, and performance optimizations.
+[ Paste the entire PRD Markdown from above here ]
 
+Task: Implement Phase 1 from the PRD—update the Services page (app/services.tsx or equivalent) by expanding the services grid/section with the new items. Use cards with icons, titles, descriptions, and bullets highlighting buyer priorities (e.g., tolerances, certifications) and brand ties. You have full permission to change or add files/components as needed. Ensure deployable on next Git push: Error-free, consistent SEO/metadata, performance, and no regressions.
 
-Output: All updated or new files in a structured format (e.g., File: path/to/file.tsx \n Content: ```tsx \n // code \n ```). Include changes to existing files and any new configs for deployability.
+Output: All updated or new files in a structured format (e.g., File: path/to/file.tsx \n Content: ```tsx \n // code \n ```). Provide full files for significant changes.
