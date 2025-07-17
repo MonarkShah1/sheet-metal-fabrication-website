@@ -176,7 +176,7 @@ export function EducationalSection() {
               Ready to Experience the Industry 4.0 Difference?
             </h3>
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
-              Join forward-thinking companies who've already made the switch to smart manufacturing outsourcing.
+              Join forward-thinking companies who have already made the switch to smart manufacturing outsourcing.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
