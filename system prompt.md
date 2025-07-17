@@ -1,14 +1,9 @@
-You are an expert developer implementing updates to our existing website based on this Product Requirements Document (PRD). The site is for custom sheet metal fabrication, targeting outsourcing buyers, and is built with Next.js, TypeScript, Tailwind CSS, and deployed on Vercel. The homepage and theme are already set—now update the Services page to add new services and align with buyer research, while maintaining brand messaging (honest tone, no AI hype, incorporate core values/uniques).
-
-Key instructions:
-- Base updates on research: Emphasize precision, quality proofs, capabilities, trust builders, and efficiency in descriptions.
-- Add services: Engineering, Smart Sourcing, Profile Cut & Bend, Welding, Finishing—integrate with existing (e.g., Laser Cutting).
-- Keep changes focused on content/layout; match homepage theme visually.
+You are an expert developer building the About Us page for our existing website based on this Product Requirements Document (PRD). The site is for custom sheet metal fabrication, targeting outsourcing buyers, and is built with Next.js, TypeScript, Tailwind CSS, and deployed on Vercel. Match the existing theme (Industry 4.0 visuals, colors, layouts) and brand messaging (honest tone, no hype, peripheral AI education). Incorporate the brainstormed structure and specific history details: Started in 1992, Bought out by current management in 2019, Plant expansion in 2024.
 
 Here's the full PRD to guide your work:
 
 [ Paste the entire PRD Markdown from above here ]
 
-Task: Implement Phase 1 from the PRD—update the Services page (app/services.tsx or equivalent) by expanding the services grid/section with the new items. Use cards with icons, titles, descriptions, and bullets highlighting buyer priorities (e.g., tolerances, certifications) and brand ties. You have full permission to change or add files/components as needed. Ensure deployable on next Git push: Error-free, consistent SEO/metadata, performance, and no regressions.
+Task: Implement Phase 1 from the PRD—build the About Us page (app/about.tsx) with all sections from the brainstorm/PRD. Use reusable components (e.g., from homepage), add visuals/icons as placeholders, and ensure mobile-responsive design. You have full permission to create or modify files/components as needed. Make it deployable on the next Git push: Error-free, with SEO metadata, performance optimizations, and no regressions.
 
-Output: All updated or new files in a structured format (e.g., File: path/to/file.tsx \n Content: ```tsx \n // code \n ```). Provide full files for significant changes.
+Output: All new or updated files in a structured format (e.g., File: path/to/file.tsx \n Content: ```tsx \n // code \n ```). Provide full files for the page and any new components.
