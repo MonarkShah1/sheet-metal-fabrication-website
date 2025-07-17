@@ -18,37 +18,37 @@ export function Hero() {
       </div>
       
       <div className="relative max-w-7xl mx-auto text-center animate-fade-in">
-        {/* Industry 4.0 Badge */}
+        {/* Brand Value Badge */}
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-industry-blue/20 border border-industry-blue/40 mb-6">
-          <span className="text-industry-blue mr-2">🤖</span>
-          <span className="text-sm font-medium">Smart Factory Technology</span>
+          <span className="text-industry-blue mr-2">🛠️</span>
+          <span className="text-sm font-medium">Mastering the Fundamentals</span>
         </div>
         
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          Precision Sheet Metal Outsourcing in the{' '}
+          Solve Your Sheet Metal Basics with{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange">
-            Era of Industry 4.0
+            Unshakeable Reliability
           </span>
         </h1>
         
         <p className="text-lg md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed">
-          Leverage AI-driven fabrication, IoT tracking, and automated processes for faster, smarter outsourcing. 
-          Save costs without compromising quality through digital transformation.
+          End supplier headaches with proven fundamentals. We master the basics of sheet metal fabrication 
+          to deliver reliable results every time, exactly as promised.
         </p>
         
         {/* Key benefits */}
         <div className="flex flex-wrap justify-center gap-6 mb-10 text-sm">
           <div className="flex items-center text-gray-300">
-            <span className="mr-2">⚡</span>
-            <span>50% Faster Quotes</span>
-          </div>
-          <div className="flex items-center text-gray-300">
             <span className="mr-2">🎯</span>
-            <span>AI-Powered Precision</span>
+            <span>Proven Fundamentals</span>
           </div>
           <div className="flex items-center text-gray-300">
-            <span className="mr-2">📊</span>
-            <span>Real-time IoT Tracking</span>
+            <span className="mr-2">🔧</span>
+            <span>Relentless Refinement</span>
+          </div>
+          <div className="flex items-center text-gray-300">
+            <span className="mr-2">✅</span>
+            <span>Truth in Execution</span>
           </div>
         </div>
         
@@ -56,14 +56,14 @@ export function Hero() {
           <a
             href="/quote"
             className="inline-block bg-industry-orange text-white px-8 py-4 rounded-lg font-semibold hover:bg-industry-orange/90 hover:scale-105 transition-all duration-300 shadow-industry-lg focus:outline-none focus:ring-2 focus:ring-industry-orange focus:ring-opacity-50"
-            aria-label="Get a Free Quote for Sheet Metal Outsourcing"
+            aria-label="Get a Simplified Quote - Think like an OEM"
           >
-            Get Free Quote
+            Get Simplified Quote
           </a>
           <a
             href="/services"
             className="inline-block bg-transparent border-2 border-industry-blue text-industry-blue hover:bg-industry-blue hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-industry-blue focus:ring-opacity-50"
-            aria-label="View Our Industry 4.0 Services"
+            aria-label="View Our Proven Manufacturing Services"
           >
             View Services
           </a>

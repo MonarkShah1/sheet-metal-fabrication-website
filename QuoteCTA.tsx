@@ -38,35 +38,36 @@ export function QuoteCTA() {
       </div>
       
       <div className="max-w-6xl mx-auto text-center relative">
-        {/* Industry 4.0 Badge */}
+        {/* Simplified Process Badge */}
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-6">
-          <span className="text-industry-orange mr-2">🚀</span>
-          <span className="text-sm font-medium">AI-Powered Quoting System</span>
+          <span className="text-industry-orange mr-2">📝</span>
+          <span className="text-sm font-medium">Simplified Quoting Process</span>
         </div>
         
         {/* Main heading */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-          Ready to Experience the Future of
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-industry-orange"> Sheet Metal Outsourcing?</span>
+          Ready to End Your
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-industry-orange"> Supplier Headaches?</span>
         </h2>
         
         <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-3xl mx-auto">
-          Upload your CAD file and get an instant quote powered by AI analysis, machine learning pricing, and real-time capacity optimization.
+          Upload your CAD file and get a straightforward quote. We think like an OEM to deliver 
+          exactly what you need, when you need it, without the complexity.
         </p>
         
         {/* Benefits bar */}
         <div className="flex flex-wrap justify-center gap-8 mb-12 text-sm">
           <div className="flex items-center text-gray-300">
-            <span className="mr-2">⚡</span>
-            <span>Instant AI Analysis</span>
+            <span className="mr-2">🎯</span>
+            <span>Straightforward Process</span>
           </div>
           <div className="flex items-center text-gray-300">
             <span className="mr-2">💰</span>
-            <span>Smart Pricing</span>
+            <span>Honest Pricing</span>
           </div>
           <div className="flex items-center text-gray-300">
-            <span className="mr-2">📊</span>
-            <span>Real-time Capacity</span>
+            <span className="mr-2">⚡</span>
+            <span>Fast Response</span>
           </div>
           <div className="flex items-center text-gray-300">
             <span className="mr-2">🔒</span>
@@ -140,11 +141,11 @@ export function QuoteCTA() {
           <button
             type="button"
             className="inline-flex items-center px-8 py-4 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold transition-all duration-300 shadow-industry-lg hover:shadow-industry-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-industry-orange focus:ring-opacity-50"
-            aria-label="Get instant quote with AI analysis"
+            aria-label="Get straightforward quote with reliable process"
           >
-            <span>Get Instant Quote</span>
+            <span>Get Straightforward Quote</span>
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </button>
           
@@ -164,11 +165,11 @@ export function QuoteCTA() {
         <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-400">
           <div className="flex items-center">
             <span className="mr-2">🛡️</span>
-            <span>ISO 9001 Certified</span>
+            <span>Unshakeable Reliability</span>
           </div>
           <div className="flex items-center">
             <span className="mr-2">⚡</span>
-            <span>24/7 Processing</span>
+            <span>Fast Response</span>
           </div>
           <div className="flex items-center">
             <span className="mr-2">🔐</span>

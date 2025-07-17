@@ -31,23 +31,23 @@ export function EducationalSection() {
   const industrialChallenges = [
     {
       challenge: 'Unpredictable Quality',
-      solution: 'AI-powered quality prediction and IoT monitoring',
-      improvement: '80% reduction in defects'
+      solution: 'Rigorous quality control and proven processes',
+      improvement: 'Consistent results'
     },
     {
       challenge: 'Long Lead Times',
-      solution: 'Digital twin optimization and predictive scheduling',
-      improvement: '50% faster delivery'
+      solution: 'Streamlined workflows and reliable scheduling',
+      improvement: 'Faster delivery'
     },
     {
       challenge: 'Hidden Costs',
-      solution: 'Transparent AI pricing and smart material sourcing',
-      improvement: '30-40% cost savings'
+      solution: 'Transparent pricing and honest communication',
+      improvement: 'Clear cost structure'
     },
     {
       challenge: 'Limited Visibility',
-      solution: 'Real-time IoT tracking and automated reporting',
-      improvement: '100% project transparency'
+      solution: 'Regular updates and clear communication',
+      improvement: 'Full project transparency'
     }
   ];
 
@@ -64,25 +64,25 @@ export function EducationalSection() {
         {/* Section header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-industry-blue/20 border border-industry-blue/40 mb-6">
-            <span className="text-industry-blue mr-2">🏭</span>
-            <span className="text-sm font-medium">Industry 4.0 Education</span>
+            <span className="text-industry-blue mr-2">📚</span>
+            <span className="text-sm font-medium">Learn the Fundamentals</span>
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            Why Smart Manufacturing is the Future of
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange"> Sheet Metal Outsourcing</span>
+            Why Mastering the Basics Solves
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange"> Real Manufacturing Problems</span>
           </h2>
           
           <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
-            Traditional outsourcing challenges are solved through Industry 4.0 technologies. 
-            Discover how AI, IoT, and digital twins transform sheet metal fabrication.
+            Supplier headaches stem from overlooked fundamentals. We focus on proven processes, 
+            reliable execution, and continuous refinement to deliver consistent results.
           </p>
         </div>
         
         {/* Challenge vs Solution Comparison */}
         <div className="mb-20">
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
-            From Traditional Problems to Industry 4.0 Solutions
+            From Supplier Headaches to Reliable Solutions
           </h3>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -97,7 +97,7 @@ export function EducationalSection() {
                   <h4 className="text-lg font-bold mb-4 text-red-300">{item.challenge}</h4>
                   
                   <div className="border-t border-industry-gray-600 pt-4">
-                    <div className="text-industry-blue font-semibold mb-2 text-sm">INDUSTRY 4.0</div>
+                    <div className="text-industry-blue font-semibold mb-2 text-sm">OUR APPROACH</div>
                     <p className="text-gray-300 text-sm mb-3">{item.solution}</p>
                     <div className="bg-industry-blue/20 rounded-full px-3 py-1 text-xs font-semibold text-industry-blue">
                       {item.improvement}
@@ -140,19 +140,19 @@ export function EducationalSection() {
           ))}
         </div>
         
-        {/* Industry 4.0 Process Flow */}
+        {/* Proven Process Flow */}
         <div className="bg-industry-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-industry-gray-700 mb-16">
           <h3 className="text-2xl font-bold text-center mb-8">
-            Your Project Journey in the Industry 4.0 Era
+            Your Project Journey with Proven Fundamentals
           </h3>
           
           <div className="grid md:grid-cols-5 gap-4 text-center">
             {[
-              { step: '01', title: 'AI File Analysis', desc: 'Instant CAD analysis and optimization suggestions' },
-              { step: '02', title: 'Smart Quoting', desc: 'Machine learning pricing with real-time capacity' },
-              { step: '03', title: 'Digital Twin', desc: 'Virtual fabrication and quality prediction' },
-              { step: '04', title: 'IoT Production', desc: 'Real-time monitoring and quality control' },
-              { step: '05', title: 'Smart Delivery', desc: 'Predictive shipping and quality verification' }
+              { step: '01', title: 'File Review', desc: 'Thorough CAD analysis and process planning' },
+              { step: '02', title: 'Honest Quoting', desc: 'Transparent pricing with clear timelines' },
+              { step: '03', title: 'Process Planning', desc: 'Detailed fabrication plan and quality checks' },
+              { step: '04', title: 'Reliable Production', desc: 'Proven processes with consistent quality' },
+              { step: '05', title: 'On-Time Delivery', desc: 'Reliable shipping and quality verification' }
             ].map((phase, index) => (
               <div key={index} className="relative">
                 <div className="bg-industry-blue/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -173,10 +173,10 @@ export function EducationalSection() {
         <div className="text-center">
           <div className="bg-industry-gradient rounded-2xl p-8 md:p-12">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to Experience the Industry 4.0 Difference?
+              Ready to Experience Unshakeable Reliability?
             </h3>
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
-              Join forward-thinking companies who have already made the switch to smart manufacturing outsourcing.
+              Join companies who have ended their supplier headaches by choosing proven fundamentals over flashy promises.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -184,7 +184,7 @@ export function EducationalSection() {
                 href="/quote"
                 className="inline-flex items-center px-8 py-4 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105"
               >
-                <span>Start Your Smart Project</span>
+                <span>Start Your Reliable Project</span>
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>

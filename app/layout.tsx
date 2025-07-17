@@ -6,21 +6,21 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | PrecisionMetal Works - Industry 4.0 Sheet Metal Fabrication',
-    default: 'Industry 4.0 Sheet Metal Fabrication Services | AI-Powered Smart Manufacturing | PrecisionMetal Works',
+    template: '%s | PrecisionMetal Works - Reliable Sheet Metal Fabrication',
+    default: 'Reliable Sheet Metal Fabrication Services | End Supplier Headaches | PrecisionMetal Works',
   },
-  description: 'Experience the future of sheet metal outsourcing with Industry 4.0 technology. AI-powered quoting, IoT quality monitoring, digital twins, and smart manufacturing for precision fabrication.',
+  description: 'Simplifying sheet metal fabrication outsourcing with relentless refinement and unshakeable reliability. We master the fundamentals to solve real manufacturing challenges in Ontario and beyond.',
   keywords: [
-    'Industry 4.0 sheet metal fabrication',
-    'AI-powered manufacturing',
-    'smart factory outsourcing',
-    'IoT quality monitoring',
-    'digital twin fabrication',
-    'automated sheet metal cutting',
-    'predictive manufacturing',
-    'intelligent material sourcing',
-    'robotic welding services',
-    'smart manufacturing solutions'
+    'reliable sheet metal fabrication',
+    'sheet metal outsourcing Ontario',
+    'manufacturing simplified',
+    'proven fabrication processes',
+    'supplier headaches solved',
+    'consistent quality fabrication',
+    'OEM mindset manufacturing',
+    'transparent pricing fabrication',
+    'fundamentals manufacturing',
+    'relentless refinement quality'
   ],
   authors: [{ name: 'PrecisionMetal Works' }],
   creator: 'PrecisionMetal Works',
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Industry 4.0 Sheet Metal Fabrication | AI-Powered Smart Manufacturing',
-    description: 'Experience the future of sheet metal outsourcing with Industry 4.0 technology. AI-powered quoting, IoT monitoring, and smart manufacturing for precision fabrication.',
+    title: 'Reliable Sheet Metal Fabrication | End Supplier Headaches',
+    description: 'Simplifying sheet metal fabrication outsourcing with proven fundamentals and unshakeable reliability. We master the basics to solve real manufacturing challenges.',
     url: 'https://your-domain.com',
     siteName: 'PrecisionMetal Works',
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'PrecisionMetal Works - Industry 4.0 Sheet Metal Fabrication',
+        alt: 'PrecisionMetal Works - Reliable Sheet Metal Fabrication',
       },
     ],
     locale: 'en_US',
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Industry 4.0 Sheet Metal Fabrication | AI-Powered Smart Manufacturing',
-    description: 'Experience the future of sheet metal outsourcing with Industry 4.0 technology. AI-powered quoting, IoT monitoring, and smart manufacturing.',
+    title: 'Reliable Sheet Metal Fabrication | End Supplier Headaches',
+    description: 'Simplifying sheet metal fabrication outsourcing with proven fundamentals and unshakeable reliability.',
     images: ['/og-image.jpg'],
   },
   robots: {

@@ -3,31 +3,31 @@ import React from 'react';
 export function ServicesGrid() {
   const services = [
     { 
-      title: 'AI-Powered Laser Cutting', 
-      desc: 'Precision laser cutting with machine learning optimization for complex geometries and tight tolerances', 
+      title: 'Laser Cutting: Mastered Fundamentals', 
+      desc: 'Precision laser cutting with proven processes for complex geometries and tight tolerances', 
       icon: '⚙️',
-      features: ['±0.001" Tolerance', 'AI Path Optimization', 'Real-time Quality Control'],
+      features: ['±0.001" Tolerance', 'Proven Process Control', 'Consistent Quality'],
       color: 'blue'
     },
     { 
-      title: 'Smart Welding & Assembly', 
-      desc: 'Automated welding systems with IoT sensors monitoring quality at every step', 
+      title: 'Welding & Assembly Excellence', 
+      desc: 'Professional welding and assembly with rigorous quality standards and reliable execution', 
       icon: '🔥',
-      features: ['Robotic Welding', 'IoT Monitoring', 'Quality Analytics'],
+      features: ['Certified Welders', 'Quality Assurance', 'Reliable Delivery'],
       color: 'orange'
     },
     { 
-      title: 'Intelligent Material Sourcing', 
-      desc: 'AI-driven supply chain optimization for cost-effective material procurement', 
+      title: 'Strategic Material Sourcing', 
+      desc: 'Streamlined supply chain management for cost-effective material procurement', 
       icon: '📦',
-      features: ['Smart Inventory', 'Cost Optimization', 'Vendor Analytics'],
+      features: ['Supplier Relationships', 'Cost Optimization', 'Reliable Supply'],
       color: 'blue'
     },
     { 
-      title: 'Digital Twin Prototyping', 
-      desc: 'Virtual prototyping with digital twins for rapid iteration and validation', 
-      icon: '🤖',
-      features: ['Virtual Testing', 'Rapid Iteration', 'Predictive Analysis'],
+      title: 'Prototype Development', 
+      desc: 'Rapid prototyping with thorough testing and validation for faster iterations', 
+      icon: '🔧',
+      features: ['Fast Turnaround', 'Thorough Testing', 'Refined Processes'],
       color: 'orange'
     },
   ];
@@ -44,17 +44,18 @@ export function ServicesGrid() {
         {/* Section header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-industry-blue/10 border border-industry-blue/20 mb-6">
-            <span className="text-industry-blue mr-2">🏭</span>
-            <span className="text-sm font-medium text-industry-dark">Industry 4.0 Manufacturing</span>
+            <span className="text-industry-blue mr-2">🔧</span>
+            <span className="text-sm font-medium text-industry-dark">Manufacturing Simplified</span>
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 text-industry-dark">
-            Our Smart Manufacturing
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange"> Capabilities</span>
+            Proven Manufacturing
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange"> Fundamentals</span>
           </h2>
           
           <p className="text-lg text-industry-gray-600 max-w-3xl mx-auto">
-            Leveraging cutting-edge technology to deliver precision, efficiency, and quality in every project through automated processes and intelligent systems.
+            We focus on mastering the basics of sheet metal fabrication to deliver consistent, reliable results. 
+            Every process is refined through relentless attention to fundamental excellence.
           </p>
         </div>
         
@@ -92,11 +93,11 @@ export function ServicesGrid() {
                 ))}
               </ul>
               
-              {/* Smart badge */}
+              {/* Excellence badge */}
               <div className="mt-4 pt-4 border-t border-industry-gray-100">
                 <div className="flex items-center text-xs text-industry-gray-400">
-                  <span className="mr-1">🔬</span>
-                  <span>Smart Factory Technology</span>
+                  <span className="mr-1">✅</span>
+                  <span>Proven Excellence</span>
                 </div>
               </div>
             </div>
@@ -108,7 +109,7 @@ export function ServicesGrid() {
           <a
             href="/services"
             className="inline-flex items-center px-8 py-4 bg-industry-dark hover:bg-industry-blue text-white rounded-lg font-semibold transition-all duration-300 shadow-industry hover:shadow-industry-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-industry-blue focus:ring-opacity-50"
-            aria-label="Explore all our Industry 4.0 services"
+            aria-label="Explore all our proven manufacturing services"
           >
             <span>Explore All Services</span>
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
