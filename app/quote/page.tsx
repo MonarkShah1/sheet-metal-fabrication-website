@@ -75,13 +75,15 @@ export default function QuotePage() {
   React.useEffect(() => {
     const style = document.createElement('style')
     style.textContent = `
-      .quote-form input[type="number"],
-      .quote-form select {
+      .quote-form input,
+      .quote-form select,
+      .quote-form textarea {
         color: #1F2937 !important;
       }
       @media (prefers-color-scheme: dark) {
-        .quote-form input[type="number"],
-        .quote-form select {
+        .quote-form input,
+        .quote-form select,
+        .quote-form textarea {
           color: #1F2937 !important;
         }
       }
