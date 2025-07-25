@@ -501,7 +501,7 @@ export default function QuotePage() {
                                   value={formData.quantity}
                                   onChange={(e) => handleInputChange('quantity', e.target.value)}
                                   placeholder="e.g., 1, 50, 500..."
-                                  className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md ${
+                                  className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md text-industry-dark placeholder-industry-gray-400 ${
                                     errors.quantity 
                                       ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
                                       : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
@@ -536,7 +536,7 @@ export default function QuotePage() {
                               <Select
                                 value={formData.leadTime}
                                 onChange={(e) => handleInputChange('leadTime', e.target.value)}
-                                className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md ${
+                                className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md text-industry-dark ${
                                   errors.leadTime 
                                     ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
                                     : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
