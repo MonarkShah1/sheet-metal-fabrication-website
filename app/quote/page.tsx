@@ -7,7 +7,7 @@ import { Input } from '@/components/input'
 import { Select } from '@/components/select'
 import { Textarea } from '@/components/textarea'
 import { Field, FieldGroup, Label } from '@/components/fieldset'
-import { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Metadata } from 'next'
 
 // Custom metadata (Note: This would typically be in a parent component or page.tsx for App Router)
@@ -70,6 +70,25 @@ export default function QuotePage() {
   const [dragActive, setDragActive] = useState(false)
   const [showTooltip, setShowTooltip] = useState<string | null>(null)
   const [errors, setErrors] = useState<{[key: string]: string}>({})
+
+  // Force text color override for form inputs
+  React.useEffect(() => {
+    const style = document.createElement('style')
+    style.textContent = `
+      .quote-form input[type="number"],
+      .quote-form select {
+        color: #1F2937 !important;
+      }
+      @media (prefers-color-scheme: dark) {
+        .quote-form input[type="number"],
+        .quote-form select {
+          color: #1F2937 !important;
+        }
+      }
+    `
+    document.head.appendChild(style)
+    return () => document.head.removeChild(style)
+  }, [])
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -355,7 +374,7 @@ export default function QuotePage() {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="quote-form">
               <div className="bg-white p-8 rounded-xl shadow-industry border border-industry-gray-200 animate-slide-up min-h-[500px]">
                 {/* Step 1: File Upload */}
                 {currentStep === 1 && (
@@ -501,11 +520,12 @@ export default function QuotePage() {
                                   value={formData.quantity}
                                   onChange={(e) => handleInputChange('quantity', e.target.value)}
                                   placeholder="e.g., 1, 50, 500..."
-                                  className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md !text-industry-dark dark:!text-industry-dark placeholder-industry-gray-400 ${
+                                  className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md placeholder-industry-gray-400 [&_input]:!text-industry-dark [&_input]:dark:!text-industry-dark ${
                                     errors.quantity 
                                       ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
                                       : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
                                   }`}
+                                  style={{ color: '#1F2937 !important' } as React.CSSProperties}
                                   aria-describedby="qty-help"
                                   aria-label="Quantity of units needed"
                                 />
@@ -536,11 +556,12 @@ export default function QuotePage() {
                               <Select
                                 value={formData.leadTime}
                                 onChange={(e) => handleInputChange('leadTime', e.target.value)}
-                                className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md !text-industry-dark dark:!text-industry-dark ${
+                                className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md [&_select]:!text-industry-dark [&_select]:dark:!text-industry-dark ${
                                   errors.leadTime 
                                     ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
                                     : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
                                 }`}
+                                style={{ color: '#1F2937 !important' } as React.CSSProperties}
                                 aria-describedby="timeline-help"
                                 aria-label="Project timeline and lead time"
                               >
