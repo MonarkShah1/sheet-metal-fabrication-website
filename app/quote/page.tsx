@@ -87,7 +87,9 @@ export default function QuotePage() {
       }
     `
     document.head.appendChild(style)
-    return () => document.head.removeChild(style)
+    return () => {
+      document.head.removeChild(style)
+    }
   }, [])
 
   const handleInputChange = (field: keyof FormData, value: string) => {
