@@ -481,86 +481,88 @@ export default function QuotePage() {
                           Project Requirements
                         </legend>
                         
-                        {/* Responsive Grid for QTY and Timeline */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                          {/* Quantity Field - Enhanced */}
-                          <div className="space-y-3">
-                            <Label className="flex items-center text-base font-bold text-industry-blue">
-                              Quantity (QTY) *
-                              <Tooltip content="Even single prototypes help us determine the best manufacturing approach and pricing structure" id="tip-qty-enhanced">
-                                <span className="ml-2 text-industry-blue cursor-help text-sm">ℹ️</span>
-                              </Tooltip>
-                            </Label>
-                            <p className="text-sm text-industry-gray-600 mb-2">Enter the number of units needed</p>
-                            <div className="relative">
-                              <Input
-                                type="number"
-                                min="1"
-                                step="1"
-                                value={formData.quantity}
-                                onChange={(e) => handleInputChange('quantity', e.target.value)}
-                                placeholder="e.g., 1, 50, 500..."
+                        <FieldGroup>
+                          {/* Responsive Grid for QTY and Timeline */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {/* Quantity Field - Enhanced */}
+                            <Field>
+                              <Label className="flex items-center text-base font-bold text-industry-blue">
+                                Quantity (QTY) *
+                                <Tooltip content="Even single prototypes help us determine the best manufacturing approach and pricing structure" id="tip-qty-enhanced">
+                                  <span className="ml-2 text-industry-blue cursor-help text-sm">ℹ️</span>
+                                </Tooltip>
+                              </Label>
+                              <p className="text-sm text-industry-gray-600 mb-2">Enter the number of units needed</p>
+                              <div className="relative">
+                                <Input
+                                  type="number"
+                                  min="1"
+                                  step="1"
+                                  value={formData.quantity}
+                                  onChange={(e) => handleInputChange('quantity', e.target.value)}
+                                  placeholder="e.g., 1, 50, 500..."
+                                  className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md ${
+                                    errors.quantity 
+                                      ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
+                                      : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
+                                  }`}
+                                  aria-describedby="qty-help"
+                                  aria-label="Quantity of units needed"
+                                />
+                                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-industry-gray-400 text-sm font-medium bg-white px-2">
+                                  units
+                                </div>
+                              </div>
+                              {errors.quantity && (
+                                <p className="text-red-600 text-sm font-medium flex items-center mt-2 p-2 bg-red-50 rounded-md border border-red-200">
+                                  <span className="mr-2 text-red-500">⚠️</span>
+                                  {errors.quantity}
+                                </p>
+                              )}
+                              <p id="qty-help" className="text-xs text-industry-gray-500 bg-industry-light p-2 rounded-md mt-2">
+                                💡 Minimum: 1 unit. Higher quantities may qualify for volume pricing discounts.
+                              </p>
+                            </Field>
+
+                            {/* Timeline Field - Enhanced */}
+                            <Field>
+                              <Label className="flex items-center text-base font-bold text-industry-blue">
+                                Timeline (Lead Time) *
+                                <Tooltip content="Lead time helps us prioritize—rush options available for urgent needs with additional fees" id="tip-timeline-enhanced">
+                                  <span className="ml-2 text-industry-blue cursor-help text-sm">ℹ️</span>
+                                </Tooltip>
+                              </Label>
+                              <p className="text-sm text-industry-gray-600 mb-2">When do you need this completed?</p>
+                              <Select
+                                value={formData.leadTime}
+                                onChange={(e) => handleInputChange('leadTime', e.target.value)}
                                 className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md ${
-                                  errors.quantity 
+                                  errors.leadTime 
                                     ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
                                     : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
                                 }`}
-                                aria-describedby="qty-help"
-                                aria-label="Quantity of units needed"
-                              />
-                              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-industry-gray-400 text-sm font-medium bg-white px-2">
-                                units
-                              </div>
-                            </div>
-                            {errors.quantity && (
-                              <p className="text-red-600 text-sm font-medium flex items-center mt-2 p-2 bg-red-50 rounded-md border border-red-200">
-                                <span className="mr-2 text-red-500">⚠️</span>
-                                {errors.quantity}
+                                aria-describedby="timeline-help"
+                                aria-label="Project timeline and lead time"
+                              >
+                                <option value="">Select your preferred timeline</option>
+                                <option value="rush">🚀 Rush (1-3 days) - Additional fees apply</option>
+                                <option value="priority">⚡ Priority (1 week) - Fast track</option>
+                                <option value="standard">✅ Standard (2 weeks) - Most popular</option>
+                                <option value="economy">💰 Economy (3-4 weeks) - Best pricing</option>
+                                <option value="flexible">📅 Flexible - Work with our schedule</option>
+                              </Select>
+                              {errors.leadTime && (
+                                <p className="text-red-600 text-sm font-medium flex items-center mt-2 p-2 bg-red-50 rounded-md border border-red-200">
+                                  <span className="mr-2 text-red-500">⚠️</span>
+                                  {errors.leadTime}
+                                </p>
+                              )}
+                              <p id="timeline-help" className="text-xs text-industry-gray-500 bg-industry-light p-2 rounded-md mt-2">
+                                ⏱️ Standard includes quality control and finishing. Rush orders subject to capacity.
                               </p>
-                            )}
-                            <p id="qty-help" className="text-xs text-industry-gray-500 bg-industry-light p-2 rounded-md">
-                              💡 Minimum: 1 unit. Higher quantities may qualify for volume pricing discounts.
-                            </p>
+                            </Field>
                           </div>
-
-                          {/* Timeline Field - Enhanced */}
-                          <div className="space-y-3">
-                            <Label className="flex items-center text-base font-bold text-industry-blue">
-                              Timeline (Lead Time) *
-                              <Tooltip content="Lead time helps us prioritize—rush options available for urgent needs with additional fees" id="tip-timeline-enhanced">
-                                <span className="ml-2 text-industry-blue cursor-help text-sm">ℹ️</span>
-                              </Tooltip>
-                            </Label>
-                            <p className="text-sm text-industry-gray-600 mb-2">When do you need this completed?</p>
-                            <Select
-                              value={formData.leadTime}
-                              onChange={(e) => handleInputChange('leadTime', e.target.value)}
-                              className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md ${
-                                errors.leadTime 
-                                  ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
-                                  : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
-                              }`}
-                              aria-describedby="timeline-help"
-                              aria-label="Project timeline and lead time"
-                            >
-                              <option value="">Select your preferred timeline</option>
-                              <option value="rush">🚀 Rush (1-3 days) - Additional fees apply</option>
-                              <option value="priority">⚡ Priority (1 week) - Fast track</option>
-                              <option value="standard">✅ Standard (2 weeks) - Most popular</option>
-                              <option value="economy">💰 Economy (3-4 weeks) - Best pricing</option>
-                              <option value="flexible">📅 Flexible - Work with our schedule</option>
-                            </Select>
-                            {errors.leadTime && (
-                              <p className="text-red-600 text-sm font-medium flex items-center mt-2 p-2 bg-red-50 rounded-md border border-red-200">
-                                <span className="mr-2 text-red-500">⚠️</span>
-                                {errors.leadTime}
-                              </p>
-                            )}
-                            <p id="timeline-help" className="text-xs text-industry-gray-500 bg-industry-light p-2 rounded-md">
-                              ⏱️ Standard includes quality control and finishing. Rush orders subject to capacity.
-                            </p>
-                          </div>
-                        </div>
+                        </FieldGroup>
                       </fieldset>
                     </div>
 
