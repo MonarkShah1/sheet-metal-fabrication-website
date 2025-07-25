@@ -125,10 +125,12 @@ export default function QuotePage() {
         break
       case 2:
         if (!formData.quantity) {
-          newErrors.quantity = 'Quantity is required'
+          newErrors.quantity = 'Please enter a quantity greater than 0'
+        } else if (parseInt(formData.quantity) < 1) {
+          newErrors.quantity = 'Quantity must be at least 1 unit'
         }
         if (!formData.leadTime) {
-          newErrors.leadTime = 'Lead time is required'
+          newErrors.leadTime = 'Please select your preferred timeline'
         }
         break
       case 4:
@@ -457,75 +459,184 @@ export default function QuotePage() {
                   </div>
                 )}
 
-                {/* Step 2: Project Specs */}
+                {/* Step 2: Project Requirements */}
                 {currentStep === 2 && (
                   <div>
-                    <div className="flex items-center mb-6">
+                    <div className="flex items-center mb-8">
                       <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mr-4">
                         <span className="text-industry-orange text-xl">📊</span>
                       </div>
                       <div>
-                        <h2 className="text-2xl font-semibold text-industry-dark">Project Specifications</h2>
+                        <h2 className="text-2xl font-bold text-industry-dark">Project Requirements</h2>
                         <p className="text-industry-gray-600 text-sm">
-                          Help us understand your quantity and timeline needs
+                          Essential details for accurate quoting - Manufacturing Simplified
                         </p>
                       </div>
                     </div>
 
-                    <FieldGroup>
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <Field>
-                          <Label>
-                            Quantity *
-                            <Tooltip content="Even for prototypes, quantity affects our manufacturing approach" id="tip-qty">
-                              <span className="ml-2 text-industry-blue cursor-help">ℹ️</span>
-                            </Tooltip>
-                          </Label>
-                          <Input
-                            type="number"
-                            min="1"
-                            value={formData.quantity}
-                            onChange={(e) => handleInputChange('quantity', e.target.value)}
-                            placeholder="Enter quantity needed"
-                            className={errors.quantity ? 'border-red-500' : ''}
-                          />
-                          {errors.quantity && <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>}
-                        </Field>
+                    {/* Enhanced Project Requirements Form */}
+                    <div className="bg-white p-8 rounded-xl border-2 border-industry-gray-200 shadow-lg mb-6">
+                      <fieldset className="space-y-8">
+                        <legend className="text-xl font-bold text-industry-dark mb-6 pb-2 border-b-2 border-industry-blue/20">
+                          Project Requirements
+                        </legend>
+                        
+                        {/* Responsive Grid for QTY and Timeline */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          {/* Quantity Field - Enhanced */}
+                          <div className="space-y-3">
+                            <Label className="flex items-center text-base font-bold text-industry-blue">
+                              Quantity (QTY) *
+                              <Tooltip content="Even single prototypes help us determine the best manufacturing approach and pricing structure" id="tip-qty-enhanced">
+                                <span className="ml-2 text-industry-blue cursor-help text-sm">ℹ️</span>
+                              </Tooltip>
+                            </Label>
+                            <p className="text-sm text-industry-gray-600 mb-2">Enter the number of units needed</p>
+                            <div className="relative">
+                              <Input
+                                type="number"
+                                min="1"
+                                step="1"
+                                value={formData.quantity}
+                                onChange={(e) => handleInputChange('quantity', e.target.value)}
+                                placeholder="e.g., 1, 50, 500..."
+                                className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md ${
+                                  errors.quantity 
+                                    ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
+                                    : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
+                                }`}
+                                aria-describedby="qty-help"
+                                aria-label="Quantity of units needed"
+                              />
+                              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-industry-gray-400 text-sm font-medium bg-white px-2">
+                                units
+                              </div>
+                            </div>
+                            {errors.quantity && (
+                              <p className="text-red-600 text-sm font-medium flex items-center mt-2 p-2 bg-red-50 rounded-md border border-red-200">
+                                <span className="mr-2 text-red-500">⚠️</span>
+                                {errors.quantity}
+                              </p>
+                            )}
+                            <p id="qty-help" className="text-xs text-industry-gray-500 bg-industry-light p-2 rounded-md">
+                              💡 Minimum: 1 unit. Higher quantities may qualify for volume pricing discounts.
+                            </p>
+                          </div>
 
-                        <Field>
-                          <Label>
-                            Desired Lead Time *
-                            <Tooltip content="Our manufacturing schedule helps us optimize for your timeline" id="tip-timeline">
-                              <span className="ml-2 text-industry-blue cursor-help">ℹ️</span>
-                            </Tooltip>
-                          </Label>
-                          <Select
-                            value={formData.leadTime}
-                            onChange={(e) => handleInputChange('leadTime', e.target.value)}
-                            className={errors.leadTime ? 'border-red-500' : ''}
-                          >
-                            <option value="">Select timeline</option>
-                            <option value="rush">Rush (1-3 days) - Subject to capacity</option>
-                            <option value="standard">Standard (1-2 weeks) - Most common</option>
-                            <option value="economy">Economy (3-4 weeks) - Best pricing</option>
-                            <option value="flexible">Flexible - Work with our schedule</option>
-                          </Select>
-                          {errors.leadTime && <p className="text-red-500 text-sm mt-1">{errors.leadTime}</p>}
-                        </Field>
-                      </div>
-                    </FieldGroup>
-
-                    {/* Mini Testimonial */}
-                    <div className="mt-8 p-4 bg-industry-orange/5 rounded-lg border border-industry-orange/20">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-10 h-10 bg-industry-orange/20 rounded-full flex items-center justify-center">
-                          <span className="text-industry-orange text-sm">👤</span>
+                          {/* Timeline Field - Enhanced */}
+                          <div className="space-y-3">
+                            <Label className="flex items-center text-base font-bold text-industry-blue">
+                              Timeline (Lead Time) *
+                              <Tooltip content="Lead time helps us prioritize—rush options available for urgent needs with additional fees" id="tip-timeline-enhanced">
+                                <span className="ml-2 text-industry-blue cursor-help text-sm">ℹ️</span>
+                              </Tooltip>
+                            </Label>
+                            <p className="text-sm text-industry-gray-600 mb-2">When do you need this completed?</p>
+                            <Select
+                              value={formData.leadTime}
+                              onChange={(e) => handleInputChange('leadTime', e.target.value)}
+                              className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md ${
+                                errors.leadTime 
+                                  ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
+                                  : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
+                              }`}
+                              aria-describedby="timeline-help"
+                              aria-label="Project timeline and lead time"
+                            >
+                              <option value="">Select your preferred timeline</option>
+                              <option value="rush">🚀 Rush (1-3 days) - Additional fees apply</option>
+                              <option value="priority">⚡ Priority (1 week) - Fast track</option>
+                              <option value="standard">✅ Standard (2 weeks) - Most popular</option>
+                              <option value="economy">💰 Economy (3-4 weeks) - Best pricing</option>
+                              <option value="flexible">📅 Flexible - Work with our schedule</option>
+                            </Select>
+                            {errors.leadTime && (
+                              <p className="text-red-600 text-sm font-medium flex items-center mt-2 p-2 bg-red-50 rounded-md border border-red-200">
+                                <span className="mr-2 text-red-500">⚠️</span>
+                                {errors.leadTime}
+                              </p>
+                            )}
+                            <p id="timeline-help" className="text-xs text-industry-gray-500 bg-industry-light p-2 rounded-md">
+                              ⏱️ Standard includes quality control and finishing. Rush orders subject to capacity.
+                            </p>
+                          </div>
                         </div>
+                      </fieldset>
+                    </div>
+
+                    {/* What Happens Next - Trust Building */}
+                    <div className="grid md:grid-cols-2 gap-6 mb-8">
+                      <div className="bg-white p-6 rounded-xl border border-industry-blue/20 shadow-sm">
+                        <h3 className="text-lg font-semibold text-industry-dark mb-4 flex items-center">
+                          <span className="w-8 h-8 bg-industry-blue/20 rounded-full flex items-center justify-center mr-3">
+                            <span className="text-industry-blue text-sm">📋</span>
+                          </span>
+                          What Happens Next
+                        </h3>
+                        <div className="space-y-3 text-sm">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-6 h-6 bg-industry-blue rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs font-bold">1</span>
+                            </div>
+                            <span className="text-industry-gray-700">Submit → We review in hours</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-6 h-6 bg-industry-orange rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs font-bold">2</span>
+                            </div>
+                            <span className="text-industry-gray-700">Discovery call scheduled</span>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-6 h-6 bg-industry-blue rounded-full flex items-center justify-center">
+                              <span className="text-white text-xs font-bold">3</span>
+                            </div>
+                            <span className="text-industry-gray-700">Precise quote delivered</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        {/* Mini Testimonial 1 */}
+                        <div className="bg-industry-orange/5 p-4 rounded-lg border border-industry-orange/20">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-industry-orange/20 rounded-full flex items-center justify-center">
+                              <span className="text-industry-orange text-xs">👤</span>
+                            </div>
+                            <div>
+                              <p className="text-sm text-industry-gray-700 italic">
+                                &quot;Quick and reliable—ended our supplier headaches completely.&quot;
+                              </p>
+                              <p className="text-xs text-industry-gray-500 mt-1">- Manufacturing Director, Automotive OEM</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Mini Testimonial 2 */}
+                        <div className="bg-industry-blue/5 p-4 rounded-lg border border-industry-blue/20">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-industry-blue/20 rounded-full flex items-center justify-center">
+                              <span className="text-industry-blue text-xs">👤</span>
+                            </div>
+                            <div>
+                              <p className="text-sm text-industry-gray-700 italic">
+                                &quot;Their timeline estimates are always accurate. No more surprises!&quot;
+                              </p>
+                              <p className="text-xs text-industry-gray-500 mt-1">- Operations Manager, Industrial Equipment</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Privacy and Security Notice */}
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                      <div className="flex items-start space-x-3">
+                        <span className="text-green-600 text-lg">🔒</span>
                         <div>
-                          <p className="text-sm text-industry-gray-700 italic">
-                            &quot;Their timeline estimates are always accurate. No more supplier surprises!&quot;
+                          <h4 className="font-semibold text-green-800 text-sm">Your Information is Secure</h4>
+                          <p className="text-xs text-green-700 mt-1">
+                            Your files are secure and reviewed confidentially. We follow ISO 9001 standards for data protection and never share your project details.
                           </p>
-                          <p className="text-xs text-industry-gray-500 mt-1">- Manufacturing Director, Automotive OEM</p>
                         </div>
                       </div>
                     </div>
@@ -733,16 +844,18 @@ export default function QuotePage() {
                     <Button
                       type="button"
                       onClick={nextStep}
-                      className="px-8 py-3 bg-industry-blue hover:bg-industry-blue/90 text-white rounded-lg font-medium"
+                      className="px-8 py-3 bg-industry-blue hover:bg-industry-blue/90 text-white rounded-lg font-medium transition-all duration-200 hover:shadow-lg transform hover:scale-105 focus:ring-4 focus:ring-industry-blue/20"
+                      aria-label="Continue to next step"
                     >
                       Continue
                     </Button>
                   ) : (
                     <Button
                       type="submit"
-                      className="px-8 py-3 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold"
+                      className="px-10 py-4 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold text-lg transition-all duration-200 hover:shadow-xl transform hover:scale-105 focus:ring-4 focus:ring-industry-orange/20 focus:outline-none"
+                      aria-label="Submit quote request"
                     >
-                      Submit Request
+                      🚀 Submit Request - Manufacturing Simplified
                     </Button>
                   )}
                 </div>
