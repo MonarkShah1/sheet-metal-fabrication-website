@@ -3,15 +3,35 @@ import Footer from '@/components/ui/Footer'
 import { Button } from '@/components/button'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { pageMetadata } from '@/config/seo-metadata'
+import { businessInfo } from '@/config/business-info'
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/structured-data'
+import { StructuredDataScript } from '@/components/StructuredDataScript'
 
 export const metadata: Metadata = {
-  title: 'Complete Sheet Metal Fabrication Services | Engineering & Smart Sourcing',
-  description: 'Engineering support, smart sourcing, precision cutting, certified welding, and finishing services. Proven fundamentals with unshakeable reliability for OEMs in Ontario.',
+  ...pageMetadata.services,
+  alternates: {
+    canonical: `${businessInfo.url}/services`,
+  },
 }
 
 export default function ServicesPage() {
+  const structuredData = [
+    generateBreadcrumbSchema([
+      { name: 'Home', url: businessInfo.url },
+      { name: 'Services', url: `${businessInfo.url}/services` }
+    ]),
+    generateServiceSchema({
+      name: 'Complete Sheet Metal Fabrication Services',
+      description: 'Comprehensive sheet metal services including engineering support, smart sourcing, laser cutting, CNC bending, certified welding, and professional finishing.',
+      url: `${businessInfo.url}/services`,
+      image: `${businessInfo.url}/images/services-hero.jpg`
+    })
+  ]
+
   return (
     <>
+      <StructuredDataScript data={structuredData} />
       <Navigation />
       <main>
         <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
