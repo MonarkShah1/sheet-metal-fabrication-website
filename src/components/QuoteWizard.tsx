@@ -61,7 +61,7 @@ export function QuoteWizard() {
         const parsed = JSON.parse(saved)
         setQuoteData(prev => ({ ...prev, ...parsed }))
         setCurrentStep(parsed.currentStep || 1)
-      } catch (e) {
+      } catch {
       }
     }
   }, [])

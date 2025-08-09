@@ -20,19 +20,49 @@ export async function POST(request: NextRequest) {
     const data = JSON.parse(dataString)
     const { material, quantity, rush, customer } = data
 
-    if (!material || !quantity || !customer.name || !customer.email || !customer.company) {
+    // Enhanced field validation
+    if (!material || !quantity || !customer.name?.trim() || !customer.email?.trim() || !customer.company?.trim()) {
       return NextResponse.json(
-        { error: 'Material, quantity, and customer information are required' },
+        { error: 'Material, quantity, name, email, and company are required fields' },
         { status: 400 }
       )
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(customer.email)) {
+    // Name validation
+    if (customer.name.trim().length < 2 || customer.name.trim().length > 50) {
       return NextResponse.json(
-        { error: 'Please provide a valid email address' },
+        { error: 'Name must be between 2 and 50 characters' },
         { status: 400 }
       )
+    }
+
+    // Company validation  
+    if (customer.company.trim().length < 2 || customer.company.trim().length > 100) {
+      return NextResponse.json(
+        { error: 'Company name must be between 2 and 100 characters' },
+        { status: 400 }
+      )
+    }
+
+    // Enhanced email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!emailRegex.test(customer.email.trim())) {
+      return NextResponse.json(
+        { error: 'Please provide a valid email address (e.g., name@company.com)' },
+        { status: 400 }
+      )
+    }
+
+    // Phone validation (optional but if provided must be valid)
+    if (customer.phone && customer.phone.trim()) {
+      const phoneRegex = /^[\+]?[1-9][\d\s\-\(\)]{8,15}$/
+      const cleanPhone = customer.phone.replace(/[\s\-\(\)]/g, '')
+      if (cleanPhone.length < 10 || cleanPhone.length > 15 || !phoneRegex.test(customer.phone)) {
+        return NextResponse.json(
+          { error: 'Please provide a valid phone number (10-15 digits)' },
+          { status: 400 }
+        )
+      }
     }
 
     if (quantity < 1 || quantity > 10000) {
@@ -93,7 +123,7 @@ export async function POST(request: NextRequest) {
       message: 'Quote generated successfully. A detailed quote will be emailed within 4 hours.'
     })
 
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

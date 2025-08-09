@@ -20,7 +20,7 @@ interface HeroProps {
 }
 
 export function Hero({
-  backgroundImage = "/images/hero-shop.jpg",
+  backgroundImage = "/images/cmf-workshop-floor.jpg",
   backgroundVideo,
   headline = "Custom Metal Fabrication Ontario",
   subtext = "Precision laser cutting, welding & CNC services. 10-day turnaround, 99.7% on-time delivery since 1985.",
@@ -53,7 +53,7 @@ export function Hero({
         ) : (
           <Image
             src={backgroundImage}
-            alt="Canadian Metal Fabricators shop floor"
+            alt="Canadian Metal Fabricators precision welding and laser cutting workshop with industrial equipment and skilled technicians at work"
             fill
             className="object-cover z-0"
             priority

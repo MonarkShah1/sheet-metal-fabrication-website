@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 
 interface Equipment {
@@ -113,7 +113,7 @@ export function EquipmentGallery({
     document.body.style.overflow = 'unset'
   }
 
-  const navigateEquipment = (direction: 'prev' | 'next') => {
+  const navigateEquipment = useCallback((direction: 'prev' | 'next') => {
     if (!selectedEquipment) return
     
     const currentIndex = filteredEquipment.findIndex(item => item.id === selectedEquipment.id)
@@ -126,7 +126,7 @@ export function EquipmentGallery({
     }
     
     setSelectedEquipment(filteredEquipment[newIndex])
-  }
+  }, [selectedEquipment, filteredEquipment])
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {

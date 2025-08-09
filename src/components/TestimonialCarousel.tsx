@@ -191,6 +191,7 @@ export function TestimonialCarousel({
                           fill
                           className="object-cover"
                           sizes="64px"
+                          loading="lazy"
                         />
                       </div>
                       <div className="text-left">
