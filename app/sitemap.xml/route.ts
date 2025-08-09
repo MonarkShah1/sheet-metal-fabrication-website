@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next'
+import { businessInfo } from '@/config/business-info'
 
 export async function GET(): Promise<Response> {
-  const baseUrl = 'https://your-domain.com'
+  const baseUrl = businessInfo.url
   const currentDate = new Date().toISOString()
 
   const sitemap: MetadataRoute.Sitemap = [
@@ -40,6 +41,36 @@ export async function GET(): Promise<Response> {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/engineering`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/services/smart-sourcing`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/services/laser-cutting-bending`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/services/welding`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/services/finishing`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
   ]
 

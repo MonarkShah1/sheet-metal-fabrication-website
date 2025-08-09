@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Hero() {
   return (
-    <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
+    <section className="relative bg-industry-gradient py-20 px-6 md:py-32 md:px-12 overflow-hidden">
       {/* Industry 4.0 background patterns */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-circuit-pattern bg-repeat opacity-30"></div>
@@ -31,7 +31,7 @@ export function Hero() {
           </span>
         </h1>
         
-        <p className="text-lg md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed">
+        <p className="text-lg md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800 leading-relaxed">
           End supplier headaches with proven fundamentals. We master the basics of sheet metal fabrication 
           to deliver reliable results every time, exactly as promised.
         </p>

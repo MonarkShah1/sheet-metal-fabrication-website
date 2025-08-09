@@ -6,6 +6,8 @@ import { Select } from '@/components/select'
 import { Textarea } from '@/components/textarea'
 import { Field, FieldGroup, Label } from '@/components/fieldset'
 import { Metadata } from 'next'
+import { StructuredData } from '@/components/StructuredData'
+import { businessInfo } from '@/config/business-info'
 
 export const metadata: Metadata = {
   title: 'Contact Us - Reliable Sheet Metal Fabrication | Truth in Execution',
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <StructuredData type="ContactPage" />
       <Navigation />
       <main>
         <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
@@ -98,8 +101,8 @@ export default function ContactPage() {
                       <div>
                         <h3 className="text-lg font-semibold mb-2 text-industry-dark">Phone</h3>
                         <p className="text-industry-gray-600 mb-2">
-                          <a href="tel:647-407-0171" className="hover:text-industry-blue transition-colors">
-                            (647)-407-0171
+                          <a href={`tel:${businessInfo.telephone}`} className="hover:text-industry-blue transition-colors">
+                            {businessInfo.telephone}
                           </a>
                         </p>
                         <p className="text-sm text-industry-gray-500">Mon-Fri 7:00 AM - 4:00 PM</p>
@@ -117,8 +120,8 @@ export default function ContactPage() {
                       <div>
                         <h3 className="text-lg font-semibold mb-2 text-industry-dark">Email</h3>
                         <p className="text-industry-gray-600 mb-2">
-                          <a href="mailto:info@canadianmetalfab.com" className="hover:text-industry-orange transition-colors">
-                            info@canadianmetalfab.com
+                          <a href={`mailto:${businessInfo.email}`} className="hover:text-industry-orange transition-colors">
+                            {businessInfo.email}
                           </a>
                         </p>
                         <p className="text-sm text-industry-gray-500">We respond within 24 hours</p>
@@ -137,8 +140,8 @@ export default function ContactPage() {
                       <div>
                         <h3 className="text-lg font-semibold mb-2 text-industry-dark">Address</h3>
                         <p className="text-industry-gray-600 mb-2">
-                          1645 Sismet Rd, Unit #9&10<br />
-                          Mississauga, ON L4W, Canada
+                          {businessInfo.address.streetAddress}<br />
+                          {businessInfo.address.addressLocality}, {businessInfo.address.addressRegion} {businessInfo.address.postalCode}, Canada
                         </p>
                         <p className="text-sm text-industry-gray-500">Facility tours available by appointment</p>
                       </div>

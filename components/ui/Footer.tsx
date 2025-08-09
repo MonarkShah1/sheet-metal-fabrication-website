@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { businessInfo } from '@/config/business-info'
 
 export default function Footer() {
   return (
@@ -45,11 +46,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-secondary-300">
-              <li>1645 Sismet Rd, Unit #14</li>
-              <li>Mississauga, ON L4W</li>
+              <li>{businessInfo.address.streetAddress}</li>
+              <li>{businessInfo.address.addressLocality}, {businessInfo.address.addressRegion} {businessInfo.address.postalCode}</li>
               <li>Canada</li>
-              <li>(905) 629-4445</li>
-              <li><a href="mailto:info@canadianmetalfab.com" className="hover:text-white transition-colors">info@canadianmetalfab.com</a></li>
+              <li><a href={`tel:${businessInfo.telephone}`} className="hover:text-white transition-colors">{businessInfo.telephone}</a></li>
+              <li><a href={`mailto:${businessInfo.email}`} className="hover:text-white transition-colors">{businessInfo.email}</a></li>
             </ul>
           </div>
 

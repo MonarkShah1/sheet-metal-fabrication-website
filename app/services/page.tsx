@@ -74,53 +74,55 @@ export default function ServicesPage() {
             </div>
 
             <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
-              <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center">
-                <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-industry-blue text-2xl">🔧</span>
+              <Link href="/services/engineering">
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center">
+                  <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-industry-blue text-2xl">🔧</span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-industry-dark">Engineering</h3>
+                  <p className="text-xs text-industry-gray-500 mt-1">Design Support</p>
                 </div>
-                <h3 className="text-sm font-semibold text-industry-dark">Engineering</h3>
-                <p className="text-xs text-industry-gray-500 mt-1">Design Support</p>
-              </div>
+              </Link>
               
-              <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '100ms'}}>
-                <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-industry-orange text-2xl">🔗</span>
+              <Link href="/services/smart-sourcing">
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '100ms'}}>
+                  <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-industry-orange text-2xl">🔗</span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-industry-dark">Smart Sourcing</h3>
+                  <p className="text-xs text-industry-gray-500 mt-1">Supply Chain</p>
                 </div>
-                <h3 className="text-sm font-semibold text-industry-dark">Smart Sourcing</h3>
-                <p className="text-xs text-industry-gray-500 mt-1">Supply Chain</p>
-              </div>
+              </Link>
               
-              <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '200ms'}}>
-                <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-industry-blue text-2xl">✂️</span>
+              <Link href="/services/laser-cutting-bending">
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '200ms'}}>
+                  <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-industry-blue text-2xl">✂️</span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-industry-dark">Laser Cutting & Bending</h3>
+                  <p className="text-xs text-industry-gray-500 mt-1">Precision Parts</p>
                 </div>
-                <h3 className="text-sm font-semibold text-industry-dark">Laser Cutting</h3>
-                <p className="text-xs text-industry-gray-500 mt-1">Precision Parts</p>
-              </div>
+              </Link>
               
-              <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '300ms'}}>
-                <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-industry-orange text-2xl">📐</span>
+              <Link href="/services/welding">
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '400ms'}}>
+                  <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-industry-blue text-2xl">🔥</span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-industry-dark">Welding</h3>
+                  <p className="text-xs text-industry-gray-500 mt-1">Certified Joins</p>
                 </div>
-                <h3 className="text-sm font-semibold text-industry-dark">Cut & Bend</h3>
-                <p className="text-xs text-industry-gray-500 mt-1">Profile Forming</p>
-              </div>
+              </Link>
               
-              <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '400ms'}}>
-                <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-industry-blue text-2xl">🔥</span>
+              <Link href="/services/finishing">
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '500ms'}}>
+                  <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <span className="text-industry-orange text-2xl">✨</span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-industry-dark">Finishing</h3>
+                  <p className="text-xs text-industry-gray-500 mt-1">Surface Treatments</p>
                 </div>
-                <h3 className="text-sm font-semibold text-industry-dark">Welding</h3>
-                <p className="text-xs text-industry-gray-500 mt-1">Certified Joins</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '500ms'}}>
-                <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-industry-orange text-2xl">✨</span>
-                </div>
-                <h3 className="text-sm font-semibold text-industry-dark">Finishing</h3>
-                <p className="text-xs text-industry-gray-500 mt-1">Surface Treatments</p>
-              </div>
+              </Link>
             </div>
           </div>
         </section>
