@@ -85,15 +85,6 @@ export async function POST(request: NextRequest) {
 
     const quoteId = `Q-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
 
-    console.log('Quote request received:', {
-      quoteId,
-      customer: customer.email,
-      material,
-      quantity,
-      rush,
-      fileCount: files.length,
-      pricing
-    })
 
     return NextResponse.json({
       success: true,
@@ -103,7 +94,6 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Quote API error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

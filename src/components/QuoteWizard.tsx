@@ -61,9 +61,7 @@ export function QuoteWizard() {
         const parsed = JSON.parse(saved)
         setQuoteData(prev => ({ ...prev, ...parsed }))
         setCurrentStep(parsed.currentStep || 1)
-        console.log('Restored quote progress:', parsed)
       } catch (e) {
-        console.error('Failed to parse saved progress:', e)
       }
     }
   }, [])
@@ -99,12 +97,6 @@ export function QuoteWizard() {
   }
 
   const submitQuote = async () => {
-    console.log('Starting quote submission...', {
-      material: quoteData.material,
-      quantity: quoteData.quantity,
-      customer: quoteData.customer,
-      fileCount: quoteData.files.length
-    })
 
     // Basic validation before API call
     if (!quoteData.material) {
@@ -129,7 +121,6 @@ export function QuoteWizard() {
       
       quoteData.files.forEach((file, index) => {
         formData.append(`file${index}`, file)
-        console.log(`Added file ${index}:`, file.name, file.size)
       })
       
       const requestData = {
@@ -140,7 +131,6 @@ export function QuoteWizard() {
         customer: quoteData.customer
       }
       
-      console.log('Request data:', requestData)
       formData.append('data', JSON.stringify(requestData))
 
       const response = await fetch('/api/quote', {
@@ -148,16 +138,13 @@ export function QuoteWizard() {
         body: formData
       })
 
-      console.log('Response status:', response.status)
 
       if (!response.ok) {
         const errorData = await response.json()
-        console.error('Quote API error:', errorData)
         throw new Error(errorData.error || 'Failed to submit quote')
       }
 
       const result = await response.json()
-      console.log('Quote submission successful:', result)
       
       setQuoteData(prev => ({
         ...prev,
@@ -175,7 +162,6 @@ export function QuoteWizard() {
       })
       
     } catch (error) {
-      console.error('Quote submission failed:', error)
       alert(`Failed to submit quote: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`)
     } finally {
       setIsSubmitting(false)

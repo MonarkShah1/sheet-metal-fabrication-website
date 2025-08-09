@@ -35,11 +35,6 @@ export function ContactConfirmStep({
   }
 
   const validate = () => {
-    console.log('Validating contact form...', {
-      customer,
-      acceptedTerms
-    })
-
     const newErrors: Record<string, string> = {}
 
     if (!customer.name.trim()) {
@@ -64,24 +59,13 @@ export function ContactConfirmStep({
       newErrors.terms = 'Please accept our terms to continue'
     }
 
-    console.log('Validation errors:', newErrors)
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = () => {
-    console.log('Submit button clicked!')
-    console.log('Current form state:', {
-      customer,
-      acceptedTerms,
-      isSubmitting
-    })
-    
     if (validate()) {
-      console.log('Validation passed, calling onSubmit...')
       onSubmit()
-    } else {
-      console.log('Validation failed!')
     }
   }
 
@@ -94,18 +78,6 @@ export function ContactConfirmStep({
         </p>
       </div>
 
-      {/* Debug Panel - Remove in production */}
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm">
-        <h4 className="font-medium text-yellow-800 mb-2">🐛 Debug Info:</h4>
-        <div className="space-y-1 text-yellow-700">
-          <div>Terms Accepted: <strong>{acceptedTerms ? 'YES' : 'NO'}</strong></div>
-          <div>Name: <strong>{customer.name || 'empty'}</strong></div>
-          <div>Email: <strong>{customer.email || 'empty'}</strong></div>
-          <div>Company: <strong>{customer.company || 'empty'}</strong></div>
-          <div>Submitting: <strong>{isSubmitting ? 'YES' : 'NO'}</strong></div>
-          <div>Errors: <strong>{Object.keys(errors).length > 0 ? Object.keys(errors).join(', ') : 'none'}</strong></div>
-        </div>
-      </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
@@ -228,10 +200,7 @@ export function ContactConfirmStep({
             type="checkbox"
             id="terms"
             checked={acceptedTerms}
-            onChange={(e) => {
-              console.log('Terms checkbox changed:', e.target.checked)
-              setAcceptedTerms(e.target.checked)
-            }}
+            onChange={(e) => setAcceptedTerms(e.target.checked)}
             className="w-5 h-5 text-primary-600 bg-white border-2 border-industrial-400 rounded focus:ring-2 focus:ring-primary-500 focus:border-primary-500 mt-0.5 cursor-pointer"
             style={{
               accentColor: '#003B73'
@@ -279,7 +248,6 @@ export function ContactConfirmStep({
           type="button"
           onClick={(e) => {
             e.preventDefault()
-            console.log('Button click event triggered')
             handleSubmit()
           }}
           disabled={isSubmitting}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 
 interface Testimonial {
@@ -78,12 +78,12 @@ export function TestimonialCarousel({
   const [isPlaying, setIsPlaying] = useState(true)
   const intervalRef = useRef<NodeJS.Timeout>()
 
-  const startAutoplay = () => {
+  const startAutoplay = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current)
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length)
     }, autoplayInterval)
-  }
+  }, [autoplayInterval, testimonials.length])
 
   const stopAutoplay = () => {
     if (intervalRef.current) {

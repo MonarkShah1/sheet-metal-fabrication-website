@@ -8,7 +8,8 @@
 
 Visitors who click **Get Quote in 20 Seconds** currently land on a plain form and often bounce. We need an **interactive Quote Wizard** that delivers an *instant* price range and lead‑time, while capturing a fully qualified RFQ for Sales.
 
-**Success definition:** ≥30 % visit‑to‑RFQ conversion within 90 days; quote request volume +50 % YoY.
+**Success definition:**
+‑RFQ conversion within 90 days; quote request volume +50 % YoY.
 
 ---
 
