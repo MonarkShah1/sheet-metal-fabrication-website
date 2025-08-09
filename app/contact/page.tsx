@@ -98,11 +98,11 @@ export default function ContactPage() {
                       <div>
                         <h3 className="text-lg font-semibold mb-2 text-industry-dark">Phone</h3>
                         <p className="text-industry-gray-600 mb-2">
-                          <a href="tel:+1-555-123-4567" className="hover:text-industry-blue transition-colors">
-                            (555) 123-4567
+                          <a href="tel:647-407-0171" className="hover:text-industry-blue transition-colors">
+                            (647)-407-0171
                           </a>
                         </p>
-                        <p className="text-sm text-industry-gray-500">Mon-Fri 8:00 AM - 6:00 PM EST</p>
+                        <p className="text-sm text-industry-gray-500">Mon-Fri 7:00 AM - 4:00 PM</p>
                       </div>
                     </div>
                   </div>
@@ -117,8 +117,8 @@ export default function ContactPage() {
                       <div>
                         <h3 className="text-lg font-semibold mb-2 text-industry-dark">Email</h3>
                         <p className="text-industry-gray-600 mb-2">
-                          <a href="mailto:info@precisionmetalworks.com" className="hover:text-industry-orange transition-colors">
-                            info@precisionmetalworks.com
+                          <a href="mailto:info@canadianmetalfab.com" className="hover:text-industry-orange transition-colors">
+                            info@canadianmetalfab.com
                           </a>
                         </p>
                         <p className="text-sm text-industry-gray-500">We respond within 24 hours</p>
@@ -137,8 +137,8 @@ export default function ContactPage() {
                       <div>
                         <h3 className="text-lg font-semibold mb-2 text-industry-dark">Address</h3>
                         <p className="text-industry-gray-600 mb-2">
-                          123 Industrial Drive<br />
-                          Manufacturing City, ST 12345
+                          1645 Sismet Rd, Unit #9&10<br />
+                          Mississauga, ON L4W, Canada
                         </p>
                         <p className="text-sm text-industry-gray-500">Facility tours available by appointment</p>
                       </div>
@@ -157,14 +157,10 @@ export default function ContactPage() {
                     <div className="space-y-2 text-industry-gray-600">
                       <div className="flex justify-between">
                         <span>Monday - Friday</span>
-                        <span className="font-medium">8:00 AM - 6:00 PM EST</span>
+                        <span className="font-medium">7:00 AM - 4:00 PM</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Saturday</span>
-                        <span className="font-medium">9:00 AM - 2:00 PM EST</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Sunday</span>
+                        <span>Saturday-Sunday</span>
                         <span className="font-medium text-industry-gray-500">Closed</span>
                       </div>
                     </div>

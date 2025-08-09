@@ -21,7 +21,7 @@ export default function Navigation() {
       <div className="container-custom">
         <div className="flex justify-between items-center py-4">
           <Link href="/" className="text-2xl font-bold text-primary-700">
-            PrecisionMetal Works
+            Canadian Metal Fabricators
           </Link>
 
           <div className="hidden md:flex space-x-8">
