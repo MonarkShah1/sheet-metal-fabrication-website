@@ -30,8 +30,8 @@ export default function NotFound() {
             </h2>
             
             <p className="text-industry-gray-600 mb-8">
-              We couldn't find the page you're looking for. It may have been moved or removed. 
-              Let's get you back on track with our proven manufacturing fundamentals.
+              We couldn&apos;t find the page you&apos;re looking for. It may have been moved or removed. 
+              Let&apos;s get you back on track with our proven manufacturing fundamentals.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
