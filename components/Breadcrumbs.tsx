@@ -46,7 +46,7 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
             )}
             {item.url && index < items.length - 1 ? (
               <Link 
-                href={item.url}
+                href={item.url as any}
                 className="text-industry-blue hover:text-industry-blue/80 transition-colors"
               >
                 {item.name}
