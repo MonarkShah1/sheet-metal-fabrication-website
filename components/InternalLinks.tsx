@@ -25,7 +25,7 @@ export function InternalLinks({
           {links.map((link, index) => (
             <li key={index}>
               <Link 
-                href={link.href}
+                href={link.href as any}
                 className="group flex items-start space-x-3 hover:bg-white p-3 rounded-lg transition-colors"
               >
                 <svg 
