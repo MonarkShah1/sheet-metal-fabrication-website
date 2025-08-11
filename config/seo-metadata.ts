@@ -89,7 +89,10 @@ export const defaultMetadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
     yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || '',
-    bing: process.env.NEXT_PUBLIC_BING_VERIFICATION || ''
+    yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION || '',
+    other: {
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION || '',
+    },
   },
   referrer: 'origin-when-cross-origin',
   colorScheme: 'light',
