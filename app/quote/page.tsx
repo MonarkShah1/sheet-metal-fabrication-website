@@ -702,18 +702,22 @@ export default function QuotePage() {
                       </div>
                     </div>
 
-                    <FieldGroup>
-                      <div className="space-y-4">
+                    <div className="max-w-2xl mx-auto">
+                      <FieldGroup>
+                        <div className="space-y-5">
                         <Field>
-                          <Label>
+                          <Label htmlFor="material" className="text-sm font-medium text-industry-dark flex items-center gap-1.5">
                             Preferred Material
                             <Tooltip content="We can suggest alternatives based on your application" id="tip-material">
-                              <span className="ml-2 text-industry-blue cursor-help">ℹ️</span>
+                              <span className="text-industry-blue cursor-help">ℹ️</span>
                             </Tooltip>
                           </Label>
+                          <p className="text-xs text-industry-gray-500 mt-1">Choose your preferred material or let us recommend</p>
                           <Select
+                            id="material"
                             value={formData.material}
                             onChange={(e) => handleInputChange('material', e.target.value)}
+                            className="h-11 px-3 rounded-lg border border-industry-gray-300 bg-white hover:border-industry-gray-400 focus:outline-none focus:ring-2 focus:ring-industry-blue/20 focus:border-industry-blue text-industry-dark"
                           >
                             <option value="">Let us recommend based on your design</option>
                             <option value="steel">Steel (Most common for structural)</option>
@@ -726,15 +730,18 @@ export default function QuotePage() {
                         </Field>
 
                         <Field>
-                          <Label>
+                          <Label htmlFor="finish" className="text-sm font-medium text-industry-dark flex items-center gap-1.5">
                             Finishing Requirements
                             <Tooltip content="Finishing affects both appearance and durability" id="tip-finish">
-                              <span className="ml-2 text-industry-blue cursor-help">ℹ️</span>
+                              <span className="text-industry-blue cursor-help">ℹ️</span>
                             </Tooltip>
                           </Label>
+                          <p className="text-xs text-industry-gray-500 mt-1">Select finishing options or leave raw</p>
                           <Select
+                            id="finish"
                             value={formData.finish}
                             onChange={(e) => handleInputChange('finish', e.target.value)}
+                            className="h-11 px-3 rounded-lg border border-industry-gray-300 bg-white hover:border-industry-gray-400 focus:outline-none focus:ring-2 focus:ring-industry-blue/20 focus:border-industry-blue text-industry-dark"
                           >
                             <option value="">Raw/No finishing needed</option>
                             <option value="powder-coating">Powder Coating (Durable, many colors)</option>
@@ -747,26 +754,33 @@ export default function QuotePage() {
                         </Field>
 
                         <Field>
-                          <Label>Additional Notes</Label>
+                          <Label htmlFor="notes" className="text-sm font-medium text-industry-dark">Additional Notes</Label>
+                          <p className="text-xs text-industry-gray-500 mt-1">Optional: Special requirements, tolerances, or questions</p>
                           <Textarea
+                            id="notes"
                             rows={4}
                             value={formData.notes}
                             onChange={(e) => handleInputChange('notes', e.target.value)}
                             placeholder="Any special requirements, tolerances, assembly instructions, or questions? We'll address everything in our discovery call."
+                            className="min-h-[120px] resize-y px-3 py-2 rounded-lg border border-industry-gray-300 hover:border-industry-gray-400 focus:outline-none focus:ring-2 focus:ring-industry-blue/20 focus:border-industry-blue text-industry-dark"
                           />
+                          <p className="text-xs text-industry-gray-500 mt-1">We'll address everything in our discovery call.</p>
                         </Field>
                       </div>
                     </FieldGroup>
+                    </div>
 
                     {/* Trust Badge */}
-                    <div className="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
-                      <div className="flex items-center space-x-3">
-                        <span className="text-green-600">🔒</span>
-                        <div>
-                          <h4 className="font-medium text-green-800 text-sm">Your Information is Secure</h4>
-                          <p className="text-xs text-green-700">
-                            SSL encrypted transmission. We never share your designs or project details.
-                          </p>
+                    <div className="mt-4 max-w-2xl mx-auto">
+                      <div className="p-3 md:p-4 bg-green-50 rounded-lg border border-green-100">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">🔒</span>
+                          <div>
+                            <h4 className="text-sm font-medium text-green-800">Your Information is Secure</h4>
+                            <p className="text-xs text-gray-600">
+                              SSL encrypted transmission. We never share your designs or project details.
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
