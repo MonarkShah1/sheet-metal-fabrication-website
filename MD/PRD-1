@@ -1,0 +1,89 @@
+Version: 1.0
+
+Date: July 17, 2025
+
+Stakeholders: Non-developer owner, AI-assisted development (Claude Code CLI).
+
+2. Goals and Objectives
+Primary Goal: Create a deployable MVP with a cohesive Industry 4.0 theme that engages buyers, educates on outsourcing, and drives quote requests.
+Key Metrics for Success:
+90+ Lighthouse score for performance, accessibility, and SEO.
+Mobile-first design with full responsiveness.
+Address ICP pain points: Quick quoting (reduce friction by 50%), educational resources (e.g., blogs on AI in fabrication to build trust).
+Deployment-ready on first Git push: Error-free, Vercel-optimized.
+Market Positioning: Stand out by filling gaps—e.g., competitors lack AI-themed visuals or interactive tools; we'll highlight "smart factory" elements like digital twins and IoT tracking.
+3. Target Audience (ICP)
+Primary ICP: Buyers outsourcing sheet metal fabrication (e.g., engineers in automotive/aerospace, OEMs seeking cost-effective precision parts).
+Needs and Pain Points:
+Efficiency: Fast quotes with file uploads and AI recommendations.
+Education: Insights on overcoming outsourcing risks (e.g., quality control via IoT).
+Trust: Certifications, case studies, testimonials.
+UX: Intuitive, tech-forward design that feels innovative (Industry 4.0 vibe) without overwhelming.
+User Journey: Land on homepage → Explore services/education → Submit quote → Convert to lead.
+4. Key Features and PrioritizatioN
+Prioritize the Industry 4.0 theme implementation first. Features are phased:
+
+Phase 1: Theme Setup (Immediate Focus)
+
+Implement visual and stylistic elements across the site.
+Ensure theme is applied to core pages (e.g., homepage) and components.
+Phase 2: Core Functionality (Build After Theme)
+
+Homepage with hero, services grid, quote CTA.
+Quote request page with file upload and form validation.
+Educational sections (e.g., blog placeholders on "Industry 4.0 in Sheet Metal").
+Navigation, footer, and global elements.
+Phase 3: Advanced Features
+
+AI-driven personalization (e.g., material recommender).
+Integrations (e.g., email for quotes via Supabase).
+Analytics and A/B testing hooks.
+5. Design and Theme Requirements (Industry 4.0 Focus)
+Based on research into manufacturing website designs (e.g., modern templates from ThemeForest, Dribbble inspirations for futuristic interfaces, and smart manufacturing principles like AI/IoT visuals), the theme should evoke the Fourth Industrial Revolution: A blend of industrial reliability and digital innovation.
+
+Color Palette:
+Primary: Deep grays (#1F2937 for backgrounds – industrial strength).
+Accent: Electric blues (#1D4ED8 for tech/AI elements) and oranges (#F97316 for energy/machinery CTAs).
+Neutral: Light grays (#F3F4F6 for cards/sections) and whites for readability.
+Dark Mode Support: Optional toggle for low-light factory environments.
+Typography:
+Font Family: Sans-serif like Inter or Roboto for modern, clean readability.
+Sizes: Headings 4xl-6xl for impact; body text lg-xl for accessibility.
+Visual Elements:
+Backgrounds: Subtle overlays like circuit patterns, robot icons, or data flow visuals (e.g., SVGs for IoT networks).
+Icons: Emoji or Heroicons for services (e.g., ⚙️ for laser cutting, 🤖 for prototyping).
+Imagery: High-res photos of smart factories, sheet metal processes with AI overlays (e.g., digital twins).
+Animations: Subtle transitions (e.g., hover shadows, fade-ins) using Framer Motion if needed – keep performant.
+Layout and UX Principles:
+Mobile-First: Use Tailwind breakpoints (sm:, md:, lg:).
+Grid-Based: Responsive grids for services/capabilities.
+Interactivity: Hover effects, focus states for accessibility.
+Industry 4.0 Specifics: Incorporate elements like dashboards previews, AI badges, or "Smart Outsourcing" tags to highlight automation in sheet metal (e.g., IoT-monitored welding).
+Accessibility Requirements:
+ARIA roles/labels.
+High contrast ratios (WCAG compliant).
+Keyboard navigation.
+Performance Requirements:
+Lazy loading for images.
+Optimized assets (e.g., Next.js Image component).
+Aim for <2s load time.
+6. Technical Requirements
+Stack: Next.js (App Router), TypeScript, Tailwind CSS, Vercel for deployment, Git for version control. Optional: Catalyst UI kit integration.
+Structure: Modular components in /components; pages in /app.
+SEO: Metadata API for titles/descriptions; sitemap.xml.
+Security: Environment variables; input validation for forms.
+Deployment: Ready for Git push – include vercel.json for configs, .gitignore for node_modules.
+Testing: Local dev with npm run dev; Lighthouse audits.
+7. Assumptions and Dependencies
+Existing codebase bootstrap (e.g., from previous prompts).
+Assets (e.g., SVGs) will be placeholders initially.
+No backend yet – use client-side for MVP; add Supabase later for forms.
+8. Risks and Mitigations
+Risk: Theme feels too "futuristic" and alienates traditional buyers. Mitigation: Balance with real industrial imagery.
+Risk: Performance issues from visuals. Mitigation: Optimize with lazy loading.
+Risk: Scope creep. Mitigation: Focus on Phase 1 first.
+9. Timeline and Milestones
+Milestone 1: Theme implementation and homepage deployable (1-2 days).
+Milestone 2: Full MVP with core features (3-5 days).
+Ongoing: Iterations based on feedback.
+This PRD is living – update as needed.
