@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { generateServiceMetadata } from '@/config/seo-metadata'
 import { businessInfo } from '@/config/business-info'
 import { Metadata } from 'next'
+import { StructuredDataScript } from '@/components/StructuredDataScript'
+import { generateServiceSchema } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
   ...generateServiceMetadata('welding'),
@@ -13,8 +15,20 @@ export const metadata: Metadata = {
 }
 
 export default function WeldingPage() {
+  const serviceData = {
+    name: 'Professional Welding Services',
+    description: 'AWS certified welding services including MIG, TIG, and spot welding for industrial and commercial applications.',
+    url: `${businessInfo.url}/services/welding`,
+    image: `${businessInfo.url}/images/welding-service.jpg`,
+    offers: [{
+      price: 'Contact for pricing',
+      priceCurrency: 'CAD'
+    }]
+  };
+
   return (
     <>
+      <StructuredDataScript data={generateServiceSchema(serviceData)} />
       <Navigation />
       <main className="min-h-screen bg-white">
         {/* Hero Section */}

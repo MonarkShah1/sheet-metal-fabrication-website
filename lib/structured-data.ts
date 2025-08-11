@@ -114,16 +114,31 @@ export function generateWebSiteSchema() {
   }
 }
 
-export function generateBreadcrumbSchema(items: Array<{ name: string; url: string }>) {
+export function generateBreadcrumbSchema(items: Array<{ name: string; url: string }>, pageUrl?: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.url
-    }))
+    '@id': pageUrl ? `${pageUrl}#breadcrumb` : undefined,
+    itemListElement: items.map((item, index) => {
+      // Ensure URLs are absolute
+      const absoluteUrl = item.url.startsWith('http') ? item.url : 
+                         item.url === '#' ? '#' : 
+                         item.url.startsWith('/') ? `${businessInfo.url}${item.url}` : 
+                         `${businessInfo.url}/${item.url}`;
+      
+      return {
+        '@type': 'ListItem',
+        '@id': `${businessInfo.url}/#breadcrumb-${index + 1}`,
+        position: index + 1,
+        name: item.name,
+        item: absoluteUrl !== '#' ? {
+          '@type': 'WebPage',
+          '@id': absoluteUrl,
+          url: absoluteUrl,
+          name: item.name
+        } : absoluteUrl
+      }
+    })
   }
 }
 
@@ -135,10 +150,20 @@ export function generateServiceSchema(service: {
   provider?: string
   areaServed?: string[]
   offers?: Array<{ price?: string; priceCurrency?: string }>
+  location?: {
+    city: string
+    coordinates: {
+      lat: number
+      lng: number
+    }
+  }
 }) {
+  const serviceSlug = service.url.split('/').pop() || service.name.toLowerCase().replace(/\s+/g, '-')
+  
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${service.url}#service`,
     name: service.name,
     description: service.description,
     url: service.url,
@@ -146,6 +171,8 @@ export function generateServiceSchema(service: {
     provider: {
       '@id': `${businessInfo.url}/#organization`
     },
+    serviceType: service.name,
+    category: 'Metal Fabrication',
     areaServed: service.areaServed?.map(area => ({
       '@type': 'City',
       name: area
@@ -153,10 +180,58 @@ export function generateServiceSchema(service: {
       '@type': 'City',
       name: area
     })),
-    offers: service.offers?.map(offer => ({
-      '@type': 'Offer',
-      price: offer.price,
-      priceCurrency: offer.priceCurrency || 'CAD'
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: `${businessInfo.url}/quote`,
+      serviceSmsNumber: businessInfo.telephone
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${service.name} Options`,
+      itemListElement: service.offers?.map(offer => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.name
+        },
+        price: offer.price,
+        priceCurrency: offer.priceCurrency || 'CAD',
+        availability: 'InStock',
+        deliveryLeadTime: 'P3-7D',
+        warranty: {
+          '@type': 'WarrantyPromise',
+          durationOfWarranty: 'P1Y'
+        }
+      })) || [{
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.name
+        },
+        priceRange: businessInfo.priceRange,
+        priceCurrency: 'CAD',
+        availability: 'InStock',
+        deliveryLeadTime: 'P3-7D',
+        warranty: {
+          '@type': 'WarrantyPromise',
+          durationOfWarranty: 'P1Y'
+        }
+      }]
+    },
+    serviceArea: service.location ? {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: service.location.coordinates.lat,
+        longitude: service.location.coordinates.lng
+      },
+      geoRadius: '100km'
+    } : businessInfo.serviceArea,
+    hoursAvailable: businessInfo.openingHoursSpecification.map(spec => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: spec.dayOfWeek,
+      opens: spec.opens,
+      closes: spec.closes
     }))
   }
 }
@@ -361,5 +436,77 @@ export function generateEventSchema(event: {
     organizer: {
       '@id': `${businessInfo.url}/#organization`
     }
+  }
+}
+
+export function generateLocalBusinessSchema(location: {
+  slug: string
+  city: string
+  province: string
+  coordinates: {
+    lat: number
+    lng: number
+  }
+  distanceFromFacility: number
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${businessInfo.url}/#location-${location.slug}`,
+    name: `Canadian Metal Fabricators - ${location.city}`,
+    parentOrganization: { '@id': `${businessInfo.url}/#organization` },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: location.city,
+      addressRegion: location.province,
+      addressCountry: 'CA'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: location.coordinates.lat,
+      longitude: location.coordinates.lng
+    },
+    areaServed: {
+      '@type': 'City',
+      name: location.city
+    },
+    serviceArea: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: location.coordinates.lat,
+        longitude: location.coordinates.lng
+      },
+      geoRadius: `${location.distanceFromFacility}km`
+    },
+    makesOffer: businessInfo.hasOfferCatalog.itemListElement.map(item => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: item.name,
+        description: item.description
+      },
+      areaServed: { '@type': 'City', name: location.city }
+    })),
+    telephone: businessInfo.telephone,
+    email: businessInfo.email,
+    url: `${businessInfo.url}/locations/${location.slug}`,
+    priceRange: businessInfo.priceRange,
+    openingHoursSpecification: businessInfo.openingHoursSpecification.map(spec => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: spec.dayOfWeek,
+      opens: spec.opens,
+      closes: spec.closes
+    })),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '47',
+      bestRating: '5',
+      worstRating: '1'
+    },
+    sameAs: businessInfo.sameAs,
+    paymentAccepted: businessInfo.paymentAccepted,
+    currenciesAccepted: businessInfo.currenciesAccepted
   }
 }

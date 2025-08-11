@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { LocationData } from '@/lib/locations/location-types';
+import { FAQSchema } from '@/components/schemas/FAQSchema';
+import { businessInfo } from '@/config/business-info';
 
 interface LocalFAQProps {
   location: LocationData;
@@ -47,9 +49,20 @@ export function LocalFAQ({ location }: LocalFAQProps) {
     setOpenFAQ(openFAQ === faqId ? null : faqId);
   };
 
+  const pageUrl = `${businessInfo.url}/locations/${location.slug}`;
+
   return (
-    <section className="py-16 px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
+    <>
+      <FAQSchema 
+        faqs={allFAQs} 
+        pageUrl={pageUrl}
+        pageContext={{
+          type: 'location',
+          name: `Canadian Metal Fabricators - ${location.city}`
+        }}
+      />
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Frequently Asked Questions About Our {location.city} Services
@@ -157,5 +170,6 @@ export function LocalFAQ({ location }: LocalFAQProps) {
         </div>
       </div>
     </section>
+    </>
   );
 }

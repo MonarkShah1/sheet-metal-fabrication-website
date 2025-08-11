@@ -13,6 +13,8 @@ import { LocalFAQ } from '@/components/locations/LocalFAQ';
 import { LocalContact } from '@/components/locations/LocalContact';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
+import { StructuredDataScript } from '@/components/StructuredDataScript';
+import { generateLocalBusinessSchema } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
   const location = getLocationBySlug(params.location, locations);
@@ -63,6 +65,7 @@ export default function LocationPage({ params }: LocationPageProps) {
 
   return (
     <>
+      <StructuredDataScript data={generateLocalBusinessSchema(location)} />
       <Navigation />
       <main className="min-h-screen bg-gray-50">
         {/* Hero Section */}

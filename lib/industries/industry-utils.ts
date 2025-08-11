@@ -1,52 +1,95 @@
-import { Industry } from './industry-types';
-import { industries } from './industry-data';
+import { IndustryData } from './industry-data';
 import { businessInfo } from '@/config/business-info';
 
-export function getIndustryBySlug(slug: string, industriesList: Industry[] = industries): Industry | undefined {
-  return industriesList.find(ind => ind.slug === slug);
+export interface IndustrySEOData {
+  title: string;
+  description: string;
+  keywords: string[];
+  canonicalUrl: string;
+  schemaData: IndustrySchemaData;
 }
 
-export function generateIndustrySEO(industry: Industry) {
-  const title = `${industry.title} Services in Ontario | Canadian Metal Fabricators`;
-  const description = `Professional ${industry.title.toLowerCase()} solutions. ${industry.description}`;
-  const canonicalUrl = `${businessInfo.url}/industries/${industry.slug}`;
-  const keywords = industry.keywords;
+export interface IndustrySchemaData {
+  "@type": "Service";
+  name: string;
+  description: string;
+  provider: {
+    "@type": "LocalBusiness";
+    name: string;
+    url: string;
+  };
+  areaServed: {
+    "@type": "State";
+    name: string;
+  };
+  serviceType: string;
+  category: string;
+  additionalType?: string;
+}
 
-  const schemaData = {
+export function getIndustryBySlug(slug: string, industriesList: IndustryData[]): IndustryData | null {
+  return industriesList.find(ind => ind.slug === slug) || null;
+}
+
+export function generateIndustrySEO(industry: IndustryData): IndustrySEOData {
+  const canonicalUrl = `${businessInfo.url}/industries/${industry.slug}`;
+  
+  const schemaData: IndustrySchemaData = {
     "@type": "Service",
-    "serviceType": industry.title,
-    "provider": {
-      "@type": "Organization",
-      "name": "Canadian Metal Fabricators Ltd."
+    name: `${industry.name} Metal Fabrication Services`,
+    description: industry.metaDescription,
+    provider: {
+      "@type": "LocalBusiness",
+      name: businessInfo.name,
+      url: businessInfo.url
     },
-    "areaServed": "Ontario",
-    "description": description
-    // Add more schema as per PRD
+    areaServed: {
+      "@type": "State", 
+      name: "Ontario"
+    },
+    serviceType: "Metal Fabrication",
+    category: `${industry.name} Manufacturing`,
+    additionalType: "https://schema.org/Service"
   };
 
-  return { title, description, keywords, canonicalUrl, schemaData };
+  const enhancedKeywords = [
+    ...industry.keywords,
+    `${industry.name.toLowerCase()} metal parts`,
+    `${industry.name.toLowerCase()} fabrication services`,
+    `custom ${industry.name.toLowerCase()} components`,
+    `${industry.name.toLowerCase()} manufacturing ontario`,
+    `precision ${industry.name.toLowerCase()} parts`
+  ];
+
+  return {
+    title: industry.metaTitle,
+    description: industry.metaDescription,
+    keywords: enhancedKeywords,
+    canonicalUrl,
+    schemaData
+  };
 }
 
-export function getAllIndustrySlugs(industries: Industry[]): string[] {
+export function getAllIndustrySlugs(industries: IndustryData[]): string[] {
   return industries.map(industry => industry.slug);
 }
 
 export function getIndustriesByCompetition(
-  industries: Industry[], 
+  industries: IndustryData[], 
   level: 'Low' | 'Medium' | 'High'
-): Industry[] {
+): IndustryData[] {
   return industries.filter(industry => industry.competitionLevel === level);
 }
 
-export function sortIndustriesByVolume(industries: Industry[]): Industry[] {
+export function sortIndustriesByVolume(industries: IndustryData[]): IndustryData[] {
   return [...industries].sort((a, b) => b.monthlySearchVolume - a.monthlySearchVolume);
 }
 
 export function getRelatedIndustries(
-  currentIndustry: Industry, 
-  allIndustries: Industry[], 
+  currentIndustry: IndustryData, 
+  allIndustries: IndustryData[], 
   limit: number = 3
-): Industry[] {
+): IndustryData[] {
   // Find industries with overlapping services or similar materials
   const related = allIndustries
     .filter(industry => industry.slug !== currentIndustry.slug)
