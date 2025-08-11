@@ -11,6 +11,8 @@ import { WhyChooseUsLocal } from '@/components/locations/WhyChooseUsLocal';
 import { LocalIndustries } from '@/components/locations/LocalIndustries';
 import { LocalFAQ } from '@/components/locations/LocalFAQ';
 import { LocalContact } from '@/components/locations/LocalContact';
+import Navigation from '@/components/ui/Navigation';
+import Footer from '@/components/ui/Footer';
 
 export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
   const location = getLocationBySlug(params.location, locations);
@@ -60,38 +62,42 @@ export default function LocationPage({ params }: LocationPageProps) {
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <LocationHero location={location} />
+    <>
+      <Navigation />
+      <main className="min-h-screen bg-gray-50">
+        {/* Hero Section */}
+        <LocationHero location={location} />
 
-      {/* Local Service Overview */}
-      <LocalServiceOverview location={location} />
+        {/* Local Service Overview */}
+        <LocalServiceOverview location={location} />
 
-      {/* Service Area Map */}
-      <ServiceAreaMap location={location} />
+        {/* Service Area Map */}
+        <ServiceAreaMap location={location} />
 
-      {/* Local Projects/Case Studies */}
-      <NearbyProjects location={location} />
+        {/* Local Projects/Case Studies */}
+        <NearbyProjects location={location} />
 
-      {/* Why Choose Us for [City] */}
-      <WhyChooseUsLocal location={location} />
+        {/* Why Choose Us for [City] */}
+        <WhyChooseUsLocal location={location} />
 
-      {/* Local Industries Served */}
-      <LocalIndustries location={location} />
+        {/* Local Industries Served */}
+        <LocalIndustries location={location} />
 
-      {/* Local FAQ */}
-      <LocalFAQ location={location} />
+        {/* Local FAQ */}
+        <LocalFAQ location={location} />
 
-      {/* Contact Section */}
-      <LocalContact location={location} />
+        {/* Contact Section */}
+        <LocalContact location={location} />
 
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateLocationSEO(location).schemaData)
-        }}
-      />
-    </div>
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateLocationSEO(location).schemaData)
+          }}
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
