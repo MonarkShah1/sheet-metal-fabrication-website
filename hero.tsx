@@ -1,8 +1,10 @@
 import React from 'react';
+import { businessInfo } from '@/config/business-info';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 export function Hero() {
   return (
-    <section className="relative bg-industry-gradient py-20 px-6 md:py-32 md:px-12 overflow-hidden">
+    <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
       {/* Industry 4.0 background patterns */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-circuit-pattern bg-repeat opacity-30"></div>
@@ -20,20 +22,28 @@ export function Hero() {
       <div className="relative max-w-7xl mx-auto text-center animate-fade-in">
         {/* Brand Value Badge */}
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-industry-blue/20 border border-industry-blue/40 mb-6">
-          <span className="text-industry-blue mr-2">🛠️</span>
-          <span className="text-sm font-medium">Mastering the Fundamentals</span>
+          <span className="text-industry-blue mr-2">🏭</span>
+          <span className="text-sm font-medium">Since 1992</span>
         </div>
         
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          Solve Your Sheet Metal Basics with{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange">
-            Unshakeable Reliability
-          </span>
+        <div className="mb-6 flex justify-center">
+          <OptimizedImage
+            src={businessInfo.logo}
+            alt={`${businessInfo.name} logo`}
+            width={200}
+            height={48}
+            priority
+            className="h-12 w-auto"
+          />
+        </div>
+        
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          Solving Sheet Metal Basics with
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange"> Unshakeable Reliability</span>
         </h1>
         
-        <p className="text-lg md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800 leading-relaxed">
-          End supplier headaches with proven fundamentals. We master the basics of sheet metal fabrication 
-          to deliver reliable results every time, exactly as promised.
+        <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed">
+          Our Story: Over three decades of mastering manufacturing fundamentals, eliminating supplier headaches, and delivering truth in execution for multinational companies across Ontario.
         </p>
         
         {/* Key benefits */}
@@ -62,7 +72,7 @@ export function Hero() {
           </a>
           <a
             href="/services"
-            className="inline-block bg-transparent border-2 border-industry-blue text-industry-blue hover:bg-industry-blue hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-industry-blue focus:ring-opacity-50"
+            className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-industry-dark px-8 py-4 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
             aria-label="View Our Proven Manufacturing Services"
           >
             View Services
