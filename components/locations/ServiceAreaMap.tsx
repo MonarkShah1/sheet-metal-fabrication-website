@@ -1,15 +1,45 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { LocationData } from '@/lib/locations/location-types';
 import { businessInfo } from '@/config/business-info';
+
+// Dynamically import the InteractiveMap component
+const InteractiveMap = dynamic(
+  () => import('@/components/map/InteractiveMap').then(mod => mod.InteractiveMap),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-80 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center animate-pulse">
+        <div className="text-center">
+          <div className="w-12 h-12 bg-gray-300 rounded-full mb-4 mx-auto animate-pulse"></div>
+          <div className="text-gray-500 text-sm">Loading interactive map...</div>
+        </div>
+      </div>
+    )
+  }
+);
 
 interface ServiceAreaMapProps {
   location: LocationData;
 }
 
 export function ServiceAreaMap({ location }: ServiceAreaMapProps) {
-  // For now, we'll create a simple visual map representation
-  // This can be enhanced with Google Maps integration later
+  // Calculate radius based on distance from facility, with minimum and tier-based defaults
+  const calculateRadius = (distanceKm: number, tier: number): number => {
+    const baseRadius = Math.max(15000, distanceKm * 1000); // Minimum 15km radius
+    const tierMultiplier = tier === 1 ? 1.2 : tier === 2 ? 1.1 : 1.0; // Tier 1 gets larger radius
+    return Math.round(baseRadius * tierMultiplier);
+  };
+
+  const radiusMeters = calculateRadius(location.distanceFromFacility, location.tier);
+
+  // Facility coordinates (Mississauga)
+  const facilityCoords = {
+    lat: businessInfo.geo.latitude,
+    lng: businessInfo.geo.longitude
+  };
+
   return (
     <section className="py-16 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -24,35 +54,15 @@ export function ServiceAreaMap({ location }: ServiceAreaMapProps) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Map Placeholder */}
+          {/* Interactive Map */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl h-80 flex items-center justify-center relative overflow-hidden">
-              <div className="text-center z-10">
-                <div className="w-16 h-16 bg-industry-orange rounded-full flex items-center justify-center mb-4 mx-auto shadow-lg">
-                  <span className="text-2xl">📍</span>
-                </div>
-                <div className="text-lg font-semibold text-gray-800">
-                  {location.city}, ON
-                </div>
-                <div className="text-sm text-gray-600">
-                  {location.travelTime} from our facility
-                </div>
-              </div>
-              
-              {/* Decorative circles representing service radius */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 border-2 border-industry-blue/20 rounded-full"></div>
-                <div className="absolute w-48 h-48 border-2 border-industry-blue/10 rounded-full"></div>
-                <div className="absolute w-64 h-64 border-2 border-industry-blue/5 rounded-full"></div>
-              </div>
-            </div>
-            
-            {/* Interactive Features Note */}
-            <div className="mt-4 text-center">
-              <p className="text-sm text-gray-500">
-                🗺️ Interactive map with travel times and landmarks coming soon
-              </p>
-            </div>
+            <InteractiveMap
+              center={location.coordinates}
+              facility={facilityCoords}
+              radiusMeters={radiusMeters}
+              locationName={location.city}
+              travelTime={location.travelTime}
+            />
           </div>
 
           {/* Service Details */}

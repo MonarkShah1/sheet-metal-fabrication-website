@@ -67,9 +67,10 @@ export const locations: LocationData[] = [
     metaTitle: 'Sheet Metal Fabrication Vaughan | Manufacturing Services | Canadian Metal Fabricators',
     metaDescription: 'Professional sheet metal fabrication in Vaughan, ON. Serving Vaughan Enterprise Zone with laser cutting, welding, forming services. ISO 9001 certified. Call 647-407-0171.',
     h1: 'Sheet Metal Fabrication Services in Vaughan, Ontario',
-    coordinates: { lat: 45.7733, lng: -79.5019 },
-    distanceFromFacility: calculateDistance(FACILITY_LAT, FACILITY_LNG, 45.7733, -79.5019),
-    travelTime: generateTravelTime(calculateDistance(FACILITY_LAT, FACILITY_LNG, 45.7733, -79.5019)),
+    // Corrected Vaughan city center coordinates
+    coordinates: { lat: 43.8372, lng: -79.5083 },
+    distanceFromFacility: calculateDistance(FACILITY_LAT, FACILITY_LNG, 43.8372, -79.5083),
+    travelTime: generateTravelTime(calculateDistance(FACILITY_LAT, FACILITY_LNG, 43.8372, -79.5083)),
     localIndustries: ['Automotive', 'Construction', 'Packaging', 'Logistics'],
     populationSize: 323103,
     businessCount: 12500,

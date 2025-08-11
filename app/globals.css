@@ -4,6 +4,41 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Leaflet CSS */
+@import 'leaflet/dist/leaflet.css';
+
+/* Custom Leaflet styles */
+.leaflet-container {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* Ensure map controls are accessible on mobile */
+.leaflet-control-zoom {
+  @apply border-none shadow-lg;
+}
+
+.leaflet-control-zoom a {
+  @apply bg-white text-gray-700 border-none shadow-none;
+}
+
+.leaflet-control-zoom a:hover {
+  @apply bg-gray-50;
+}
+
+/* Custom popup styles */
+.leaflet-popup-content-wrapper {
+  @apply rounded-lg shadow-lg;
+}
+
+.leaflet-popup-content {
+  @apply m-0;
+}
+
+/* Ensure map doesn't interfere with page scrolling on mobile */
+.leaflet-container {
+  @apply touch-pan-y;
+}
+
 @layer base {
   html {
     font-family: Inter, system-ui, sans-serif;
