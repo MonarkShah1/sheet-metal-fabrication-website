@@ -57,7 +57,8 @@ export default function ServicesPage() {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Complete Sheet Metal Fabrication Services
+              Complete Sheet Metal Fabrication
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-industry-blue to-industry-orange"> Services</span>
             </h1>
             
             <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed">

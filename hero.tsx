@@ -1,6 +1,4 @@
 import React from 'react';
-import { businessInfo } from '@/config/business-info';
-import { OptimizedImage } from '@/components/OptimizedImage';
 
 export function Hero() {
   return (
@@ -22,19 +20,8 @@ export function Hero() {
       <div className="relative max-w-7xl mx-auto text-center animate-fade-in">
         {/* Brand Value Badge */}
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-industry-blue/20 border border-industry-blue/40 mb-6">
-          <span className="text-industry-blue mr-2">🏭</span>
-          <span className="text-sm font-medium">Since 1992</span>
-        </div>
-        
-        <div className="mb-6 flex justify-center">
-          <OptimizedImage
-            src={businessInfo.logo}
-            alt={`${businessInfo.name} logo`}
-            width={200}
-            height={48}
-            priority
-            className="h-12 w-auto"
-          />
+          <span className="text-industry-blue mr-2">🔧</span>
+          <span className="text-sm font-medium">Proven Fundamentals</span>
         </div>
         
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
