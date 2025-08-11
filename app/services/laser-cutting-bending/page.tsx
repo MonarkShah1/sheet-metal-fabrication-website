@@ -63,7 +63,7 @@ export default function LaserCuttingBendingPage() {
               </div>
               <div className="flex items-center text-gray-300">
                 <span className="mr-2">📏</span>
-                <span>Up to 1" Thickness</span>
+                <span>Up to 1&quot; Thickness</span>
               </div>
               <div className="flex items-center text-gray-300">
                 <span className="mr-2">🔧</span>
@@ -131,7 +131,7 @@ export default function LaserCuttingBendingPage() {
                   
                   <div className="flex items-start">
                     <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                      <span className="text-industry-orange text-xl font-bold">1"</span>
+                      <span className="text-industry-orange text-xl font-bold">1&quot;</span>
                     </div>
                     <div>
                       <h4 className="font-semibold text-industry-dark mb-1">Maximum Thickness</h4>
@@ -155,7 +155,7 @@ export default function LaserCuttingBendingPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-industry-dark mb-1">Bed Size (feet)</h4>
-                      <p className="text-industry-gray-600">Large format cutting capability for sheets up to 4' x 8' standard size.</p>
+                      <p className="text-industry-gray-600">Large format cutting capability for sheets up to 4&apos; x 8&apos; standard size.</p>
                     </div>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function LaserCuttingBendingPage() {
                   <div className="bg-white p-4 rounded-lg border border-industry-gray-200">
                     <div className="text-2xl mb-2">🔩</div>
                     <div className="font-semibold text-industry-dark text-sm">Mild Steel</div>
-                    <div className="text-xs text-industry-gray-600">Up to 1" thick</div>
+                    <div className="text-xs text-industry-gray-600">Up to 1&quot; thick</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg border border-industry-gray-200">
                     <div className="text-2xl mb-2">✨</div>
