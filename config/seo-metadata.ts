@@ -30,7 +30,6 @@ export const defaultMetadata: Metadata = {
   ],
   authors: [{ name: businessInfo.name }],
   creator: businessInfo.name,
-  publisher: businessInfo.name,
   formatDetection: {
     email: false,
     address: false,
@@ -56,15 +55,13 @@ export const defaultMetadata: Metadata = {
         url: `${siteUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Canadian Metal Fabricators - Sheet Metal Fabrication Services',
-        type: 'image/jpeg',
+        alt: 'Canadian Metal Fabricators - Sheet Metal Fabrication Services'
       },
       {
         url: `${siteUrl}/og-image-square.jpg`,
         width: 1200,
         height: 1200,
-        alt: 'Canadian Metal Fabricators Logo',
-        type: 'image/jpeg',
+        alt: 'Canadian Metal Fabricators Logo'
       }
     ],
   },
@@ -92,13 +89,8 @@ export const defaultMetadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
     yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || '',
-    yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION || '',
-    other: {
-      'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION || '',
-    },
+    bing: process.env.NEXT_PUBLIC_BING_VERIFICATION || ''
   },
-  category: 'Manufacturing',
-  classification: 'Business',
   referrer: 'origin-when-cross-origin',
   colorScheme: 'light',
   themeColor: '#1E40AF',

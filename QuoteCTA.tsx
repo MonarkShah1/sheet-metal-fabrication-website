@@ -1,25 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
 
 export function QuoteCTA() {
-  const [isDragOver, setIsDragOver] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(true);
-  };
-  
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-  };
-  
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    // Handle file drop logic here
-  };
 
   return (
     <section className="py-20 px-6 bg-tech-gradient text-white relative overflow-hidden">
@@ -51,8 +34,7 @@ export function QuoteCTA() {
         </h2>
         
         <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-3xl mx-auto">
-          Upload your CAD file and get a straightforward quote. We think like an OEM to deliver 
-          exactly what you need, when you need it, without the complexity.
+          Get a straightforward quote. We think like an OEM to deliver exactly what you need, when you need it—without the complexity.
         </p>
         
         {/* Benefits bar */}
@@ -75,79 +57,33 @@ export function QuoteCTA() {
           </div>
         </div>
         
-        {/* Upload section */}
+        {/* Quote link section */}
         <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 max-w-4xl mx-auto">
-          <div
-            className={`border-2 border-dashed rounded-xl p-8 transition-all duration-300 ${
-              isDragOver 
-                ? 'border-industry-orange bg-industry-orange/10' 
-                : 'border-white/30 hover:border-white/50'
-            }`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
+          <Link href="/quote" className="block border-2 border-dashed rounded-xl p-8 border-white/30 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Start your quote">
             <div className="text-center">
               <div className="w-16 h-16 bg-industry-orange/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-industry-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-              
-              <h3 className="text-xl font-semibold mb-2">Drop your CAD files here</h3>
-              <p className="text-gray-300 mb-4">or click to browse</p>
-              
-              <input
-                type="file"
-                accept=".cad,.dxf,.dwg,.step,.stp,.iges,.igs"
-                multiple
-                className="hidden"
-                id="file-upload"
-                aria-label="Upload CAD Files for Quote"
-              />
-              
-              <label
-                htmlFor="file-upload"
-                className="inline-block bg-industry-orange hover:bg-industry-orange/90 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer transition-all duration-300 hover:scale-105"
-              >
-                Browse Files
-              </label>
-              
-              <div className="mt-4 text-sm text-gray-400">
-                Supported formats: CAD, DXF, DWG, STEP, STP, IGES, IGS
-              </div>
+              <h3 className="text-xl font-semibold mb-2">Start Your Quote</h3>
+              <p className="text-gray-300">Go to the Quote Request page</p>
             </div>
-          </div>
-          
-          {/* Progress bar (hidden by default) */}
-          {uploadProgress > 0 && (
-            <div className="mt-4">
-              <div className="flex justify-between text-sm mb-1">
-                <span>Uploading...</span>
-                <span>{uploadProgress}%</span>
-              </div>
-              <div className="w-full bg-gray-700 rounded-full h-2">
-                <div 
-                  className="bg-industry-orange h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${uploadProgress}%` }}
-                ></div>
-              </div>
-            </div>
-          )}
+          </Link>
         </div>
         
         {/* Action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-          <button
-            type="button"
+          <Link
+            href="/quote"
             className="inline-flex items-center px-8 py-4 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold transition-all duration-300 shadow-industry-lg hover:shadow-industry-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-industry-orange focus:ring-opacity-50"
-            aria-label="Get straightforward quote with reliable process"
+            aria-label="Go to Quote Request"
           >
             <span>Get Straightforward Quote</span>
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-          </button>
+          </Link>
           
           <a
             href="/contact"

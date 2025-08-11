@@ -93,9 +93,9 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16 items-stretch">
               <Link href="/services/engineering">
-                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center">
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center h-full flex flex-col">
                   <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-industry-blue text-2xl">🔧</span>
                   </div>
@@ -105,7 +105,7 @@ export default function ServicesPage() {
               </Link>
               
               <Link href="/services/smart-sourcing">
-                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '100ms'}}>
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center h-full flex flex-col" style={{animationDelay: '100ms'}}>
                   <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-industry-orange text-2xl">🔗</span>
                   </div>
@@ -115,7 +115,7 @@ export default function ServicesPage() {
               </Link>
               
               <Link href="/services/laser-cutting-bending">
-                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '200ms'}}>
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center h-full flex flex-col" style={{animationDelay: '200ms'}}>
                   <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-industry-blue text-2xl">✂️</span>
                   </div>
@@ -125,7 +125,7 @@ export default function ServicesPage() {
               </Link>
               
               <Link href="/services/welding">
-                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '400ms'}}>
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center h-full flex flex-col" style={{animationDelay: '400ms'}}>
                   <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-industry-blue text-2xl">🔥</span>
                   </div>
@@ -135,7 +135,7 @@ export default function ServicesPage() {
               </Link>
               
               <Link href="/services/finishing">
-                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center" style={{animationDelay: '500ms'}}>
+                <div className="bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 hover:shadow-industry-lg transition-all duration-300 hover:-translate-y-1 animate-slide-up text-center h-full flex flex-col" style={{animationDelay: '500ms'}}>
                   <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <span className="text-industry-orange text-2xl">✨</span>
                   </div>
