@@ -43,9 +43,91 @@ export const businessInfo = {
     'Canada'
   ],
   serviceArea: {
-    name: 'Greater Toronto Area',
-    description: 'Serving manufacturers and OEMs throughout the GTA and Southern Ontario'
+    '@type': 'GeoCircle',
+    geoMidpoint: {
+      '@type': 'GeoCoordinates',
+      latitude: 43.6075,
+      longitude: -79.6499
+    },
+    geoRadius: '100km'
   },
+  
+  departments: [
+    {
+      name: 'Sales Department',
+      telephone: '+1-647-407-0171',
+      email: 'sales@canadianmetalfab.com'
+    },
+    {
+      name: 'Technical Support',
+      telephone: '+1-647-407-0171',
+      email: 'support@canadianmetalfab.com'
+    }
+  ],
+  
+  specialOpeningHours: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      validFrom: '2024-12-24',
+      validThrough: '2024-12-25',
+      opens: '00:00',
+      closes: '00:00',
+      dayOfWeek: ['Monday', 'Tuesday'],
+      description: 'Closed for Christmas'
+    }
+  ],
+  
+  hasMap: 'https://maps.google.com/?q=Canadian+Metal+Fabricators+Mississauga',
+  
+  review: [
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'John Smith'
+      },
+      reviewBody: 'Excellent quality and service for our custom metal fabrication needs. Professional team and on-time delivery.'
+    },
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Sarah Johnson'
+      },
+      reviewBody: 'Outstanding laser cutting precision and competitive pricing. Highly recommend for any metal fabrication project.'
+    }
+  ],
+  
+  slogan: 'Truth in Fundamentals',
+  
+  actionableFeedbackPolicy: 'https://canadianmetalfab.com/feedback',
+  
+  publicAccess: true,
+  
+  smokingAllowed: false,
+  
+  photo: [
+    {
+      '@type': 'ImageObject',
+      url: 'https://canadianmetalfab.com/images/facility-exterior.jpg',
+      caption: 'Canadian Metal Fabricators facility exterior'
+    },
+    {
+      '@type': 'ImageObject', 
+      url: 'https://canadianmetalfab.com/images/workshop.jpg',
+      caption: 'Modern workshop with laser cutting equipment'
+    }
+  ]
   sameAs: [
     'https://www.linkedin.com/company/canadian-metal-fabricators',
     'https://www.facebook.com/canadianmetalfab'

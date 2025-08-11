@@ -15,8 +15,9 @@ export default function robots(): MetadataRoute.Robots {
           '/_next/',
           '/static/',
           '/*.json$',
-          '/*?*',  // Block URLs with query parameters for crawling efficiency
           '/404',
+          '/search',
+          '/thank-you',
         ],
         crawlDelay: 1,
       },

@@ -2,9 +2,15 @@ import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
 import Link from 'next/link'
 import { generateServiceMetadata } from '@/config/seo-metadata'
+import { businessInfo } from '@/config/business-info'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = generateServiceMetadata('welding')
+export const metadata: Metadata = {
+  ...generateServiceMetadata('welding'),
+  alternates: {
+    canonical: `${businessInfo.url}/services/welding`,
+  },
+}
 
 export default function WeldingPage() {
   return (

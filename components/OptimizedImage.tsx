@@ -27,9 +27,9 @@ export function OptimizedImage({
   className = '',
   sizes = '100vw',
   quality = 75,
-  placeholder = 'empty',
+  placeholder = 'blur',
   blurDataURL,
-  loading,
+  loading = 'lazy',
   onLoad,
   onError,
 }: OptimizedImageProps) {

@@ -2,13 +2,40 @@ import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
 import Link from 'next/link'
 import { generateServiceMetadata } from '@/config/seo-metadata'
+import { businessInfo } from '@/config/business-info'
+import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/structured-data'
+import { StructuredDataScript } from '@/components/StructuredDataScript'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = generateServiceMetadata('engineering')
+export const metadata: Metadata = {
+  ...generateServiceMetadata('engineering'),
+  alternates: {
+    canonical: `${businessInfo.url}/services/engineering`,
+  },
+}
 
 export default function EngineeringPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: businessInfo.url },
+    { name: 'Services', url: `${businessInfo.url}/services` },
+    { name: 'Engineering Support', url: `${businessInfo.url}/services/engineering` }
+  ]
+
+  const structuredData = [
+    generateBreadcrumbSchema(breadcrumbItems),
+    generateServiceSchema({
+      name: 'Engineering Support & Design for Manufacturing',
+      description: 'Engineering support for sheet metal projects. CAD/CAM integration, design optimization, prototyping, and manufacturability analysis in Ontario.',
+      url: `${businessInfo.url}/services/engineering`,
+      image: `${businessInfo.url}/images/engineering-service.jpg`,
+      areaServed: businessInfo.areaServed
+    })
+  ]
+
   return (
     <>
+      <StructuredDataScript data={structuredData} />
       <Navigation />
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
@@ -29,13 +56,7 @@ export default function EngineeringPage() {
           
           <div className="relative max-w-7xl mx-auto text-center animate-fade-in">
             {/* Breadcrumbs */}
-            <nav className="mb-8 text-sm" aria-label="Breadcrumb">
-              <Link href="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
-              <span className="text-gray-400 mx-2">/</span>
-              <Link href="/services" className="text-gray-300 hover:text-white transition-colors">Services</Link>
-              <span className="text-gray-400 mx-2">/</span>
-              <span className="text-white">Engineering</span>
-            </nav>
+            <Breadcrumbs items={breadcrumbItems} className="mb-8" />
             
             {/* Badge */}
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-industry-blue/20 border border-industry-blue/40 mb-6">

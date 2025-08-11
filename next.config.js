@@ -82,6 +82,24 @@ const nextConfig = {
       destination: '/',
       permanent: true,
     },
+    // www to non-www redirect
+    {
+      source: '/:path*',
+      has: [
+        {
+          type: 'host',
+          value: 'www.canadianmetalfab.com',
+        },
+      ],
+      destination: 'https://canadianmetalfab.com/:path*',
+      permanent: true,
+    },
+    // Service page redirects for old URLs
+    {
+      source: '/services/laser-cutting',
+      destination: '/services/laser-cutting-bending',
+      permanent: true,
+    },
   ],
 }
 

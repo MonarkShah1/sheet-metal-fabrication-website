@@ -12,6 +12,9 @@ import { businessInfo } from '@/config/business-info'
 export const metadata: Metadata = {
   title: 'Contact Us - Reliable Sheet Metal Fabrication | Truth in Execution',
   description: 'Get in touch with our sheet metal fabrication experts. Proven fundamentals, unshakeable reliability, and honest communication for your manufacturing needs.',
+  alternates: {
+    canonical: `${businessInfo.url}/contact`,
+  },
 }
 
 export default function ContactPage() {
