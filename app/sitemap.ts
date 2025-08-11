@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { businessInfo } from '@/config/business-info'
+import { locations } from '@/lib/locations/location-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = businessInfo.url
@@ -72,7 +73,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     },
+    // Locations hub page
+    {
+      url: `${baseUrl}/locations`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
   ]
 
-  return routes
+  // Add all location pages
+  const locationRoutes = locations.map(location => ({
+    url: `${baseUrl}/locations/${location.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: location.tier === 1 ? 0.7 : location.tier === 2 ? 0.6 : 0.5,
+  }))
+
+  return [...routes, ...locationRoutes]
 }
