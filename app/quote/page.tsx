@@ -764,7 +764,7 @@ export default function QuotePage() {
                             placeholder="Any special requirements, tolerances, assembly instructions, or questions? We'll address everything in our discovery call."
                             className="min-h-[120px] resize-y px-3 py-2 rounded-lg border border-industry-gray-300 hover:border-industry-gray-400 focus:outline-none focus:ring-2 focus:ring-industry-blue/20 focus:border-industry-blue text-industry-dark"
                           />
-                          <p className="text-xs text-industry-gray-500 mt-1">We'll address everything in our discovery call.</p>
+                          <p className="text-xs text-industry-gray-500 mt-1">We&apos;ll address everything in our discovery call.</p>
                         </Field>
                       </div>
                     </FieldGroup>
