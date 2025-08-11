@@ -127,7 +127,7 @@ export const businessInfo = {
       url: 'https://canadianmetalfab.com/images/workshop.jpg',
       caption: 'Modern workshop with laser cutting equipment'
     }
-  ]
+  ],
   sameAs: [
     'https://www.linkedin.com/company/canadian-metal-fabricators',
     'https://www.facebook.com/canadianmetalfab'
