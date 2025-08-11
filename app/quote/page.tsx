@@ -341,16 +341,16 @@ export default function QuotePage() {
         </section>
 
         {/* Form Section */}
-        <section className="py-20 px-6 bg-industry-light relative overflow-hidden">
+        <section className="py-12 px-6 bg-industry-light relative overflow-hidden">
           {/* Background tech pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 right-0 w-96 h-96 bg-industry-blue/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-industry-orange/10 rounded-full blur-3xl"></div>
           </div>
           
-          <div className="max-w-4xl mx-auto relative">
+          <div className="max-w-2xl mx-auto relative">
             {/* Progress Bar */}
-            <div className="mb-8">
+            <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 {steps.map((step, index) => (
                   <div key={step.id} className="flex items-center">
@@ -379,11 +379,11 @@ export default function QuotePage() {
             </div>
 
             <form onSubmit={handleSubmit} className="quote-form">
-              <div className="bg-white p-8 rounded-xl shadow-industry border border-industry-gray-200 animate-slide-up min-h-[500px]">
+              <div className="bg-white p-6 rounded-xl shadow-lg border border-industry-gray-200 animate-slide-up">
                 {/* Step 1: File Upload */}
                 {currentStep === 1 && (
                   <div>
-                    <div className="flex items-center mb-6">
+                    <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mr-4">
                         <span className="text-industry-blue text-xl">📁</span>
                       </div>
@@ -397,10 +397,10 @@ export default function QuotePage() {
                     
                     {/* Drag and Drop Area */}
                     <div
-                      className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+                      className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors shadow-sm ${
                         dragActive
                           ? 'border-industry-blue bg-industry-blue/5'
-                          : 'border-industry-gray-300 hover:border-industry-blue/50'
+                          : 'border-industry-gray-300 hover:border-industry-blue/50 hover:shadow-md'
                       }`}
                       onDragEnter={handleDrag}
                       onDragLeave={handleDrag}
@@ -463,7 +463,7 @@ export default function QuotePage() {
                     )}
 
                     {/* Educational Popover */}
-                    <div className="mt-6 p-4 bg-industry-blue/5 rounded-lg border border-industry-blue/20">
+                    <div className="mt-4 p-4 bg-industry-blue/5 rounded-lg border border-industry-blue/20 shadow-sm">
                       <div className="flex items-start space-x-3">
                         <Tooltip content="We think like an OEM to refine your specs" id="tip-files">
                           <span className="text-industry-blue cursor-help">💡</span>
@@ -485,7 +485,7 @@ export default function QuotePage() {
                 {/* Step 2: Project Requirements */}
                 {currentStep === 2 && (
                   <div>
-                    <div className="flex items-center mb-8">
+                    <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mr-4">
                         <span className="text-industry-orange text-xl">📊</span>
                       </div>
@@ -498,15 +498,15 @@ export default function QuotePage() {
                     </div>
 
                     {/* Enhanced Project Requirements Form */}
-                    <div className="bg-white p-8 rounded-xl border-2 border-industry-gray-200 shadow-lg mb-6">
-                      <fieldset className="space-y-8">
+                    <div className="bg-white p-6 rounded-xl border border-industry-gray-200 shadow-md mb-4">
+                      <fieldset className="space-y-6">
                         <legend className="text-xl font-bold text-industry-dark mb-6 pb-2 border-b-2 border-industry-blue/20">
                           Project Requirements
                         </legend>
                         
                         <FieldGroup>
                           {/* Responsive Grid for QTY and Timeline */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Quantity Field - Enhanced */}
                             <Field>
                               <Label className="flex items-center text-base font-bold text-industry-blue">
@@ -556,26 +556,43 @@ export default function QuotePage() {
                                   <span className="ml-2 text-industry-blue cursor-help text-sm">ℹ️</span>
                                 </Tooltip>
                               </Label>
-                              <p className="text-sm text-industry-gray-600 mb-2">When do you need this completed?</p>
-                              <Select
-                                value={formData.leadTime}
-                                onChange={(e) => handleInputChange('leadTime', e.target.value)}
-                                className={`w-full p-4 text-lg border-2 rounded-lg shadow-sm transition-all duration-300 focus:ring-4 focus:ring-industry-blue/20 hover:shadow-md [&_select]:!text-industry-dark [&_select]:dark:!text-industry-dark ${
-                                  errors.leadTime 
-                                    ? 'border-red-500 bg-red-50 focus:border-red-500 ring-2 ring-red-200' 
-                                    : 'border-industry-gray-300 focus:border-industry-blue hover:border-industry-blue/70'
-                                }`}
-                                style={{ color: '#1F2937 !important' } as React.CSSProperties}
-                                aria-describedby="timeline-help"
-                                aria-label="Project timeline and lead time"
-                              >
-                                <option value="">Select your preferred timeline</option>
-                                <option value="rush">🚀 Rush (1-3 days) - Additional fees apply</option>
-                                <option value="priority">⚡ Priority (1 week) - Fast track</option>
-                                <option value="standard">✅ Standard (2 weeks) - Most popular</option>
-                                <option value="economy">💰 Economy (3-4 weeks) - Best pricing</option>
-                                <option value="flexible">📅 Flexible - Work with our schedule</option>
-                              </Select>
+                              <p className="text-sm text-industry-gray-600 mb-3">When do you need this completed?</p>
+                              
+                              <fieldset className="space-y-3">
+                                <div className="grid grid-cols-1 gap-3">
+                                  {[
+                                    { value: 'rush', label: '🚀 Rush (1-3 days)', subtitle: 'Additional fees apply' },
+                                    { value: 'priority', label: '⚡ Priority (1 week)', subtitle: 'Fast track' },
+                                    { value: 'standard', label: '✅ Standard (2 weeks)', subtitle: 'Most popular' },
+                                    { value: 'economy', label: '💰 Economy (3-4 weeks)', subtitle: 'Best pricing' },
+                                    { value: 'flexible', label: '📅 Flexible', subtitle: 'Work with our schedule' }
+                                  ].map((option) => (
+                                    <label
+                                      key={option.value}
+                                      className={`flex items-start p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:shadow-md ${
+                                        formData.leadTime === option.value
+                                          ? 'border-industry-blue bg-industry-blue/5 shadow-md'
+                                          : 'border-industry-gray-300 hover:border-industry-blue/50 hover:bg-gray-50'
+                                      }`}
+                                    >
+                                      <input
+                                        type="radio"
+                                        name="leadTime"
+                                        value={option.value}
+                                        checked={formData.leadTime === option.value}
+                                        onChange={(e) => handleInputChange('leadTime', e.target.value)}
+                                        className="mr-3 mt-1 text-industry-blue focus:ring-industry-blue"
+                                        aria-describedby="timeline-help"
+                                      />
+                                      <div className="flex-1">
+                                        <div className="font-medium text-industry-dark text-sm">{option.label}</div>
+                                        <div className="text-xs text-industry-gray-600">{option.subtitle}</div>
+                                      </div>
+                                    </label>
+                                  ))}
+                                </div>
+                              </fieldset>
+                              
                               {errors.leadTime && (
                                 <p className="text-red-600 text-sm font-medium flex items-center mt-2 p-2 bg-red-50 rounded-md border border-red-200">
                                   <span className="mr-2 text-red-500">⚠️</span>
@@ -592,7 +609,7 @@ export default function QuotePage() {
                     </div>
 
                     {/* What Happens Next - Trust Building */}
-                    <div className="grid md:grid-cols-2 gap-6 mb-8">
+                    <div className="grid md:grid-cols-2 gap-4 mb-6">
                       <div className="bg-white p-6 rounded-xl border border-industry-blue/20 shadow-sm">
                         <h3 className="text-lg font-semibold text-industry-dark mb-4 flex items-center">
                           <span className="w-8 h-8 bg-industry-blue/20 rounded-full flex items-center justify-center mr-3">
@@ -656,7 +673,7 @@ export default function QuotePage() {
                     </div>
 
                     {/* Privacy and Security Notice */}
-                    <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-200 shadow-sm">
                       <div className="flex items-start space-x-3">
                         <span className="text-green-600 text-lg">🔒</span>
                         <div>
@@ -673,7 +690,7 @@ export default function QuotePage() {
                 {/* Step 3: Optional Details */}
                 {currentStep === 3 && (
                   <div>
-                    <div className="flex items-center mb-6">
+                    <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-industry-blue/20 rounded-lg flex items-center justify-center mr-4">
                         <span className="text-industry-blue text-xl">⚙️</span>
                       </div>
@@ -686,7 +703,7 @@ export default function QuotePage() {
                     </div>
 
                     <FieldGroup>
-                      <div className="space-y-6">
+                      <div className="space-y-4">
                         <Field>
                           <Label>
                             Preferred Material
@@ -742,7 +759,7 @@ export default function QuotePage() {
                     </FieldGroup>
 
                     {/* Trust Badge */}
-                    <div className="mt-8 p-4 bg-green-50 rounded-lg border border-green-200">
+                    <div className="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
                       <div className="flex items-center space-x-3">
                         <span className="text-green-600">🔒</span>
                         <div>
@@ -759,7 +776,7 @@ export default function QuotePage() {
                 {/* Step 4: Contact Information */}
                 {currentStep === 4 && (
                   <div>
-                    <div className="flex items-center mb-6">
+                    <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-industry-orange/20 rounded-lg flex items-center justify-center mr-4">
                         <span className="text-industry-orange text-xl">👤</span>
                       </div>
@@ -772,7 +789,7 @@ export default function QuotePage() {
                     </div>
 
                     <FieldGroup>
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid md:grid-cols-2 gap-4">
                         <Field>
                           <Label>Full Name *</Label>
                           <Input
@@ -822,7 +839,7 @@ export default function QuotePage() {
                     </FieldGroup>
 
                     {/* Privacy Notice */}
-                    <div className="mt-6 p-4 bg-industry-blue/5 rounded-lg border border-industry-blue/20">
+                    <div className="mt-4 p-4 bg-industry-blue/5 rounded-lg border border-industry-blue/20">
                       <div className="flex items-start space-x-3">
                         <span className="text-industry-blue">🔒</span>
                         <div>
@@ -836,7 +853,7 @@ export default function QuotePage() {
                     </div>
 
                     {/* Mini Testimonial */}
-                    <div className="mt-6 p-4 bg-industry-orange/5 rounded-lg border border-industry-orange/20">
+                    <div className="mt-4 p-4 bg-industry-orange/5 rounded-lg border border-industry-orange/20">
                       <div className="flex items-start space-x-3">
                         <div className="w-10 h-10 bg-industry-orange/20 rounded-full flex items-center justify-center">
                           <span className="text-industry-orange text-sm">👤</span>
@@ -853,7 +870,7 @@ export default function QuotePage() {
                 )}
 
                 {/* Navigation Buttons */}
-                <div className="flex justify-between items-center mt-8 pt-6 border-t border-industry-gray-200">
+                <div className="flex justify-between items-center mt-6 pt-4 border-t border-industry-gray-200">
                   <Button
                     type="button"
                     onClick={prevStep}
@@ -890,7 +907,7 @@ export default function QuotePage() {
             </form>
 
             {/* Trust Timeline - Always Visible */}
-            <div className="mt-8 bg-white p-6 rounded-xl shadow-industry border border-industry-gray-200 animate-slide-up">
+            <div className="mt-6 bg-white p-6 rounded-xl shadow-lg border border-industry-gray-200 animate-slide-up">
               <h3 className="text-lg font-semibold text-industry-dark mb-4 text-center">
                 What Happens After You Submit
               </h3>
