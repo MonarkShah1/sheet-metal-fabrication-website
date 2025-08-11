@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { businessInfo } from '@/config/business-info'
 import { locations } from '@/lib/locations/location-data'
+import { industries } from '@/lib/industries/industry-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = businessInfo.url
@@ -80,6 +81,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
+    // Industries hub page
+    {
+      url: `${baseUrl}/industries`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
   ]
 
   // Add all location pages
@@ -90,5 +98,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: location.tier === 1 ? 0.7 : location.tier === 2 ? 0.6 : 0.5,
   }))
 
-  return [...routes, ...locationRoutes]
+  // Add all industry pages
+  const industryRoutes = industries.map(industry => ({
+    url: `${baseUrl}/industries/${industry.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: industry.competitionLevel === 'High' ? 0.8 : industry.competitionLevel === 'Medium' ? 0.7 : 0.6,
+  }))
+
+  // Add service-location combination pages
+  const serviceLocationRoutes = [
+    {
+      url: `${baseUrl}/services/sheet-metal-fabrication-ontario`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/steel-fabrication-ontario`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/custom-metal-work-ontario`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+  ]
+
+  // Add campaign quote pages
+  const campaignQuoteRoutes = [
+    {
+      url: `${baseUrl}/quote/ontario-metal-fabrication`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+  ]
+
+  return [...routes, ...locationRoutes, ...industryRoutes, ...serviceLocationRoutes, ...campaignQuoteRoutes]
 }
