@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { industries } from '@/lib/industries/industry-data';
 import { sortIndustriesByVolume } from '@/lib/industries/industry-utils';
 import { Analytics } from '@/components/Analytics';
+import Navigation from '@/components/ui/Navigation';
+import Footer from '@/components/ui/Footer';
 
 export const metadata: Metadata = {
   title: 'Industries We Serve | Metal Fabrication Specialists | Canadian Metal Fabricators',
@@ -31,7 +33,9 @@ export default function IndustriesPage() {
   const sortedIndustries = sortIndustriesByVolume(industries);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <Navigation />
+      <main className="min-h-screen">
       {/* Hero Section */}
       <section className="bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12">
         <div className="max-w-7xl mx-auto text-center">
@@ -219,7 +223,9 @@ export default function IndustriesPage() {
       </section>
 
       <Analytics />
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }
 

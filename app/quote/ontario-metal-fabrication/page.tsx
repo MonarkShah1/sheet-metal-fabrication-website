@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { CampaignQuoteForm } from '@/components/quote/CampaignQuoteForm';
 import { Analytics } from '@/components/Analytics';
+import Navigation from '@/components/ui/Navigation';
+import Footer from '@/components/ui/Footer';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Get Metal Fabrication Quote Ontario | Free Estimate | Canadian Metal Fabricators',
@@ -26,8 +29,21 @@ export const metadata: Metadata = {
 };
 
 export default function OntarioMetalFabricationQuotePage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Quote', url: '/quote' },
+    { name: 'Ontario Metal Fabrication Quote' }
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      <Navigation />
+      <main className="min-h-screen bg-gray-50">
+        <div className="bg-white py-4 border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Breadcrumbs items={breadcrumbItems} />
+          </div>
+        </div>
       {/* Hero Section */}
       <section className="bg-industry-gradient text-white py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -253,6 +269,8 @@ export default function OntarioMetalFabricationQuotePage() {
       />
 
       <Analytics />
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }

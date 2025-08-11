@@ -9,6 +9,9 @@ import { ServiceLocationProcess } from '@/components/services/ServiceLocationPro
 import { ServiceLocationIndustries } from '@/components/services/ServiceLocationIndustries';
 import { ServiceLocationAdvantages } from '@/components/services/ServiceLocationAdvantages';
 import { Analytics } from '@/components/Analytics';
+import Navigation from '@/components/ui/Navigation';
+import Footer from '@/components/ui/Footer';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 const SERVICE = 'custom-metal-work';
 const LOCATION = 'ontario';
@@ -62,8 +65,21 @@ export default function CustomMetalWorkOntarioPage() {
 
   const seoData = generateServiceLocationSEO(serviceLocation);
 
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services' },
+    { name: 'Custom Metal Work Ontario' }
+  ];
+
   return (
-    <div className="min-h-screen">
+    <>
+      <Navigation />
+      <main className="min-h-screen">
+        <div className="bg-gray-50 py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Breadcrumbs items={breadcrumbItems} />
+          </div>
+        </div>
       <ServiceLocationHero serviceLocation={serviceLocation} />
       <ServiceLocationProcess serviceLocation={serviceLocation} />
       <ServiceLocationIndustries serviceLocation={serviceLocation} />
@@ -104,6 +120,8 @@ export default function CustomMetalWorkOntarioPage() {
       />
 
       <Analytics />
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }
