@@ -178,7 +178,8 @@ export function generateLocationGeoTags(coordinates: { lat: number; lng: number 
  * Combines base keywords with page-specific keywords, removing duplicates
  */
 export function combineKeywords(baseKeywords: string[], pageKeywords: string[] = []): string[] {
-  const combined = [...new Set([...pageKeywords, ...baseKeywords])]
+  const uniqueKeywords = new Set([...pageKeywords, ...baseKeywords])
+  const combined = Array.from(uniqueKeywords)
   return combined.slice(0, 15) // Limit to 15 keywords max for performance
 }
 
