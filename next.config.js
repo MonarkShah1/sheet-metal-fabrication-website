@@ -6,9 +6,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const nextConfig = {
-  experimental: {
-    typedRoutes: true,
-  },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -179,23 +176,9 @@ const nextConfig = {
     return config;
   },
   
-  // Enable modern CSS features and optimizations (merged with existing)
+  // Enable essential features only for stability
   experimental: {
     typedRoutes: true,
-    optimizeCss: true,
-    // Enable modern bundle optimization
-    serverComponentsExternalPackages: ['critters'],
-    // Performance optimizations
-    optimizePackageImports: ['lodash', 'date-fns', 'framer-motion'],
-    turbo: {
-      // Enable Turbo for faster builds
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
   },
 }
 

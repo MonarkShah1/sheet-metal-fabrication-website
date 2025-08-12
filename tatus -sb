@@ -1,0 +1,5 @@
+[33m4649bc7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m fix: remove unused Button import from about page
+[33mf1d4324[m fix: disable react/no-unescaped-entities ESLint rule for marketing content
+[33m3724a40[m fix: resolve Next.js build issues for Vercel deployment
+[33mc3a62c4[m fix: resolve undefined imageObserver reference in performance.ts
+[33mb5ef0a5[m fix: resolve TypeScript route errors for hash fragment URLs in Footer
