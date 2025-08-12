@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/button'
+import { ABTestButton } from '@/components/ABTestButton'
 
 interface DropdownItem {
   name: string
@@ -27,14 +28,11 @@ export default function Navigation() {
       name: 'Services', 
       href: '/services',
       dropdown: [
-        { name: 'Welding', href: '/services/welding' },
         { name: 'Engineering', href: '/services/engineering' },
-        { name: 'Finishing', href: '/services/finishing' },
-        { name: 'Laser Cutting & Bending', href: '/services/laser-cutting-bending' },
         { name: 'Smart Sourcing', href: '/services/smart-sourcing' },
-        { name: 'Steel Fabrication', href: '/services/steel-fabrication-ontario' },
-        { name: 'Sheet Metal Fabrication', href: '/services/sheet-metal-fabrication-ontario' },
-        { name: 'Custom Metal Work', href: '/services/custom-metal-work-ontario' },
+        { name: 'Laser Cutting & Bending', href: '/services/laser-cutting-bending' },
+        { name: 'Welding', href: '/services/welding' },
+        { name: 'Finishing', href: '/services/finishing' },
       ]
     },
     { name: 'Industries', href: '/industries' },
@@ -93,7 +91,7 @@ export default function Navigation() {
                   >
                     {item.name}
                     {item.dropdown && (
-                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     )}
@@ -106,7 +104,7 @@ export default function Navigation() {
                   >
                     {item.name}
                     {item.dropdown && (
-                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     )}
@@ -114,13 +112,14 @@ export default function Navigation() {
                 )}
 
                 {item.dropdown && openDropdown === item.name && (
-                  <div className="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-50">
+                  <div className="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-50" role="menu">
                     <div className="py-2">
                       {item.dropdown.map((dropdownItem) => (
                         <Link
                           key={dropdownItem.name}
                           href={dropdownItem.href as any}
-                          className="block px-4 py-2 text-sm text-secondary-700 hover:bg-gray-50 hover:text-primary-600 transition-colors"
+                          className="block px-4 py-2 text-sm text-secondary-700 hover:bg-gray-50 hover:text-primary-600 transition-colors min-h-[44px] flex items-center"
+                          role="menuitem"
                         >
                           {dropdownItem.name}
                         </Link>
@@ -133,17 +132,21 @@ export default function Navigation() {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Button href="/quote" color="blue">
-              Get Quote
-            </Button>
+            <ABTestButton 
+              testName="hero_cta_primary"
+              href="/quote" 
+              defaultText="Get Quote"
+              color="blue"
+            />
           </div>
 
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
@@ -184,9 +187,13 @@ export default function Navigation() {
                   )}
                 </div>
               ))}
-              <Button href="/quote" color="blue" className="w-full text-center mt-4">
-                Get Quote
-              </Button>
+              <ABTestButton 
+                testName="hero_cta_primary"
+                href="/quote" 
+                defaultText="Get Quote"
+                color="blue"
+                className="w-full text-center mt-4"
+              />
             </div>
           </div>
         )}
