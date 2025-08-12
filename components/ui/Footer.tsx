@@ -26,10 +26,10 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-secondary-300">
-              <li><Link href="/services#cutting" className="hover:text-white transition-colors">Laser Cutting</Link></li>
-              <li><Link href="/services#welding" className="hover:text-white transition-colors">Welding</Link></li>
-              <li><Link href="/services#forming" className="hover:text-white transition-colors">Metal Forming</Link></li>
-              <li><Link href="/services#finishing" className="hover:text-white transition-colors">Finishing</Link></li>
+              <li><Link href={"/services#cutting" as any} className="hover:text-white transition-colors">Laser Cutting</Link></li>
+              <li><Link href={"/services#welding" as any} className="hover:text-white transition-colors">Welding</Link></li>
+              <li><Link href={"/services#forming" as any} className="hover:text-white transition-colors">Metal Forming</Link></li>
+              <li><Link href={"/services#finishing" as any} className="hover:text-white transition-colors">Finishing</Link></li>
             </ul>
           </div>
 
