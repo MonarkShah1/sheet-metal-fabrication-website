@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { StructuredData } from '@/components/StructuredData'
 import { businessInfo } from '@/config/business-info'
@@ -10,6 +10,11 @@ import Footer from '@/components/ui/Footer'
 import { CriticalCSS, ProgressiveCSS, FontLoadingStrategy, ResourceHints, CriticalCSSPerformanceMonitor } from '@/components/CriticalCSS'
 
 export const metadata: Metadata = defaultMetadata
+
+export const viewport: Viewport = {
+  colorScheme: 'light',
+  themeColor: '#1E40AF',
+}
 
 export default function RootLayout({
   children,

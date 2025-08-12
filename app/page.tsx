@@ -28,6 +28,19 @@ export default function HomePage() {
   return (
     <>
       <StructuredDataScript data={structuredData} />
+      
+      {/* Emergency Services Alert Banner */}
+      <div className="bg-red-600 text-white py-2">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm md:text-base">
+            🚨 <strong>PRODUCTION LINE DOWN?</strong> Emergency fabrication available • 4-6 hour turnaround • 
+            <a href="/emergency" className="underline hover:no-underline ml-2 font-semibold">
+              Click for Emergency Service →
+            </a>
+          </p>
+        </div>
+      </div>
+      
       {/* Hero Section with Brand-Aligned Messaging */}
       <Hero />
       

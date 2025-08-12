@@ -95,8 +95,6 @@ export const defaultMetadata: Metadata = {
     },
   },
   referrer: 'origin-when-cross-origin',
-  colorScheme: 'light',
-  themeColor: '#1E40AF',
   manifest: '/manifest.json',
   icons: {
     icon: [

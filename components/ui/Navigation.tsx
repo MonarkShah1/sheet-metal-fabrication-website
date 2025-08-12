@@ -87,6 +87,18 @@ function Navigation() {
   const navigation: NavigationItem[] = [
     { name: 'Home', href: '/' },
     { 
+      name: 'Emergency', 
+      href: '/emergency',
+      dropdown: [
+        { name: 'Emergency Hub', href: '/emergency' },
+        { name: 'Toronto Emergency', href: '/emergency/toronto' },
+        { name: 'Mississauga Emergency', href: '/emergency/mississauga' },
+        { name: 'Brampton Emergency', href: '/emergency/brampton' },
+        { name: 'Vaughan Emergency', href: '/emergency/vaughan' },
+        { name: 'Hamilton Emergency', href: '/emergency/hamilton' },
+      ]
+    },
+    { 
       name: 'Services', 
       href: '/services',
       dropdown: [

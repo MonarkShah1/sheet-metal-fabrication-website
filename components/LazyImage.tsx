@@ -88,6 +88,7 @@ export function LazyImage({
   }
 
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       ref={imgRef}
       src={priority ? src : placeholder}

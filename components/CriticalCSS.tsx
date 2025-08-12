@@ -126,29 +126,10 @@ export function FontLoadingStrategy() {
 
 /**
  * CSS Preloading Component
- * Preloads critical CSS files for subsequent page navigations
+ * Next.js handles CSS automatically, so this component is simplified
  */
 export function CSSPreloading() {
-  return (
-    <>
-      {/* Preload main CSS for subsequent navigations */}
-      <link 
-        rel="preload" 
-        href="/_next/static/css/app-layout.css" 
-        as="style" 
-        onLoad={(e) => {
-          const target = e.target as HTMLLinkElement;
-          target.onload = null;
-          target.rel = 'stylesheet';
-        }}
-      />
-      
-      {/* NoScript fallback */}
-      <noscript>
-        <link rel="stylesheet" href="/_next/static/css/app-layout.css" />
-      </noscript>
-    </>
-  );
+  return null;
 }
 
 /**
