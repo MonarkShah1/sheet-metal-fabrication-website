@@ -71,7 +71,7 @@ export default function SmartSourcingPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/quote"
+                href={"/quote" as any}
                 className="inline-flex items-center px-8 py-4 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold transition-all duration-300 shadow-industry-lg hover:shadow-industry-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-industry-orange focus:ring-opacity-50"
                 aria-label="Get smart sourcing quote"
               >
@@ -375,7 +375,7 @@ export default function SmartSourcingPage() {
                       <div className="text-center pt-4">
                         <p className="text-xs text-gray-300 mb-4">Plus reduced lead times, improved quality, and simplified procurement</p>
                         <Link
-                          href="/quote"
+                          href={"/quote" as any}
                           className="inline-flex items-center px-6 py-3 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold transition-all duration-300 text-sm"
                         >
                           Calculate Your Savings
@@ -464,7 +464,7 @@ export default function SmartSourcingPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/quote"
+                href={"/quote" as any}
                 className="inline-flex items-center px-8 py-4 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold transition-all duration-300 shadow-industry-lg hover:shadow-industry-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-industry-orange focus:ring-opacity-50"
               >
                 <span>Analyze Your Savings</span>

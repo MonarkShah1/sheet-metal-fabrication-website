@@ -162,7 +162,7 @@ export function ResourceHints() {
       
       {/* Prefetch critical page resources */}
       <link rel="prefetch" href="/services" />
-      <link rel="prefetch" href="/quote" />
+      <link rel="prefetch" href={"/quote" as any} />
     </>
   );
 }

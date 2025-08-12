@@ -346,6 +346,122 @@ self.addEventListener('fetch', event => {
   - font-fallbacks.css
 ```
 
+### 8.5 Variable Fonts Implementation
+
+```css
+/* Variable font with optimal loading */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url('/fonts/inter-variable.woff2') format('woff2-variations');
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Optimized font variations */
+:root {
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+.heading {
+  font-family: 'Inter Variable', var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-variation-settings: 'wght' var(--font-weight-bold);
+}
+```
+
+### 8.6 Critical Path CSS Inlining Strategy
+
+```html
+<!-- Inline critical font CSS directly in head -->
+<style>
+  @font-face {
+    font-family: 'Inter Critical';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/inter-critical-subset.woff2') format('woff2');
+    unicode-range: U+0020-007F;
+  }
+  
+  body {
+    font-family: 'Inter Critical', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+</style>
+```
+
+### 8.7 Advanced Resource Hints
+
+```html
+<!-- DNS prefetch for external font providers -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+<!-- Preconnect for critical font resources -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Preload critical fonts -->
+<link rel="preload" href="/fonts/inter-critical.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Module preload for font loader -->
+<link rel="modulepreload" href="/js/font-loader.js">
+```
+
+### 8.8 Font Security & CORS Configuration
+
+```javascript
+// next.config.js
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*'
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin'
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 8.9 Build-Time Font Optimization Tools
+
+```json
+// package.json
+{
+  "devDependencies": {
+    "subfont": "^7.1.0",
+    "glyphhanger": "^5.0.0",
+    "fontmin": "^0.9.6",
+    "web-font-loading-recipes": "^1.0.0"
+  },
+  "scripts": {
+    "font:subset": "glyphhanger --subset=*.woff2 --formats=woff2",
+    "font:optimize": "fontmin src/fonts/*.woff2 --dest=public/fonts/optimized",
+    "font:analyze": "subfont --inline-fonts --in-place public/**/*.html"
+  }
+}
+```
+
 ---
 
 ## 9. Code Examples
@@ -421,30 +537,132 @@ export function useFontLoader(fontFamily: string) {
 }
 ```
 
-### 9.3 Performance Monitoring
+### 9.3 Comprehensive Web Vitals & Performance Monitoring
 
 ```typescript
 // lib/font-performance.ts
 export function measureFontPerformance() {
   if ('PerformanceObserver' in window) {
-    const observer = new PerformanceObserver((list) => {
+    // Monitor font loading
+    const resourceObserver = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
         if (entry.name.includes('font')) {
           console.log(`Font loaded: ${entry.name} in ${entry.duration}ms`);
           
-          // Send to analytics
+          // Send to analytics with detailed metrics
           gtag('event', 'font_load', {
             font_name: entry.name,
             load_time: entry.duration,
-            connection_type: navigator.connection?.effectiveType
+            connection_type: navigator.connection?.effectiveType,
+            font_size: entry.transferSize,
+            cache_hit: entry.transferSize === 0
           });
         }
       }
     });
     
-    observer.observe({ entryTypes: ['resource'] });
+    // Monitor CLS specifically from font swaps
+    const clsObserver = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.hadRecentInput) continue;
+        
+        gtag('event', 'cls', {
+          value: entry.value,
+          sources: entry.sources?.map(s => s.node).join(','),
+          timestamp: entry.startTime
+        });
+      }
+    });
+    
+    resourceObserver.observe({ entryTypes: ['resource'] });
+    clsObserver.observe({ entryTypes: ['layout-shift'] });
+    
+    // Monitor FCP with font context
+    const paintObserver = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.name === 'first-contentful-paint') {
+          gtag('event', 'fcp', {
+            value: entry.startTime,
+            font_loaded: document.fonts.check('16px Inter')
+          });
+        }
+      }
+    });
+    
+    paintObserver.observe({ entryTypes: ['paint'] });
   }
 }
+
+// Web Vitals Reporter Component
+export function WebVitalsReporter() {
+  useEffect(() => {
+    import('web-vitals').then(({ getCLS, getFCP, getLCP, getFID, getTTFB }) => {
+      getCLS((metric) => {
+        gtag('event', metric.name, {
+          value: metric.value,
+          metric_delta: metric.delta,
+          font_related: checkFontRelatedCLS()
+        });
+      });
+      
+      getFCP((metric) => {
+        gtag('event', metric.name, {
+          value: metric.value,
+          metric_delta: metric.delta,
+          fonts_loaded: document.fonts.status === 'loaded'
+        });
+      });
+      
+      getLCP((metric) => {
+        gtag('event', metric.name, {
+          value: metric.value,
+          metric_delta: metric.delta
+        });
+      });
+      
+      getFID((metric) => {
+        gtag('event', metric.name, {
+          value: metric.value,
+          metric_delta: metric.delta
+        });
+      });
+      
+      getTTFB((metric) => {
+        gtag('event', metric.name, {
+          value: metric.value,
+          metric_delta: metric.delta
+        });
+      });
+    });
+  }, []);
+  
+  return null;
+}
+
+// SEO-Optimized Font Loading Strategy
+export const SEOFontConfig = {
+  // Critical fonts for above-fold content
+  critical: {
+    families: ['Inter:400,600'],
+    display: 'swap',
+    preload: true,
+    fallback: 'system-ui, -apple-system, sans-serif'
+  },
+  
+  // Non-critical fonts loaded after interaction
+  secondary: {
+    families: ['Inter:300,500,700'],
+    display: 'optional',
+    loadTrigger: 'interaction'
+  },
+  
+  // Font loading strategy based on connection
+  adaptive: {
+    '4g': 'full',
+    '3g': 'critical-only',
+    'slow-2g': 'system-fonts'
+  }
+};
 ```
 
 ---
@@ -478,11 +696,105 @@ describe('Font Loading Performance', () => {
 });
 ```
 
-### 10.2 Visual Regression Testing
-- Capture screenshots during font load stages
-- Compare fallback vs loaded states
-- Verify no layout shifts
-- Test across different viewport sizes
+### 10.2 Enhanced Testing Framework
+
+```javascript
+// tests/lighthouse.test.js
+import lighthouse from 'lighthouse';
+import * as chromeLauncher from 'chrome-launcher';
+
+describe('Lighthouse Font Performance', () => {
+  let chrome;
+  
+  beforeAll(async () => {
+    chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
+  });
+  
+  afterAll(async () => {
+    await chrome.kill();
+  });
+  
+  test('should achieve good font loading scores', async () => {
+    const options = {
+      logLevel: 'info',
+      output: 'json',
+      onlyCategories: ['performance'],
+      port: chrome.port
+    };
+    
+    const runnerResult = await lighthouse('http://localhost:3000', options);
+    const { lhr } = runnerResult;
+    
+    // Check specific font-related audits
+    expect(lhr.audits['font-display'].score).toBeGreaterThanOrEqual(0.9);
+    expect(lhr.audits['preload-fonts'].score).toBeGreaterThanOrEqual(0.9);
+    expect(lhr.audits['cumulative-layout-shift'].score).toBeGreaterThanOrEqual(0.9);
+    
+    // Overall performance score
+    expect(lhr.categories.performance.score).toBeGreaterThanOrEqual(0.85);
+  });
+});
+```
+
+### 10.3 Visual Regression & Accessibility Testing
+
+```javascript
+// tests/visual-accessibility.test.js
+import { test, expect } from '@playwright/test';
+import { injectAxe, checkA11y } from 'axe-playwright';
+
+test.describe('Font Loading Visual & A11y Tests', () => {
+  test('should maintain consistent layout during font load', async ({ page }) => {
+    await page.goto('http://localhost:3000');
+    await injectAxe(page);
+    
+    // Test accessibility with fallback fonts
+    await page.route('**/*.woff2', route => route.abort());
+    await page.reload();
+    
+    await checkA11y(page, null, {
+      detailedReport: true,
+      detailedReportOptions: { html: true },
+      rules: {
+        'color-contrast': { enabled: true },
+        'focus-order-semantics': { enabled: true }
+      }
+    });
+    
+    // Verify text contrast ratios meet WCAG AA standards
+    const contrastCheck = await page.evaluate(() => {
+      const elements = Array.from(document.querySelectorAll('h1, h2, p, a, button'));
+      return elements.map(el => {
+        const styles = getComputedStyle(el);
+        return {
+          element: el.tagName,
+          fontSize: styles.fontSize,
+          fontWeight: styles.fontWeight,
+          color: styles.color,
+          backgroundColor: styles.backgroundColor
+        };
+      });
+    });
+    
+    expect(contrastCheck.length).toBeGreaterThan(0);
+  });
+  
+  test('should support reduced motion preferences', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('http://localhost:3000');
+    
+    // Verify no font animations with reduced motion
+    const hasAnimations = await page.evaluate(() => {
+      const animations = document.getAnimations();
+      return animations.some(anim => 
+        anim.effect?.target?.style?.fontFamily ||
+        anim.effect?.target?.style?.fontWeight
+      );
+    });
+    
+    expect(hasAnimations).toBeFalsy();
+  });
+});
 
 ---
 
@@ -543,7 +855,79 @@ Expected outcomes include 30% improvement in FCP, 40% reduction in CLS, and enha
 
 ---
 
-## Appendix A: Font Metrics Calculator
+## Appendix A: Implementation Checklist
+
+### Phase 1: Audit & Setup (Week 1)
+- [ ] **Font Audit**
+  - [ ] Inventory current fonts and usage
+  - [ ] Identify critical vs non-critical fonts
+  - [ ] Measure current performance metrics
+  - [ ] Document fallback font stack
+
+- [ ] **Tool Setup**
+  - [ ] Install glyphhanger for subsetting
+  - [ ] Setup subfont for optimization
+  - [ ] Configure build tools (webpack/next.js)
+  - [ ] Install performance monitoring tools
+
+- [ ] **Font Preparation**
+  - [ ] Create font subsets for critical content
+  - [ ] Generate WOFF2 files
+  - [ ] Calculate fallback metrics
+  - [ ] Optimize variable fonts
+
+### Phase 2: Core Implementation (Week 2)
+- [ ] **Component Development**
+  - [ ] Build FontLoader component
+  - [ ] Create CriticalFonts component
+  - [ ] Implement WebVitalsReporter
+  - [ ] Add font loading hooks
+
+- [ ] **CSS Implementation**
+  - [ ] Add font-face declarations with font-display
+  - [ ] Configure fallback font stacks
+  - [ ] Implement size-adjust properties
+  - [ ] Add critical CSS inlining
+
+- [ ] **Resource Optimization**
+  - [ ] Add preload links for critical fonts
+  - [ ] Configure DNS prefetch/preconnect
+  - [ ] Set up font caching headers
+  - [ ] Implement CORS configuration
+
+### Phase 3: Advanced Features (Week 3)
+- [ ] **Progressive Enhancement**
+  - [ ] Implement localStorage caching
+  - [ ] Add Service Worker support
+  - [ ] Configure adaptive loading
+  - [ ] Add variable font support
+
+- [ ] **Monitoring & Analytics**
+  - [ ] Set up Web Vitals tracking
+  - [ ] Configure font loading metrics
+  - [ ] Add performance budgets
+  - [ ] Implement error tracking
+
+### Phase 4: Testing & Optimization (Week 4)
+- [ ] **Performance Testing**
+  - [ ] Run Lighthouse audits
+  - [ ] Test on slow 3G connections
+  - [ ] Verify CLS scores < 0.1
+  - [ ] Check font loading times
+
+- [ ] **Accessibility Testing**
+  - [ ] Test with screen readers
+  - [ ] Verify WCAG compliance
+  - [ ] Test reduced motion preferences
+  - [ ] Check high contrast support
+
+- [ ] **Cross-browser Testing**
+  - [ ] Test on Chrome, Firefox, Safari, Edge
+  - [ ] Verify mobile performance
+  - [ ] Test fallback mechanisms
+  - [ ] Check variable font support
+
+### Appendix B: Font Metrics Calculator
 
 ```javascript
 // tools/calculate-font-metrics.js
@@ -567,24 +951,153 @@ const calculateFallbackMetrics = (originalFont, fallbackFont) => {
     lineGapOverride: 0
   };
 };
+
+// Advanced metrics calculation with machine learning
+const calculateOptimalMetrics = async (originalFont, fallbackFont) => {
+  const measurements = [];
+  const testStrings = [
+    'The quick brown fox jumps over the lazy dog',
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    'abcdefghijklmnopqrstuvwxyz',
+    '1234567890!@#$%^&*()',
+    'Common business terms and phrases for metal fabrication'
+  ];
+  
+  for (const testString of testStrings) {
+    const originalWidth = measureTextWidth(testString, originalFont);
+    const fallbackWidth = measureTextWidth(testString, fallbackFont);
+    measurements.push(originalWidth / fallbackWidth);
+  }
+  
+  const avgRatio = measurements.reduce((a, b) => a + b) / measurements.length;
+  return {
+    sizeAdjust: Math.round(avgRatio * 100),
+    confidence: calculateConfidence(measurements)
+  };
+};
 ```
 
-## Appendix B: Browser Compatibility Table
+## Appendix C: Enhanced Browser Compatibility
 
-| Feature | Chrome | Firefox | Safari | Edge |
-|---------|--------|---------|--------|------|
-| font-display | ✅ 60+ | ✅ 58+ | ✅ 11.1+ | ✅ 79+ |
-| Font Loading API | ✅ 35+ | ✅ 41+ | ✅ 10+ | ✅ 79+ |
-| WOFF2 | ✅ 36+ | ✅ 39+ | ✅ 10+ | ✅ 14+ |
-| size-adjust | ✅ 92+ | ✅ 92+ | ✅ 16.4+ | ✅ 92+ |
-| Service Workers | ✅ 40+ | ✅ 44+ | ✅ 11.1+ | ✅ 17+ |
+| Feature | Chrome | Firefox | Safari | Edge | Notes |
+|---------|--------|---------|--------|------| ------|
+| font-display | ✅ 60+ | ✅ 58+ | ✅ 11.1+ | ✅ 79+ | Critical for FOUT control |
+| Font Loading API | ✅ 35+ | ✅ 41+ | ✅ 10+ | ✅ 79+ | Progressive enhancement |
+| WOFF2 | ✅ 36+ | ✅ 39+ | ✅ 10+ | ✅ 14+ | Modern compression |
+| size-adjust | ✅ 92+ | ✅ 92+ | ✅ 16.4+ | ✅ 92+ | Fallback metrics |
+| font-loading | ✅ 108+ | ❌ | ❌ | ✅ 108+ | Experimental feature |
+| Variable Fonts | ✅ 62+ | ✅ 62+ | ✅ 11+ | ✅ 17+ | Single file, multiple weights |
+| Service Workers | ✅ 40+ | ✅ 44+ | ✅ 11.1+ | ✅ 17+ | Offline font caching |
+| CSS Font Loading | ✅ 35+ | ✅ 41+ | ✅ 10+ | ✅ 79+ | document.fonts API |
 
-## Appendix C: Performance Budget
+### Feature Detection Strategy
+```javascript
+// lib/feature-detection.js
+export const fontFeatures = {
+  fontDisplay: CSS.supports('font-display', 'swap'),
+  fontLoading: 'fonts' in document,
+  variableFonts: CSS.supports('font-variation-settings', 'normal'),
+  serviceWorker: 'serviceWorker' in navigator,
+  intersectionObserver: 'IntersectionObserver' in window
+};
+
+// Graceful degradation
+export const getFontStrategy = () => {
+  if (!fontFeatures.fontDisplay) {
+    return 'basic'; // Use simple font loading
+  }
+  
+  if (fontFeatures.variableFonts && fontFeatures.fontLoading) {
+    return 'advanced'; // Full optimization
+  }
+  
+  return 'progressive'; // Standard optimization
+};
+```
+
+## Appendix D: Enhanced Performance Budget
 
 | Resource | Budget | Notes |
 |----------|--------|-------|
 | Total Font Size | < 100KB | All weights/styles |
 | Critical Font | < 10KB | Subset for above-fold |
+| Variable Font | < 25KB | Single file for all weights |
 | Font Requests | ≤ 4 | Minimize HTTP requests |
 | Load Time | < 1s | On 4G connection |
 | CLS Impact | < 0.05 | From font swapping |
+| Font Cache TTL | 1 year | Long-term caching |
+| Fallback Match | 95%+ | Size-adjust accuracy |
+
+## Appendix E: SEO & Accessibility Considerations
+
+### Font Loading Impact on SEO
+1. **Core Web Vitals Signals**
+   - CLS < 0.1 (Good)
+   - FCP < 1.8s (Good)
+   - LCP < 2.5s (Good)
+   - FID < 100ms (Good)
+
+2. **Text Visibility Requirements**
+   - Ensure text is always readable during font load
+   - Use font-display: swap for critical content
+   - Implement proper fallback fonts with matched metrics
+   - Support users with slow connections
+
+3. **Mobile-First Performance**
+   - Prioritize mobile performance (3G/4G)
+   - Use adaptive loading strategies
+   - Test on throttled connections
+   - Consider data usage on limited plans
+
+### Accessibility Compliance
+```css
+/* Respecting user preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    font-variation-settings: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  :root {
+    --font-weight-normal: 500; /* Increase weight for better contrast */
+    --font-weight-bold: 800;
+  }
+}
+
+/* Support for dyslexic users */
+.dyslexia-friendly {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+}
+```
+
+### Schema Markup for Performance
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Metal Fabrication Website",
+  "url": "https://yoursite.com",
+  "description": "Optimized with fast-loading fonts for better user experience and accessibility",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint", 
+      "urlTemplate": "https://yoursite.com/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Your Metal Fabrication Company",
+    "hasCredential": {
+      "@type": "Certification",
+      "name": "Web Performance Optimized",
+      "description": "Implements modern font loading strategies for optimal user experience"
+    }
+  }
+}
+```

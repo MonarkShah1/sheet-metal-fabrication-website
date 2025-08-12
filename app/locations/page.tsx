@@ -41,7 +41,7 @@ export default function LocationsPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/quote" 
+              href={"/quote" as any} 
               className="inline-flex items-center px-8 py-4 bg-industry-orange text-white font-semibold rounded-lg hover:bg-industry-orange-dark transition-colors"
             >
               Get Quote for Your Area
@@ -198,7 +198,7 @@ export default function LocationsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/quote" 
+              href={"/quote" as any} 
               className="inline-flex items-center px-8 py-4 bg-industry-orange text-white font-semibold rounded-lg hover:bg-industry-orange-dark transition-colors"
             >
               Request Quote

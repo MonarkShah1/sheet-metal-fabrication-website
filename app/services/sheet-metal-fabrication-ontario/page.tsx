@@ -102,7 +102,7 @@ export default function SheetMetalFabricationOntarioPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/quote"
+              href={"/quote" as any}
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
             >
               Get Free Quote

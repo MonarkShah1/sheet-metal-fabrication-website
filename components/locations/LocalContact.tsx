@@ -120,7 +120,7 @@ export function LocalContact({ location }: LocalContactProps) {
                 specify requirements, and receive a professional estimate.
               </p>
               <Link 
-                href="/quote"
+                href={"/quote" as any}
                 className="inline-flex items-center px-4 py-2 bg-industry-orange text-white font-medium rounded-lg hover:bg-industry-orange-dark transition-colors group-hover:scale-105 transform"
               >
                 Get Free Quote

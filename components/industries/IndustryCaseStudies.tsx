@@ -74,7 +74,7 @@ export function IndustryCaseStudies({ industry }: IndustryCaseStudiesProps) {
                   Have a similar challenge? Let&apos;s discuss your project.
                 </p>
                 <a
-                  href="/quote"
+                  href={"/quote" as any}
                   className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm"
                 >
                   Get Your Quote →
@@ -95,7 +95,7 @@ export function IndustryCaseStudies({ industry }: IndustryCaseStudiesProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/quote"
+                href={"/quote" as any}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
               >
                 Start Your Project

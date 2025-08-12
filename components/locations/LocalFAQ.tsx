@@ -138,7 +138,7 @@ export function LocalFAQ({ location }: LocalFAQProps) {
                 <span className="ml-2">📞</span>
               </a>
               <a 
-                href="/quote" 
+                href={"/quote" as any} 
                 className="inline-flex items-center px-6 py-3 border border-industry-orange text-industry-orange hover:bg-industry-orange hover:text-white transition-colors rounded-lg"
               >
                 Get Project Quote

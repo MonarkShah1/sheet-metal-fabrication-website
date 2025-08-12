@@ -47,7 +47,7 @@ export function IndustryProcess({ industry }: IndustryProcessProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/quote"
+                href={"/quote" as any}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
               >
                 Get Your Quote

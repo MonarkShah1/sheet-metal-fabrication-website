@@ -29,7 +29,7 @@ export function IndustryHero({ industry }: IndustryHeroProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <ABTestButton
             testName="industry_hero_cta"
-            href="/quote"
+            href={"/quote" as any}
             defaultText={`Fix Your ${industry.name} Supply Issues`}
             className="inline-flex items-center px-8 py-4 bg-industry-orange text-white font-semibold rounded-lg hover:bg-industry-orange-dark transition-colors"
           />

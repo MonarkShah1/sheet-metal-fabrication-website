@@ -393,7 +393,7 @@ export default function BlogPage() {
                 </svg>
               </a>
               <a
-                href="/quote"
+                href={"/quote" as any}
                 className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-industry-dark text-white rounded-lg font-semibold transition-all duration-300"
               >
                 <span>Get Quote</span>

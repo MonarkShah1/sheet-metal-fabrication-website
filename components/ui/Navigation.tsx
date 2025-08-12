@@ -171,7 +171,7 @@ function Navigation() {
           <div className="hidden md:flex items-center space-x-4">
             <ABTestButton 
               testName="hero_cta_primary"
-              href="/quote" 
+              href={"/quote" as any} 
               defaultText="Get Quote"
               color="blue"
             />
@@ -226,7 +226,7 @@ function Navigation() {
               ))}
               <ABTestButton 
                 testName="hero_cta_primary"
-                href="/quote" 
+                href={"/quote" as any} 
                 defaultText="Get Quote"
                 color="blue"
                 className="w-full text-center mt-4"

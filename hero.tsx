@@ -51,7 +51,7 @@ export function Hero() {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="/quote"
+            href={"/quote" as any}
             className="inline-block bg-industry-orange text-white px-8 py-4 rounded-lg font-semibold hover:bg-industry-orange/90 hover:scale-105 transition-all duration-300 shadow-industry-lg focus:outline-none focus:ring-2 focus:ring-industry-orange focus:ring-opacity-50"
             aria-label="Get a Simplified Quote - Think like an OEM"
           >

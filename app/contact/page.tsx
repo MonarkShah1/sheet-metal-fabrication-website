@@ -284,7 +284,7 @@ export default function ContactPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/quote"
+                href={"/quote" as any}
                 className="inline-flex items-center px-8 py-4 bg-industry-orange hover:bg-industry-orange/90 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-industry-lg"
               >
                 <span>Get Straightforward Quote</span>

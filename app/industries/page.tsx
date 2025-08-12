@@ -53,7 +53,7 @@ export default function IndustriesPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/quote" 
+              href={"/quote" as any} 
               className="inline-flex items-center px-8 py-4 bg-industry-orange text-white font-semibold rounded-lg hover:bg-industry-orange-dark transition-colors"
             >
               Get Industry-Specific Quote
@@ -198,7 +198,7 @@ export default function IndustriesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/quote"
+              href={"/quote" as any}
               className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
             >
               Get Your Industry Quote

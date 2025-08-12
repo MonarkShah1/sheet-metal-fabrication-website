@@ -55,7 +55,7 @@ export default function NotFound() {
                 Popular Pages
               </h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <Link href="/quote" className="text-industry-blue hover:text-industry-blue/80 transition-colors">
+                <Link href={"/quote" as any} className="text-industry-blue hover:text-industry-blue/80 transition-colors">
                   Get a Quote →
                 </Link>
                 <Link href="/about" className="text-industry-blue hover:text-industry-blue/80 transition-colors">

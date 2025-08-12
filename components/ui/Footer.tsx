@@ -37,7 +37,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-secondary-300">
               <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/quote" className="hover:text-white transition-colors">Get Quote</Link></li>
+              <li><Link href={"/quote" as any} className="hover:text-white transition-colors">Get Quote</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>

@@ -152,7 +152,7 @@ export function NearbyProjects({ location }: NearbyProjectsProps) {
                 Contact us today to discuss your {location.city} fabrication needs.
               </p>
               <a 
-                href="/quote" 
+                href={"/quote" as any} 
                 className="inline-flex items-center px-4 py-2 bg-white text-industry-blue font-medium rounded-lg hover:bg-gray-100 transition-colors text-sm"
               >
                 Get Quote
@@ -174,7 +174,7 @@ export function NearbyProjects({ location }: NearbyProjectsProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="/quote" 
+                href={"/quote" as any} 
                 className="inline-flex items-center px-6 py-3 bg-industry-orange text-white font-semibold rounded-lg hover:bg-industry-orange-dark transition-colors"
               >
                 Request Quote
