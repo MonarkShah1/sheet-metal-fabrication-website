@@ -119,15 +119,9 @@ export default function IndustriesPage() {
 
                   {/* Competition Level */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-gray-600">Market Competition:</span>
-                    <span className={`text-sm px-2 py-1 rounded-full ${
-                      industry.competitionLevel === 'High' 
-                        ? 'bg-red-100 text-red-800' 
-                        : industry.competitionLevel === 'Medium'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-green-100 text-green-800'
-                    }`}>
-                      {industry.competitionLevel}
+                    <span className="text-sm text-gray-600">Certifications:</span>
+                    <span className="text-sm text-gray-800">
+                      {industry.certifications.length} required
                     </span>
                   </div>
                 </div>

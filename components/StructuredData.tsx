@@ -1,7 +1,7 @@
 import { businessInfo, certifications } from '@/config/business-info'
 
 interface StructuredDataProps {
-  type?: 'Organization' | 'LocalBusiness' | 'WebPage' | 'ContactPage' | 'Service'
+  type?: 'Organization' | 'LocalBusiness' | 'WebPage' | 'ContactPage' | 'Service' | 'Article' | 'FAQPage' | 'BreadcrumbList'
   customData?: Record<string, any>
 }
 
@@ -129,6 +129,31 @@ export function StructuredData({ type = 'LocalBusiness', customData = {} }: Stru
         name: area
       })),
       hasOfferCatalog: baseOrganization.hasOfferCatalog,
+      ...customData
+    },
+    Article: {
+      '@type': 'Article',
+      publisher: {
+        '@id': `${businessInfo.url}/#organization`
+      },
+      author: {
+        '@id': `${businessInfo.url}/#organization`
+      },
+      inLanguage: 'en-CA',
+      copyrightHolder: {
+        '@id': `${businessInfo.url}/#organization`
+      },
+      copyrightYear: new Date().getFullYear(),
+      ...customData
+    },
+    FAQPage: {
+      '@type': 'FAQPage',
+      mainEntity: customData.mainEntity || [],
+      ...customData
+    },
+    BreadcrumbList: {
+      '@type': 'BreadcrumbList',
+      itemListElement: customData.itemListElement || [],
       ...customData
     }
   }
