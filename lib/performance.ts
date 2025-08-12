@@ -81,7 +81,7 @@ export function createImageObserver(
     } as any
   }
 
-  return new IntersectionObserver(
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -107,7 +107,7 @@ export function createImageObserver(
           }
           
           // Stop observing this image
-          imageObserver.unobserve(img)
+          observer.unobserve(img)
         }
       })
     },
@@ -116,6 +116,8 @@ export function createImageObserver(
       threshold: 0.01,
     }
   )
+  
+  return observer
 }
 
 // Event delegation helper
