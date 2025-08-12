@@ -4,6 +4,17 @@ import Script from 'next/script'
 import { useEffect } from 'react'
 import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals'
 
+// Global type declarations for Google Analytics
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void
+    dataLayer?: any[]
+  }
+}
+
+declare const gtag: (...args: any[]) => void
+declare const dataLayer: any[]
+
 function sendToAnalytics(metric: any) {
   // Send to Google Analytics 4 if available
   if (typeof gtag !== 'undefined') {
