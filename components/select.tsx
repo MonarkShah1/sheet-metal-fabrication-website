@@ -29,11 +29,11 @@ export const Select = forwardRef(function Select(
         {...props}
         className={clsx([
           // Basic layout
-          'relative block w-full appearance-none rounded-lg py-[calc(--spacing(2.5)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
+          'relative block w-full appearance-none rounded-lg py-2.5 sm:py-1.5',
           // Horizontal padding
           multiple
-            ? 'px-[calc(--spacing(3.5)-1px)] sm:px-[calc(--spacing(3)-1px)]'
-            : 'pr-[calc(--spacing(10)-1px)] pl-[calc(--spacing(3.5)-1px)] sm:pr-[calc(--spacing(9)-1px)] sm:pl-[calc(--spacing(3)-1px)]',
+            ? 'px-3.5 sm:px-3'
+            : 'pr-10 pl-3.5 sm:pr-9 sm:pl-3',
           // Options (multi-select)
           '[&_optgroup]:font-semibold',
           // Typography
