@@ -64,7 +64,7 @@ export const DynamicCampaignQuoteForm = dynamic(
 )
 
 export const DynamicABTestDashboard = dynamic(
-  () => import('./ABTestDashboard'),
+  () => import('./ABTestDashboard').then(mod => ({ default: mod.ABTestDashboard })),
   {
     loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded"></div>,
     ssr: false, // Dashboard is client-only
@@ -73,7 +73,7 @@ export const DynamicABTestDashboard = dynamic(
 
 // Dynamic imports for industry-specific components (loaded on-demand)
 export const DynamicIndustryCapabilities = dynamic(
-  () => import('./industries/IndustryCapabilities').then(mod => ({ default: mod.default || mod })),
+  () => import('./industries/IndustryCapabilities').then(mod => ({ default: mod.IndustryCapabilities })),
   {
     loading: () => (
       <div className="animate-pulse space-y-4">
@@ -90,7 +90,7 @@ export const DynamicIndustryCapabilities = dynamic(
 )
 
 export const DynamicIndustryProcess = dynamic(
-  () => import('./industries/IndustryProcess').then(mod => ({ default: mod.default || mod })),
+  () => import('./industries/IndustryProcess').then(mod => ({ default: mod.IndustryProcess })),
   {
     loading: () => (
       <div className="animate-pulse space-y-6">
@@ -114,7 +114,7 @@ export const DynamicIndustryProcess = dynamic(
 
 // Conditional loading based on user interaction
 export const DynamicServiceAreaMap = dynamic(
-  () => import('./locations/ServiceAreaMap').then(mod => ({ default: mod.default || mod })),
+  () => import('./locations/ServiceAreaMap').then(mod => ({ default: mod.ServiceAreaMap })),
   {
     loading: () => <MapSkeleton />,
     ssr: false,
