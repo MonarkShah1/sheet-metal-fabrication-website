@@ -17,8 +17,8 @@ export function useABTest(testName: string) {
 
     const test = getActiveTest(testName)
     if (!test) {
-      // Return first variant if test is not active
-      setVariant(test?.variants[0]?.id || 'control')
+      // Return control variant if test is not active
+      setVariant('control')
       return
     }
 

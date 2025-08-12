@@ -4,10 +4,11 @@ import { useCTATest } from '@/hooks/useABTest'
 import { Button } from '@/components/button'
 import { trackCTAClick } from '@/lib/analytics'
 import Link from 'next/link'
+import type { ComponentProps } from 'react'
 
 interface ABTestButtonProps {
   testName: string
-  href: string
+  href: ComponentProps<typeof Link>['href']
   defaultText: string
   className?: string
   color?: any
@@ -47,7 +48,7 @@ export function ABTestButton({
   // For standard Button component
   return (
     <Button 
-      href={href} 
+      href={typeof href === 'string' ? href : href.pathname || '/'} 
       color={color} 
       className={className}
       onClick={handleClick}
