@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { StructuredData } from '@/components/StructuredData'
 import { businessInfo } from '@/config/business-info'
@@ -8,8 +7,7 @@ import { Analytics } from '@/components/Analytics'
 import { SkipToContent } from '@/components/SkipToContent'
 import Navigation from '@/components/ui/Navigation'
 import Footer from '@/components/ui/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
+import { CriticalCSS, ProgressiveCSS, FontLoadingStrategy, ResourceHints, CriticalCSSPerformanceMonitor } from '@/components/CriticalCSS'
 
 export const metadata: Metadata = defaultMetadata
 
@@ -21,13 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en-CA" className="scroll-smooth">
       <head>
+        <CriticalCSS />
+        <ResourceHints />
         <StructuredData type="Organization" />
         <Analytics />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <FontLoadingStrategy />
+        <ProgressiveCSS />
+        <CriticalCSSPerformanceMonitor />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className="antialiased">
         <SkipToContent />
         <div className="min-h-screen bg-white flex flex-col">
           <Navigation />

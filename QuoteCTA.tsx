@@ -59,7 +59,7 @@ export function QuoteCTA() {
         
         {/* Quote link section */}
         <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-8 max-w-4xl mx-auto">
-          <Link href="/quote" className="block border-2 border-dashed rounded-xl p-8 border-white/30 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Start your quote">
+          <Link href="/quote" as="/quote" className="block border-2 border-dashed rounded-xl p-8 border-white/30 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Start your quote">
             <div className="text-center">
               <div className="w-16 h-16 bg-industry-orange/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-industry-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">

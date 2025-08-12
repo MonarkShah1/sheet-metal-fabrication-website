@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import { ABTestButton } from '@/components/ABTestButton'
+import { debounce } from '@/lib/performance'
 
 interface DropdownItem {
   name: string
@@ -17,7 +18,68 @@ interface NavigationItem {
   dropdown?: DropdownItem[]
 }
 
-export default function Navigation() {
+// Memoized dropdown component to prevent unnecessary re-renders
+const NavigationDropdown = memo(({ 
+  item, 
+  isOpen, 
+  onMouseEnter, 
+  onMouseLeave 
+}: {
+  item: NavigationItem
+  isOpen: boolean
+  onMouseEnter: () => void
+  onMouseLeave: () => void
+}) => {
+  if (!item.dropdown) return null
+  
+  return (
+    <div className="relative" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      {item.href ? (
+        <Link
+          href={item.href as any}
+          className="text-secondary-700 hover:text-primary-600 font-medium transition-colors flex items-center"
+        >
+          {item.name}
+          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </Link>
+      ) : (
+        <button
+          className="text-secondary-700 hover:text-primary-600 font-medium transition-colors flex items-center"
+          aria-expanded={isOpen}
+          aria-haspopup="true"
+        >
+          {item.name}
+          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      )}
+      
+      {isOpen && (
+        <div className="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-50" role="menu">
+          <div className="py-2">
+            {item.dropdown.map((dropdownItem) => (
+              <Link
+                key={dropdownItem.name}
+                href={dropdownItem.href as any}
+                className="block px-4 py-2 text-sm text-secondary-700 hover:bg-gray-50 hover:text-primary-600 transition-colors min-h-[44px] flex items-center"
+                role="menuitem"
+              >
+                {dropdownItem.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+})
+
+NavigationDropdown.displayName = 'NavigationDropdown'
+
+function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -47,18 +109,26 @@ export default function Navigation() {
     },
   ]
 
-  const handleMouseEnter = (name: string) => {
+  const handleMouseEnter = useCallback((name: string) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
     }
     setOpenDropdown(name)
-  }
+  }, [])
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     timeoutRef.current = setTimeout(() => {
       setOpenDropdown(null)
     }, 150)
-  }
+  }, [])
+
+  const toggleMobileMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev)
+  }, [])
+
+  const closeMobileMenu = useCallback(() => {
+    setIsMenuOpen(false)
+  }, [])
 
   useEffect(() => {
     return () => {
@@ -78,56 +148,23 @@ export default function Navigation() {
 
           <div className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => item.dropdown && handleMouseEnter(item.name)}
-                onMouseLeave={handleMouseLeave}
-              >
-                {item.href ? (
-                  <Link
-                    href={item.href as any}
-                    className="text-secondary-700 hover:text-primary-600 font-medium transition-colors flex items-center"
-                  >
-                    {item.name}
-                    {item.dropdown && (
-                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    )}
-                  </Link>
-                ) : (
-                  <button
-                    className="text-secondary-700 hover:text-primary-600 font-medium transition-colors flex items-center"
-                    aria-expanded={openDropdown === item.name}
-                    aria-haspopup="true"
-                  >
-                    {item.name}
-                    {item.dropdown && (
-                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    )}
-                  </button>
-                )}
-
-                {item.dropdown && openDropdown === item.name && (
-                  <div className="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-50" role="menu">
-                    <div className="py-2">
-                      {item.dropdown.map((dropdownItem) => (
-                        <Link
-                          key={dropdownItem.name}
-                          href={dropdownItem.href as any}
-                          className="block px-4 py-2 text-sm text-secondary-700 hover:bg-gray-50 hover:text-primary-600 transition-colors min-h-[44px] flex items-center"
-                          role="menuitem"
-                        >
-                          {dropdownItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              item.dropdown ? (
+                <NavigationDropdown
+                  key={item.name}
+                  item={item}
+                  isOpen={openDropdown === item.name}
+                  onMouseEnter={() => handleMouseEnter(item.name)}
+                  onMouseLeave={handleMouseLeave}
+                />
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href as any}
+                  className="text-secondary-700 hover:text-primary-600 font-medium transition-colors"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
 
@@ -142,7 +179,7 @@ export default function Navigation() {
 
           <button
             className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMobileMenu}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
@@ -161,7 +198,7 @@ export default function Navigation() {
                     <Link
                       href={item.href as any}
                       className="text-secondary-700 hover:text-primary-600 font-medium py-2 block"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={closeMobileMenu}
                     >
                       {item.name}
                     </Link>
@@ -178,7 +215,7 @@ export default function Navigation() {
                           key={dropdownItem.name}
                           href={dropdownItem.href as any}
                           className="block text-sm text-secondary-600 hover:text-primary-600 py-1"
-                          onClick={() => setIsMenuOpen(false)}
+                          onClick={closeMobileMenu}
                         >
                           {dropdownItem.name}
                         </Link>
@@ -201,3 +238,6 @@ export default function Navigation() {
     </nav>
   )
 }
+
+// Export memoized version to prevent unnecessary re-renders
+export default memo(Navigation)
