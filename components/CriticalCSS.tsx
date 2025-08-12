@@ -136,7 +136,11 @@ export function CSSPreloading() {
         rel="preload" 
         href="/_next/static/css/app-layout.css" 
         as="style" 
-        onLoad="this.onload=null;this.rel='stylesheet'" 
+        onLoad={(e) => {
+          const target = e.target as HTMLLinkElement;
+          target.onload = null;
+          target.rel = 'stylesheet';
+        }}
       />
       
       {/* NoScript fallback */}
