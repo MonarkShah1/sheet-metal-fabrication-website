@@ -48,7 +48,7 @@ export default function LocationsPage() {
               <span className="ml-2">→</span>
             </Link>
             <Link 
-              href="/contact" 
+              href={"/contact" as any} 
               className="inline-flex items-center px-8 py-4 border border-white text-white hover:bg-white hover:text-industry-dark transition-colors rounded-lg"
             >
               Contact Our Team

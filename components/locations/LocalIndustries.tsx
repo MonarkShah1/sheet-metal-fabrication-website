@@ -183,14 +183,14 @@ export function LocalIndustries({ location }: LocalIndustriesProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="/contact" 
+                href={"/contact" as any} 
                 className="inline-flex items-center px-6 py-3 bg-industry-blue text-white font-semibold rounded-lg hover:bg-industry-blue-dark transition-colors"
               >
                 Discuss Your Industry Needs
                 <span className="ml-2">→</span>
               </a>
               <a 
-                href="/services" 
+                href={"/services" as any} 
                 className="inline-flex items-center px-6 py-3 border border-industry-blue text-industry-blue hover:bg-industry-blue hover:text-white transition-colors rounded-lg"
               >
                 View All Capabilities

@@ -43,7 +43,7 @@ export default function NotFound() {
               </Link>
               
               <Link
-                href="/services"
+                href={"/services" as any}
                 className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-industry-blue text-industry-blue hover:bg-industry-blue hover:text-white rounded-lg font-medium transition-colors"
               >
                 View Services
@@ -58,7 +58,7 @@ export default function NotFound() {
                 <Link href={"/quote" as any} className="text-industry-blue hover:text-industry-blue/80 transition-colors">
                   Get a Quote →
                 </Link>
-                <Link href="/about" className="text-industry-blue hover:text-industry-blue/80 transition-colors">
+                <Link href={"/about" as any} className="text-industry-blue hover:text-industry-blue/80 transition-colors">
                   About Us →
                 </Link>
                 <Link href="/services/laser-cutting-bending" className="text-industry-blue hover:text-industry-blue/80 transition-colors">

@@ -141,7 +141,7 @@ export function LocalContact({ location }: LocalContactProps) {
                 Available for on-site visits in {location.city}.
               </p>
               <Link 
-                href="/contact"
+                href={"/contact" as any}
                 className="inline-flex items-center px-4 py-2 bg-industry-blue text-white font-medium rounded-lg hover:bg-industry-blue-dark transition-colors group-hover:scale-105 transform"
               >
                 Schedule Consultation

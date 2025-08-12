@@ -83,7 +83,7 @@ export function NearbyProjects({ location }: NearbyProjectsProps) {
                   Interested in seeing more of our work in {location.city}?
                 </p>
                 <a 
-                  href="/contact" 
+                  href={"/contact" as any} 
                   className="inline-flex items-center px-4 py-2 bg-industry-blue text-white text-sm font-medium rounded-lg hover:bg-industry-blue-dark transition-colors"
                 >
                   Contact Us
@@ -181,7 +181,7 @@ export function NearbyProjects({ location }: NearbyProjectsProps) {
                 <span className="ml-2">→</span>
               </a>
               <a 
-                href="/contact" 
+                href={"/contact" as any} 
                 className="inline-flex items-center px-6 py-3 border border-industry-blue text-industry-blue hover:bg-industry-blue hover:text-white transition-colors rounded-lg"
               >
                 Schedule Consultation

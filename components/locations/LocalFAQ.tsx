@@ -131,7 +131,7 @@ export function LocalFAQ({ location }: LocalFAQProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="/contact" 
+                href={"/contact" as any} 
                 className="inline-flex items-center px-6 py-3 bg-industry-blue text-white font-semibold rounded-lg hover:bg-industry-blue-dark transition-colors"
               >
                 Contact Our Team

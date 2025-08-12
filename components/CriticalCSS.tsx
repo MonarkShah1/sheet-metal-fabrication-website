@@ -161,7 +161,7 @@ export function ResourceHints() {
       {/* Only preconnect if we're actually using external fonts/resources */}
       
       {/* Prefetch critical page resources */}
-      <link rel="prefetch" href="/services" />
+      <link rel="prefetch" href={"/services" as any} />
       <link rel="prefetch" href={"/quote" as any} />
     </>
   );

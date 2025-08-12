@@ -107,7 +107,7 @@ export function ServicesGrid() {
         {/* Call to action */}
         <div className="text-center mt-16">
           <a
-            href="/services"
+            href={"/services" as any}
             className="inline-flex items-center px-8 py-4 bg-industry-dark hover:bg-industry-blue text-white rounded-lg font-semibold transition-all duration-300 shadow-industry hover:shadow-industry-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-industry-blue focus:ring-opacity-50"
             aria-label="Explore all our proven manufacturing services"
           >

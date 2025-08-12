@@ -191,7 +191,7 @@ export function EducationalSection() {
               </a>
               
               <a
-                href="/services"
+                href={"/services" as any}
                 className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-industry-dark text-white rounded-lg font-semibold transition-all duration-300"
               >
                 <span>Learn More</span>

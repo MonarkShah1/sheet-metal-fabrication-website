@@ -89,7 +89,7 @@ export function IndustryFAQ({ industry }: IndustryFAQProps) {
                 Call 647-407-0171
               </a>
               <a
-                href="/contact"
+                href={"/contact" as any}
                 className="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
               >
                 Send Us a Message

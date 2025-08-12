@@ -58,7 +58,7 @@ export function Hero() {
             Solve Your Supply Chain Issues
           </a>
           <a
-            href="/services"
+            href={"/services" as any}
             className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-industry-dark px-8 py-4 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
             aria-label="View Our Proven Manufacturing Services"
           >

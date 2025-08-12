@@ -168,7 +168,7 @@ export function WhyChooseUsLocal({ location }: WhyChooseUsLocalProps) {
                 <span className="ml-2">→</span>
               </a>
               <a 
-                href="/contact" 
+                href={"/contact" as any} 
                 className="inline-flex items-center px-6 py-3 border border-white text-white hover:bg-white hover:text-industry-dark transition-colors rounded-lg"
               >
                 Get Reliable Partnership

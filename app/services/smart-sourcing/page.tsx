@@ -29,7 +29,7 @@ export default function SmartSourcingPage() {
             <nav className="mb-8 text-sm" aria-label="Breadcrumb">
               <Link href="/" className="text-gray-300 hover:text-white transition-colors">Home</Link>
               <span className="text-gray-400 mx-2">/</span>
-              <Link href="/services" className="text-gray-300 hover:text-white transition-colors">Services</Link>
+              <Link href={"/services" as any} className="text-gray-300 hover:text-white transition-colors">Services</Link>
               <span className="text-gray-400 mx-2">/</span>
               <span className="text-white">Smart Sourcing</span>
             </nav>
@@ -82,7 +82,7 @@ export default function SmartSourcingPage() {
               </Link>
               
               <Link
-                href="/contact"
+                href={"/contact" as any}
                 className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-industry-dark text-white rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
                 aria-label="Discuss sourcing strategy"
               >
@@ -474,7 +474,7 @@ export default function SmartSourcingPage() {
               </Link>
               
               <Link
-                href="/contact"
+                href={"/contact" as any}
                 className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-industry-dark text-white rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
               >
                 <span>Discuss Your Needs</span>

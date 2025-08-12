@@ -112,7 +112,7 @@ export function LocalServiceOverview({ location }: LocalServiceOverviewProps) {
         {/* CTA Section */}
         <div className="text-center mt-12">
           <Link
-            href="/services"
+            href={"/services" as any}
             className="inline-flex items-center px-6 py-3 bg-industry-blue text-white font-semibold rounded-lg hover:bg-industry-blue-dark transition-colors"
           >
             View All Services

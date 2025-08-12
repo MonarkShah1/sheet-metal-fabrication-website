@@ -103,7 +103,7 @@ export default function EngineeringPage() {
               </Link>
               
               <Link
-                href="/contact"
+                href={"/contact" as any}
                 className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-industry-dark text-white rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
                 aria-label="Discuss your engineering project"
               >
@@ -445,7 +445,7 @@ export default function EngineeringPage() {
               </Link>
               
               <Link
-                href="/contact"
+                href={"/contact" as any}
                 className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-industry-dark text-white rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
               >
                 <span>Schedule Consultation</span>
