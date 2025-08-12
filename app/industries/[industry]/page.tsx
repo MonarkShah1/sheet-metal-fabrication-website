@@ -10,6 +10,7 @@ import { IndustryProcess } from '@/components/industries/IndustryProcess';
 import { IndustryAdvantages } from '@/components/industries/IndustryAdvantages';
 import { Analytics } from '@/components/Analytics';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { generateIndustryServiceSchema, generateCaseStudySchema } from '@/config/schema-generators';
 
 export async function generateMetadata({ params }: IndustryPageProps): Promise<Metadata> {
   const industry = getIndustryBySlug(params.industry, industries);
@@ -185,7 +186,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
                 href="/quote"
                 className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
               >
-                Get Free Quote
+                End Your Supply Headaches
               </a>
               <a
                 href="tel:647-407-0171"
@@ -197,13 +198,40 @@ export default function IndustryPage({ params }: IndustryPageProps) {
           </div>
         </section>
 
-        {/* Structured Data */}
+        {/* Enhanced Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(seoData.schemaData)
           }}
         />
+        
+        {/* Industry Service Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateIndustryServiceSchema(industry))
+          }}
+        />
+        
+        {/* Case Studies Schema */}
+        {industry.caseStudies.length > 0 && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'ItemList',
+                name: `${industry.name} Case Studies`,
+                itemListElement: industry.caseStudies.map((caseStudy, index) => ({
+                  '@type': 'ListItem',
+                  position: index + 1,
+                  item: generateCaseStudySchema(caseStudy, industry)
+                }))
+              })
+            }}
+          />
+        )}
 
         {/* Analytics */}
         <Analytics />

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { industries } from '@/lib/industries/industry-data';
-import { sortIndustriesByVolume } from '@/lib/industries/industry-utils';
+import { sortIndustriesByName } from '@/lib/industries/industry-utils';
 import { Analytics } from '@/components/Analytics';
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export default function IndustriesPage() {
-  const sortedIndustries = sortIndustriesByVolume(industries);
+  const sortedIndustries = sortIndustriesByName(industries);
 
   return (
     <>

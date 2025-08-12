@@ -45,7 +45,7 @@ export function IndustryCaseStudies({ industry }: IndustryCaseStudiesProps) {
               <div className="space-y-4">
                 {/* Materials */}
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900 mb-2">Materials Used:</h4>
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Materials Used:</h3>
                   <div className="flex flex-wrap gap-2">
                     {study.materials.map((material, index) => (
                       <span key={index} className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 border">
@@ -57,13 +57,13 @@ export function IndustryCaseStudies({ industry }: IndustryCaseStudiesProps) {
 
                 {/* Challenge */}
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900 mb-2">Challenge:</h4>
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Challenge:</h3>
                   <p className="text-sm text-gray-700">{study.challenges}</p>
                 </div>
 
                 {/* Solution */}
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900 mb-2">Our Solution:</h4>
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Our Solution:</h3>
                   <p className="text-sm text-gray-700">{study.solution}</p>
                 </div>
               </div>

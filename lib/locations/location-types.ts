@@ -36,10 +36,6 @@ export interface LocationData {
   distanceFromFacility: number; // in km
   travelTime: string; // e.g., "25 minutes"
   localIndustries: string[];
-  populationSize: number;
-  businessCount: number;
-  competitorCount: number;
-  monthlySearchVolume: number;
   content: LocationContent;
   faqs: LocationFAQ[];
   nearbyAreas: string[];

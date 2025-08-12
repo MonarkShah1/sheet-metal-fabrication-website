@@ -5,9 +5,6 @@ export interface Industry {
   metaDescription: string;
   h1: string;
   keywords: string[];
-  targetLocation: string;
-  monthlySearchVolume: number;
-  competitionLevel: 'Low' | 'Medium' | 'High';
   content: {
     intro: string;
     capabilities: string;

@@ -74,15 +74,8 @@ export function getAllIndustrySlugs(industries: IndustryData[]): string[] {
   return industries.map(industry => industry.slug);
 }
 
-export function getIndustriesByCompetition(
-  industries: IndustryData[], 
-  level: 'Low' | 'Medium' | 'High'
-): IndustryData[] {
-  return industries.filter(industry => industry.competitionLevel === level);
-}
-
-export function sortIndustriesByVolume(industries: IndustryData[]): IndustryData[] {
-  return [...industries].sort((a, b) => b.monthlySearchVolume - a.monthlySearchVolume);
+export function sortIndustriesByName(industries: IndustryData[]): IndustryData[] {
+  return [...industries].sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function getRelatedIndustries(
@@ -106,7 +99,7 @@ export function getRelatedIndustries(
       
       return hasOverlappingServices || hasOverlappingMaterials;
     })
-    .sort((a, b) => b.monthlySearchVolume - a.monthlySearchVolume)
+    .sort((a, b) => a.name.localeCompare(b.name))
     .slice(0, limit);
     
   return related;

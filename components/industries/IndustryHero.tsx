@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { IndustryData } from '@/lib/industries/industry-data';
 import { businessInfo } from '@/config/business-info';
+import { ABTestButton } from '@/components/ABTestButton';
 
 interface IndustryHeroProps {
   industry: IndustryData;
@@ -26,13 +27,12 @@ export function IndustryHero({ industry }: IndustryHeroProps) {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Link 
-            href="/quote" 
+          <ABTestButton
+            testName="industry_hero_cta"
+            href="/quote"
+            defaultText={`Fix Your ${industry.name} Supply Issues`}
             className="inline-flex items-center px-8 py-4 bg-industry-orange text-white font-semibold rounded-lg hover:bg-industry-orange-dark transition-colors"
-          >
-            Get {industry.name} Quote
-            <span className="ml-2">→</span>
-          </Link>
+          />
           <Link 
             href={`tel:${businessInfo.telephone}`}
             className="inline-flex items-center px-8 py-4 border border-white text-white hover:bg-white hover:text-industry-dark transition-colors rounded-lg"
@@ -41,31 +41,31 @@ export function IndustryHero({ industry }: IndustryHeroProps) {
           </Link>
         </div>
 
-        {/* Key Stats */}
+        {/* Trust & Credibility Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
             <div className="text-2xl font-bold text-industry-orange">
-              {industry.monthlySearchVolume.toLocaleString()}
+              7+ Years
             </div>
-            <div className="text-sm text-gray-300">Monthly Searches</div>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-            <div className="text-2xl font-bold text-industry-orange">
-              {industry.targetLocation}
-            </div>
-            <div className="text-sm text-gray-300">Service Area</div>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-            <div className="text-2xl font-bold text-industry-orange">
-              Same Day
-            </div>
-            <div className="text-sm text-gray-300">Quote Response</div>
+            <div className="text-sm text-gray-300">Ontario Experience</div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
             <div className="text-2xl font-bold text-industry-orange">
               ISO 9001
             </div>
             <div className="text-sm text-gray-300">Certified Quality</div>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="text-2xl font-bold text-industry-orange">
+              24-48 Hr
+            </div>
+            <div className="text-sm text-gray-300">Quote Turnaround</div>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+            <div className="text-2xl font-bold text-industry-orange">
+              100%
+            </div>
+            <div className="text-sm text-gray-300">On-Time Delivery</div>
           </div>
         </div>
       </div>

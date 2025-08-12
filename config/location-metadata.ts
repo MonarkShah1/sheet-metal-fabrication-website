@@ -205,7 +205,7 @@ export function generateLocationSocialTags(location: LocationData) {
     // Twitter-specific
     'twitter:data1': `${location.city}, ON`,
     'twitter:label1': 'Location',
-    'twitter:data2': `${location.businessCount}+ Businesses`,
+    'twitter:data2': `${location.distanceFromFacility}km away`,
     'twitter:label2': 'Service Area'
   }
 }

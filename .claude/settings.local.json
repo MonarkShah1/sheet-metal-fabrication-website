@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(if [ -f \"public/robots.txt\" ])",
+      "Bash(then)",
+      "Bash(elif [ -f \"app/robots.ts\" ])",
+      "Bash(else)",
+      "Bash(fi)"
     ],
     "deny": []
   }

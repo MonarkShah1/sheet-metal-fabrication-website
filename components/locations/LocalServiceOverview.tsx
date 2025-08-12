@@ -99,10 +99,10 @@ export function LocalServiceOverview({ location }: LocalServiceOverviewProps) {
                   Serving {location.city}
                 </div>
                 <div className="text-2xl font-bold text-industry-orange mb-2">
-                  {location.businessCount.toLocaleString()}+
+                  ISO 9001
                 </div>
                 <div className="text-sm text-gray-600">
-                  Local Businesses
+                  Certified Quality
                 </div>
               </div>
             </div>

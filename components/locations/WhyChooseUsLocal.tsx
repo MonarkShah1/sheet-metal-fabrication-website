@@ -164,14 +164,14 @@ export function WhyChooseUsLocal({ location }: WhyChooseUsLocalProps) {
                 href="/quote" 
                 className="inline-flex items-center px-6 py-3 bg-industry-orange text-white font-semibold rounded-lg hover:bg-industry-orange-dark transition-colors"
               >
-                Get Your Free Quote
+                Eliminate Your Supplier Headaches
                 <span className="ml-2">→</span>
               </a>
               <a 
                 href="/contact" 
                 className="inline-flex items-center px-6 py-3 border border-white text-white hover:bg-white hover:text-industry-dark transition-colors rounded-lg"
               >
-                Schedule Consultation
+                Get Reliable Partnership
               </a>
             </div>
           </div>

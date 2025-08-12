@@ -55,14 +55,14 @@ export function Hero() {
             className="inline-block bg-industry-orange text-white px-8 py-4 rounded-lg font-semibold hover:bg-industry-orange/90 hover:scale-105 transition-all duration-300 shadow-industry-lg focus:outline-none focus:ring-2 focus:ring-industry-orange focus:ring-opacity-50"
             aria-label="Get a Simplified Quote - Think like an OEM"
           >
-            Get Simplified Quote
+            Solve Your Supply Chain Issues
           </a>
           <a
             href="/services"
             className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-industry-dark px-8 py-4 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
             aria-label="View Our Proven Manufacturing Services"
           >
-            View Services
+            See Our Track Record
           </a>
         </div>
       </div>

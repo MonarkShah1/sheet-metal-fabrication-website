@@ -5,9 +5,6 @@ export interface IndustryData {
   metaDescription: string;
   h1: string;
   keywords: string[];
-  targetLocation: string;
-  monthlySearchVolume: number;
-  competitionLevel: 'Low' | 'Medium' | 'High';
   content: {
     intro: string;
     capabilities: string;
@@ -52,9 +49,6 @@ export const industries: IndustryData[] = [
       'precision automotive parts',
       'automotive supplier parts'
     ],
-    targetLocation: 'Ontario',
-    monthlySearchVolume: 1200,
-    competitionLevel: 'High',
     content: {
       intro: 'Ontario\'s automotive sector demands precision metal fabrication services that meet stringent quality standards and tight delivery schedules. Canadian Metal Fabricators serves major automotive suppliers and OEMs throughout Ontario with custom brackets, housings, assemblies, and precision components that drive the automotive industry forward.',
       capabilities: 'Our automotive fabrication capabilities include precision laser cutting, CNC forming, certified welding, and multi-stage assembly processes. We work with automotive-grade steel, aluminum, and stainless steel materials, maintaining tight tolerances and surface finish requirements that automotive applications demand.',
@@ -161,9 +155,6 @@ export const industries: IndustryData[] = [
       'FDA compliant metal fabrication',
       'food processing equipment Ontario'
     ],
-    targetLocation: 'Ontario',
-    monthlySearchVolume: 890,
-    competitionLevel: 'Medium',
     content: {
       intro: 'Ontario\'s food processing industry requires specialized metal fabrication that meets strict hygiene, safety, and regulatory standards. Canadian Metal Fabricators provides food-grade stainless steel fabrication for equipment manufacturers, processors, and packaging companies throughout Ontario\'s extensive food production network.',
       capabilities: 'Our food-grade fabrication specializes in stainless steel 304/316L construction with sanitary design principles, smooth surface finishes, and easy-clean geometries. We provide precision welding, polishing, and passivation services that meet FDA, CFIA, and HACCP requirements for food contact surfaces.',
@@ -269,9 +260,6 @@ export const industries: IndustryData[] = [
       'industrial conveyor parts',
       'custom material handling solutions'
     ],
-    targetLocation: 'Ontario',
-    monthlySearchVolume: 650,
-    competitionLevel: 'Medium',
     content: {
       intro: 'Ontario\'s logistics and manufacturing sectors rely on robust material handling systems that move products efficiently and safely. Canadian Metal Fabricators provides custom metal fabrication for conveyor systems, warehouse equipment, and material handling machinery that keeps Ontario\'s supply chains moving.',
       capabilities: 'Our material handling fabrication includes heavy-duty structural components, precision conveyor parts, safety guards, and custom brackets designed for high-cycle industrial applications. We work with carbon steel, stainless steel, and aluminum to create durable solutions that withstand demanding warehouse and manufacturing environments.',
