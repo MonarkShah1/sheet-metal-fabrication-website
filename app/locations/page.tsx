@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Navigation from '@/components/ui/Navigation';
-import Footer from '@/components/ui/Footer';
 import { locations } from '@/lib/locations/location-data';
 import { getLocationsByTier, sortLocationsByDistance } from '@/lib/locations/location-utils';
 import { businessInfo } from '@/config/business-info';
@@ -22,8 +20,7 @@ export default function LocationsPage() {
 
   return (
     <>
-      <Navigation />
-      <main className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12">
         <div className="relative max-w-7xl mx-auto text-center">
@@ -216,8 +213,7 @@ export default function LocationsPage() {
           </div>
         </div>
       </section>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

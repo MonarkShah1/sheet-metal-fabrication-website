@@ -1,5 +1,3 @@
-import Navigation from '@/components/ui/Navigation'
-import Footer from '@/components/ui/Footer'
 import { Button } from '@/components/button'
 import { Input } from '@/components/input'
 import { Select } from '@/components/select'
@@ -21,8 +19,7 @@ export default function ContactPage() {
   return (
     <>
       <StructuredData type="ContactPage" />
-      <Navigation />
-      <main>
+      <div>
         <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
           {/* Industry 4.0 background patterns */}
           <div className="absolute inset-0 opacity-5">
@@ -307,8 +304,7 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+      </div>
     </>
   )
 }

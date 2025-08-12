@@ -11,43 +11,25 @@ import { WhyChooseUsLocal } from '@/components/locations/WhyChooseUsLocal';
 import { LocalIndustries } from '@/components/locations/LocalIndustries';
 import { LocalFAQ } from '@/components/locations/LocalFAQ';
 import { LocalContact } from '@/components/locations/LocalContact';
-import Navigation from '@/components/ui/Navigation';
-import Footer from '@/components/ui/Footer';
 import { StructuredDataScript } from '@/components/StructuredDataScript';
 import { generateLocalBusinessSchema } from '@/lib/structured-data';
+import { generateComprehensiveLocationMetadata } from '@/config/location-metadata';
+import { generateFAQSchema } from '@/config/schema-generators';
+import { SmartBreadcrumbSchema, BreadcrumbTemplates } from '@/components/BreadcrumbSchema';
 
 export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
   const location = getLocationBySlug(params.location, locations);
   
   if (!location) {
     return {
-      title: 'Location Not Found',
-      description: 'The requested location page could not be found.'
+      title: 'Location Not Found | Canadian Metal Fabricators',
+      description: 'The requested location page could not be found. Visit our main locations page to find sheet metal fabrication services near you.',
+      robots: { index: false, follow: true }
     };
   }
 
-  const seoData = generateLocationSEO(location);
-
-  return {
-    title: seoData.title,
-    description: seoData.description,
-    keywords: seoData.keywords.join(', '),
-    alternates: {
-      canonical: seoData.canonicalUrl,
-    },
-    openGraph: {
-      title: seoData.title,
-      description: seoData.description,
-      url: seoData.canonicalUrl,
-      siteName: 'Canadian Metal Fabricators Ltd.',
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: seoData.title,
-      description: seoData.description,
-    }
-  };
+  // Use our enhanced metadata generator
+  return generateComprehensiveLocationMetadata(location);
 }
 
 export async function generateStaticParams() {
@@ -66,8 +48,24 @@ export default function LocationPage({ params }: LocationPageProps) {
   return (
     <>
       <StructuredDataScript data={generateLocalBusinessSchema(location)} />
-      <Navigation />
-      <main className="min-h-screen bg-gray-50">
+      <SmartBreadcrumbSchema 
+        customBreadcrumbs={BreadcrumbTemplates.location(location.city, location.slug)} 
+      />
+      {/* FAQ Schema */}
+      {location.faqs && location.faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateFAQSchema(
+              location.faqs.map(faq => ({
+                question: faq.question,
+                answer: faq.answer
+              }))
+            ))
+          }}
+        />
+      )}
+      <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
         <LocationHero location={location} />
 
@@ -99,8 +97,7 @@ export default function LocationPage({ params }: LocationPageProps) {
             __html: JSON.stringify(generateLocationSEO(location).schemaData)
           }}
         />
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

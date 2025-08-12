@@ -1,12 +1,43 @@
-import Navigation from '@/components/ui/Navigation'
-import Footer from '@/components/ui/Footer'
 import { Button } from '@/components/button'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { pageMetadata } from '@/config/seo-metadata'
+import { StructuredData } from '@/components/StructuredData'
+import { generateWebSiteSchema, generateOrganizationSchema } from '@/config/schema-generators'
+import { SmartBreadcrumbSchema } from '@/components/BreadcrumbSchema'
 
 export const metadata: Metadata = {
-  title: 'Manufacturing Fundamentals Blog & Resources | Expert Insights',
-  description: 'Expert insights into sheet metal fabrication fundamentals, proven manufacturing processes, and industry best practices for reliable execution.',
+  ...pageMetadata.blog,
+  alternates: {
+    canonical: '/blog/',
+  },
+  openGraph: {
+    ...pageMetadata.blog.openGraph,
+    type: 'website',
+    url: 'https://canadianmetalfab.com/blog/',
+    images: [
+      {
+        url: 'https://canadianmetalfab.com/images/blog/blog-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Manufacturing Fundamentals Blog | Canadian Metal Fabricators'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@canadianmetalfab',
+    creator: '@canadianmetalfab',
+    title: 'Manufacturing Fundamentals Blog | Canadian Metal Fabricators',
+    description: 'Expert insights on sheet metal fabrication, design guidelines, and manufacturing best practices.',
+    images: ['https://canadianmetalfab.com/images/blog/blog-og.jpg'],
+  },
+  other: {
+    'DC.type': 'Collection',
+    'DC.format': 'text/html',
+    'article:section': 'Manufacturing',
+    'blog:category': 'Manufacturing Education'
+  }
 }
 
 export default function BlogPage() {
@@ -71,8 +102,22 @@ export default function BlogPage() {
 
   return (
     <>
-      <Navigation />
-      <main>
+      <SmartBreadcrumbSchema pathname="/blog" />
+      <StructuredData type="WebPage" customData={{
+        name: 'Manufacturing Fundamentals Blog',
+        description: 'Expert insights on sheet metal fabrication, design guidelines, and manufacturing best practices.',
+        url: 'https://canadianmetalfab.com/blog/',
+        mainEntity: {
+          '@type': 'Blog',
+          '@id': 'https://canadianmetalfab.com/blog/#blog',
+          name: 'Manufacturing Fundamentals Blog',
+          description: 'Educational content and industry insights for sheet metal fabrication',
+          publisher: {
+            '@id': 'https://canadianmetalfab.com/#organization'
+          }
+        }
+      }} />
+      <div>
         <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
           {/* Industry 4.0 background patterns */}
           <div className="absolute inset-0 opacity-5">
@@ -359,8 +404,7 @@ export default function BlogPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+      </div>
     </>
   )
 }

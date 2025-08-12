@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import Navigation from '@/components/ui/Navigation'
-import Footer from '@/components/ui/Footer'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -15,8 +13,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <Navigation />
-      <main className="min-h-screen bg-industry-light flex items-center justify-center px-6 py-20">
+      <div className="min-h-screen bg-industry-light flex items-center justify-center px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">
           <div className="bg-white p-12 rounded-xl shadow-industry border border-industry-gray-200">
             <div className="w-24 h-24 bg-industry-orange/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -74,8 +71,7 @@ export default function NotFound() {
             </div>
           </div>
         </div>
-      </main>
-      <Footer />
+      </div>
     </>
   )
 }

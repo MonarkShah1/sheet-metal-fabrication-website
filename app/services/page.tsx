@@ -1,5 +1,3 @@
-import Navigation from '@/components/ui/Navigation'
-import Footer from '@/components/ui/Footer'
 import { Button } from '@/components/button'
 import Link from 'next/link'
 import { Metadata } from 'next'
@@ -32,8 +30,7 @@ export default function ServicesPage() {
   return (
     <>
       <StructuredDataScript data={structuredData} />
-      <Navigation />
-      <main>
+      <div className="min-h-screen">
         <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
           {/* Industry 4.0 background patterns */}
           <div className="absolute inset-0 opacity-5">
@@ -970,8 +967,7 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+      </div>
     </>
   )
 }

@@ -9,8 +9,6 @@ import { IndustryCapabilities } from '@/components/industries/IndustryCapabiliti
 import { IndustryProcess } from '@/components/industries/IndustryProcess';
 import { IndustryAdvantages } from '@/components/industries/IndustryAdvantages';
 import { Analytics } from '@/components/Analytics';
-import Navigation from '@/components/ui/Navigation';
-import Footer from '@/components/ui/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export async function generateMetadata({ params }: IndustryPageProps): Promise<Metadata> {
@@ -77,8 +75,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
 
   return (
     <>
-      <Navigation />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         {/* Breadcrumbs */}
         <div className="bg-gray-50 py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,19 +102,23 @@ export default function IndustryPage({ params }: IndustryPageProps) {
                 </p>
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Industry Insights</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Our {industry.name} Expertise</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <div className="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Monthly Search Volume: {industry.monthlySearchVolume.toLocaleString()}</span>
+                    <span className="text-gray-700">ISO 9001:2015 Certified Quality Management</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-4 h-4 bg-green-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Competition Level: {industry.competitionLevel}</span>
+                    <span className="text-gray-700">7+ Years Serving Ontario Manufacturers</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-4 h-4 bg-orange-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Target Location: {industry.targetLocation}</span>
+                    <span className="text-gray-700">24-48 Hour Quick Quote Turnaround</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-4 h-4 bg-purple-600 rounded-full mr-3"></div>
+                    <span className="text-gray-700">On-Time Delivery Guarantee</span>
                   </div>
                 </div>
               </div>
@@ -206,8 +207,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
 
         {/* Analytics */}
         <Analytics />
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import { CampaignQuoteForm } from '@/components/quote/CampaignQuoteForm';
 import { Analytics } from '@/components/Analytics';
-import Navigation from '@/components/ui/Navigation';
-import Footer from '@/components/ui/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -37,8 +35,7 @@ export default function OntarioMetalFabricationQuotePage() {
 
   return (
     <>
-      <Navigation />
-      <main className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50">
         <div className="bg-white py-4 border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Breadcrumbs items={breadcrumbItems} />
@@ -269,8 +266,7 @@ export default function OntarioMetalFabricationQuotePage() {
       />
 
       <Analytics />
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

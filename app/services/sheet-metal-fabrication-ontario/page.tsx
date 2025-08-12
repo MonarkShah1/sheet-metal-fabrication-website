@@ -9,8 +9,6 @@ import { ServiceLocationProcess } from '@/components/services/ServiceLocationPro
 import { ServiceLocationIndustries } from '@/components/services/ServiceLocationIndustries';
 import { ServiceLocationAdvantages } from '@/components/services/ServiceLocationAdvantages';
 import { Analytics } from '@/components/Analytics';
-import Navigation from '@/components/ui/Navigation';
-import Footer from '@/components/ui/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 const SERVICE = 'sheet-metal-fabrication';
@@ -73,8 +71,7 @@ export default function SheetMetalFabricationOntarioPage() {
 
   return (
     <>
-      <Navigation />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         {/* Breadcrumbs */}
         <div className="bg-gray-50 py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -164,8 +161,7 @@ export default function SheetMetalFabricationOntarioPage() {
       />
 
       <Analytics />
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

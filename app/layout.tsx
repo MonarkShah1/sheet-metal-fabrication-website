@@ -6,6 +6,8 @@ import { businessInfo } from '@/config/business-info'
 import { defaultMetadata } from '@/config/seo-metadata'
 import { Analytics } from '@/components/Analytics'
 import { SkipToContent } from '@/components/SkipToContent'
+import Navigation from '@/components/ui/Navigation'
+import Footer from '@/components/ui/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,10 +29,12 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <SkipToContent />
-        <div className="min-h-screen bg-white">
-          <main id="main-content">
+        <div className="min-h-screen bg-white flex flex-col">
+          <Navigation />
+          <main id="main-content" className="flex-1">
             {children}
           </main>
+          <Footer />
         </div>
       </body>
     </html>

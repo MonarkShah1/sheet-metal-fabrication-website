@@ -1,5 +1,3 @@
-import Navigation from '@/components/ui/Navigation'
-import Footer from '@/components/ui/Footer'
 import Link from 'next/link'
 import { generateServiceMetadata } from '@/config/seo-metadata'
 import { Metadata } from 'next'
@@ -9,8 +7,7 @@ export const metadata: Metadata = generateServiceMetadata('smart-sourcing')
 export default function SmartSourcingPage() {
   return (
     <>
-      <Navigation />
-      <main className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
           {/* Background elements */}
@@ -488,8 +485,7 @@ export default function SmartSourcingPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+      </div>
     </>
   )
 }

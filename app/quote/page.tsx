@@ -1,7 +1,5 @@
 'use client'
 
-import Navigation from '@/components/ui/Navigation'
-import Footer from '@/components/ui/Footer'
 import { Button } from '@/components/button'
 import { Input } from '@/components/input'
 import { Select } from '@/components/select'
@@ -213,9 +211,7 @@ export default function QuotePage() {
   if (isSubmitted) {
     return (
       <>
-        <Navigation />
-        <main>
-          <section className="py-20 px-6 bg-industry-light min-h-screen flex items-center justify-center">
+        <div className="py-20 px-6 bg-industry-light min-h-screen flex items-center justify-center">
             <div className="max-w-2xl mx-auto text-center">
               <div className="bg-white p-8 rounded-xl shadow-industry border border-industry-gray-200 animate-slide-up">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -274,17 +270,14 @@ export default function QuotePage() {
                 </div>
               </div>
             </div>
-          </section>
-        </main>
-        <Footer />
+        </div>
       </>
     )
   }
 
   return (
     <>
-      <Navigation />
-      <main>
+      <div className="min-h-screen">
         {/* Hero Section */}
         <section className="relative bg-industry-gradient text-white py-20 px-6 md:py-32 md:px-12 overflow-hidden">
           {/* Industry 4.0 background patterns */}
@@ -958,8 +951,7 @@ export default function QuotePage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+      </div>
     </>
   )
 }
