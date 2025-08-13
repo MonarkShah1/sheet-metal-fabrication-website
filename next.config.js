@@ -20,56 +20,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  webpack: (config, { dev, isServer }) => {
-    // Only run critical CSS extraction in production builds
-    if (!dev && !isServer) {
-      // CSS optimization for production
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          ...config.optimization.splitChunks,
-          cacheGroups: {
-            ...config.optimization.splitChunks.cacheGroups,
-            // Separate critical CSS from other styles
-            critical: {
-              name: 'critical',
-              test: /critical\.css$/,
-              chunks: 'all',
-              enforce: true,
-            },
-            // Defer non-critical CSS
-            deferred: {
-              name: 'deferred',
-              test: /deferred.*\.css$/,
-              chunks: 'async',
-              priority: -10,
-            },
-          },
-        },
-      };
-    }
-
-    // Optimize CSS loading
-    config.module.rules.push({
-      test: /\.css$/,
-      use: [
-        {
-          loader: 'postcss-loader',
-          options: {
-            postcssOptions: {
-              plugins: [
-                'tailwindcss',
-                'autoprefixer',
-                ...(process.env.NODE_ENV === 'production' ? ['cssnano'] : []),
-              ],
-            },
-          },
-        },
-      ],
-    });
-
-    return config;
-  },
+  // Remove webpack customization that may be interfering with Next.js loaders
   headers: async () => [
     {
       source: '/:path*',
