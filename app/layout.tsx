@@ -44,7 +44,6 @@ export default async function RootLayout({
           rel="preload" 
           href="/styles/deferred/main.css" 
           as="style" 
-          onLoad="this.onload=null;this.rel='stylesheet'" 
         />
         
         {/* Load deferred CSS asynchronously */}
@@ -52,7 +51,6 @@ export default async function RootLayout({
           rel="stylesheet" 
           href="/styles/deferred/main.css" 
           media="print" 
-          onLoad="this.media='all'" 
         />
         
         {/* Fallback for no-JS */}
@@ -65,7 +63,30 @@ export default async function RootLayout({
           rel="stylesheet" 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" 
           media="print" 
-          onLoad="this.media='all';document.documentElement.classList.add('fonts-enhanced')" 
+        />
+        
+        {/* JavaScript to handle async CSS loading */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Load deferred CSS
+              (function() {
+                var links = document.querySelectorAll('link[rel="stylesheet"][media="print"]');
+                links.forEach(function(link) {
+                  link.onload = function() { 
+                    this.media = 'all'; 
+                    if (this.href.includes('fonts.googleapis.com')) {
+                      document.documentElement.classList.add('fonts-enhanced');
+                    }
+                  };
+                  // Fallback
+                  setTimeout(function() { 
+                    if (link.media === 'print') link.media = 'all'; 
+                  }, 100);
+                });
+              })();
+            `
+          }}
         />
       </head>
       <body className="antialiased">

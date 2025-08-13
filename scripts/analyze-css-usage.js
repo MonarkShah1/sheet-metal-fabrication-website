@@ -3,7 +3,6 @@
 
 const { readFileSync, readdirSync, statSync } = require('fs');
 const { join, extname } = require('path');
-const { PurgeCSS } = require('purgecss');
 
 async function analyzeCSSUsage() {
   console.log('📊 Analyzing CSS usage...');
@@ -27,11 +26,22 @@ async function analyzeCSSUsage() {
     const originalCSS = readFileSync(cssFile, 'utf-8');
     const originalSize = Buffer.byteLength(originalCSS, 'utf8');
     
+    // Skip PurgeCSS analysis in CI/Vercel environment
+    if (process.env.VERCEL || process.env.CI) {
+      console.log('📦 Running in CI/Vercel environment - skipping PurgeCSS analysis');
+      console.log(`📏 Original size: ${formatBytes(originalSize)}`);
+      console.log('💡 Run locally with `npm run analyze:css` for detailed analysis');
+      continue;
+    }
+
     try {
+      // Try to load PurgeCSS dynamically
+      const { PurgeCSS } = await import('purgecss');
+      
       const purgeCSSResult = await new PurgeCSS().purge({
         content: contentFiles,
         css: [cssFile],
-        whitelist: [
+        safelist: [
           'html',
           'body',
           'fonts-loaded',
@@ -47,17 +57,7 @@ async function analyzeCSSUsage() {
           'btn-primary',
           'btn-secondary',
         ],
-        whitelistPatterns: [
-          /^leaflet-/,
-          /^btn-/,
-          /^text-/,
-          /^bg-/,
-          /^flex/,
-          /^grid/,
-          /^container/,
-          /^section-/,
-          /^animate-/,
-        ],
+        blocklist: [],
         keyframes: true,
         fontFace: true,
       });
@@ -85,10 +85,10 @@ async function analyzeCSSUsage() {
             console.log(`   ... and ${unusedSelectors.length - 10} more`);
           }
         }
-        
       }
     } catch (error) {
-      console.error(`❌ Error analyzing ${cssFile}:`, error.message);
+      console.log(`📏 Original size: ${formatBytes(originalSize)}`);
+      console.log('⚠️  PurgeCSS analysis not available in this environment');
     }
   }
   
