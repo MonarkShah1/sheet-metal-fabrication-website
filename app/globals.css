@@ -2,63 +2,170 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* Leaflet CSS */
-@import 'leaflet/dist/leaflet.css';
-
-/* Custom Leaflet styles */
-.leaflet-container {
-  font-family: Inter, system-ui, sans-serif;
+/* System font stack variables */
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Ensure map controls are accessible on mobile */
-.leaflet-control-zoom {
-  @apply border-none shadow-lg;
+/* Progressive font loading - load Inter only when network allows */
+@media (min-width: 0) {
+  .fonts-enhanced:root {
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
 }
 
-.leaflet-control-zoom a {
-  @apply bg-white text-gray-700 border-none shadow-none;
-}
+/* Leaflet CSS - defer loading */
+@import 'leaflet/dist/leaflet.css' screen and (min-width: 768px);
 
-.leaflet-control-zoom a:hover {
-  @apply bg-gray-50;
-}
-
-/* Custom popup styles */
-.leaflet-popup-content-wrapper {
-  @apply rounded-lg shadow-lg;
-}
-
-.leaflet-popup-content {
-  @apply m-0;
-}
-
-/* Ensure map doesn't interfere with page scrolling on mobile */
-.leaflet-container {
-  @apply touch-pan-y;
-}
-
+/* Critical above-the-fold styles */
 @layer base {
   html {
-    font-family: Inter, system-ui, sans-serif;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    margin: 0;
+    background: #ffffff;
+    color: #1f2937;
+    line-height: 1.6;
+  }
+  
+  /* Critical navigation and header styles */
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-1 {
+    flex: 1 1 0%;
+  }
+  
+  /* Critical heading styles */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+  }
+  
+  /* Critical container styles */
+  .container-custom {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Critical button styles */
+  .btn-primary {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    transition: background-color 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1d4ed8;
+    opacity: 0.9;
   }
 }
 
+/* Non-critical styles - loaded asynchronously */
 @layer components {
-  .btn-primary {
-    @apply bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-  }
-  
+  /* Secondary button styles - not above fold */
   .btn-secondary {
-    @apply bg-secondary-100 text-secondary-900 px-6 py-3 rounded-lg font-semibold hover:bg-secondary-200 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2;
+    background-color: #f3f4f6;
+    color: #111827;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    transition: background-color 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
   }
   
-  .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  .btn-secondary:hover {
+    background-color: #e5e7eb;
   }
   
+  /* Section padding - not critical for initial render */
   .section-padding {
-    @apply py-16 sm:py-20 lg:py-24;
+    padding: 4rem 0 5rem 0;
+  }
+  
+  /* Responsive section padding */
+  @media (min-width: 640px) {
+    .section-padding {
+      padding: 5rem 0 6rem 0;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding: 6rem 0 7rem 0;
+    }
+  }
+}
+
+/* Deferred map styles */
+@layer utilities {
+  /* Custom Leaflet styles - loaded only when needed */
+  .leaflet-container {
+    font-family: var(--font-sans);
+    touch-action: pan-y;
+  }
+
+  /* Map control styles */
+  .leaflet-control-zoom {
+    border: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .leaflet-control-zoom a {
+    background-color: #ffffff;
+    color: #374151;
+    border: none;
+    box-shadow: none;
+  }
+
+  .leaflet-control-zoom a:hover {
+    background-color: #f9fafb;
+  }
+
+  /* Custom popup styles */
+  .leaflet-popup-content-wrapper {
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .leaflet-popup-content {
+    margin: 0;
   }
 }

@@ -4,13 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build:critical && next build",
+    "build:critical": "node scripts/extract-critical-css.js",
+    "build:prod": "npm run build:critical && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "analyze:css": "node scripts/analyze-css-usage.js",
+    "optimize:css": "npm run analyze:css && npm run build:critical",
+    "test:performance": "node scripts/lighthouse-ci.js",
+    "test:lighthouse": "npm run test:performance"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.0",
@@ -33,11 +39,18 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "autoprefixer": "^10.0.0",
+    "chrome-launcher": "^1.2.0",
+    "critical": "^7.2.1",
+    "cssnano": "^7.1.0",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "postcss": "^8.0.0",
+    "lighthouse": "^12.8.1",
+    "penthouse": "^2.3.3",
+    "postcss": "^8.5.6",
+    "puppeteer": "^24.16.1",
+    "purgecss": "^7.0.2",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.0.0"
   }
